@@ -9,5 +9,9 @@ package models;
  * @author max
  */
 public class Gameplay {
+
+   protected Customer customer;
+   protected Game game;
+   protected Device device;
     
 }

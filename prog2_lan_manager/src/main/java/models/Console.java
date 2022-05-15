@@ -9,7 +9,7 @@ package models;
  * @author max
  */
 public class Console extends Device{
-    
+ 
     String model;
     
 }

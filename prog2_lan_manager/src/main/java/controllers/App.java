@@ -2,16 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package models;
+package controllers;
 
-import java.util.List;
+import views.Main;
 
 /**
  *
  * @author max
  */
-public abstract class Device {
+public class App {
     
-    protected boolean active;
-    protected List<Game> availableGames;
+    public static void main(String[] args) {
+        Main mainView = new Main();
+        mainView.setVisible(true);
+    }
+   
 }

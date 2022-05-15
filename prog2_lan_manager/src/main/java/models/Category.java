@@ -10,4 +10,7 @@ package models;
  */
 public class Category {
     
+    protected double creditsValue;
+    protected String description;
+    
 }

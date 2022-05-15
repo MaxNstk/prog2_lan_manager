@@ -12,4 +12,6 @@ public class User extends Person {
 
         private String login;
         private String password;
+        protected boolean isSuperUser;
+              
 }
