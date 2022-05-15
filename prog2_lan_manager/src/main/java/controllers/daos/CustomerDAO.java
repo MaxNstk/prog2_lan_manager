@@ -13,13 +13,13 @@ import models.Customer;
  *
  * @author max
  */
- public class CustomerListDAO implements ICustomerDAO {
+ public class CustomerDAO implements ICustomerDAO {
      
      private List<Customer> customers = new ArrayList<>();
 
     @Override
-    public void createCustomer(Customer p) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void createCustomer(Customer customer) {
+        customers.add(customer);
     }
 
     @Override

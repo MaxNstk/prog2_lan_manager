@@ -11,5 +11,9 @@ package models;
 public class Customer extends Person {
     
     private int creditsAmount;
+
+    public Customer(String name, String CPF, String adress, String birthDate) {
+        super(name, CPF, adress, birthDate);
+    }
     
 }

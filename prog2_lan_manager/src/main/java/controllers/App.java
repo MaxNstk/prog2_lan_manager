@@ -4,7 +4,8 @@
  */
 package controllers;
 
-import views.Main;
+import views.CustomerCreateView;
+import views.MainView;
 
 /**
  *
@@ -13,8 +14,13 @@ import views.Main;
 public class App {
     
     public static void main(String[] args) {
-        Main mainView = new Main();
+        MainView mainView = new MainView();
         mainView.setVisible(true);
+    }
+    
+    public static void openCustomerCreateView(){
+        CustomerCreateView customerCreateView = new CustomerCreateView();
+        customerCreateView.setVisible(true);
     }
    
 }
