@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package controllers.daos;
+package daos;
 
-import controllers.interfaces.ICustomerDAO;
+import interfaces.ICustomerDAO;
 import java.util.ArrayList;
 import java.util.List;
 import models.Customer;

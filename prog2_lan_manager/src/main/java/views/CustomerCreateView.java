@@ -4,7 +4,7 @@
  */
 package views;
 
-import controllers.daos.CustomerDAO;
+import daos.CustomerDAO;
 import models.Customer;
 
 /**

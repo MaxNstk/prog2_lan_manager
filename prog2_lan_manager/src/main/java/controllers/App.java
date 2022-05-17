@@ -5,6 +5,7 @@
 package controllers;
 
 import views.CustomerCreateView;
+import views.CustomerListView;
 import views.MainView;
 
 /**
@@ -21,6 +22,11 @@ public class App {
     public static void openCustomerCreateView(){
         CustomerCreateView customerCreateView = new CustomerCreateView();
         customerCreateView.setVisible(true);
+    }
+    
+    public static void openCustomerListView(){
+        CustomerListView customerListView = new CustomerListView();
+        customerListView.setVisible(true);
     }
    
 }
