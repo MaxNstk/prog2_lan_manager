@@ -92,9 +92,6 @@
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="tfEndereco"/>
         <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value="tfEndereco"/>
       </AccessibilityProperties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfAdressActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>

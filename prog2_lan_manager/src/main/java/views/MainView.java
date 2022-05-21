@@ -78,7 +78,7 @@ public class MainView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void miCustomerCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCustomerCreateActionPerformed
-        App.openCustomerCreateView();
+        App.openCustomerListView();
     }//GEN-LAST:event_miCustomerCreateActionPerformed
 
     /**

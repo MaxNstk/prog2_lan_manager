@@ -15,7 +15,7 @@ import models.Customer;
  */
  public class CustomerDAO implements ICustomerDAO {
      
-     private List<Customer> customers = new ArrayList<>();
+     private static final List<Customer> customers = new ArrayList<>();
 
     @Override
     public void createCustomer(Customer customer) {
@@ -29,7 +29,7 @@ import models.Customer;
 
     @Override
     public List<Customer> getCustomers() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return CustomerDAO.customers;
     }
     
 }

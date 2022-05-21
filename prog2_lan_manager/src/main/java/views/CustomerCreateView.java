@@ -28,7 +28,7 @@ public class CustomerCreateView extends javax.swing.JFrame {
         return new Customer(name, CPF, adress, birthDate);
         
     }
-    public void saveCustomer(){     
+    public void createCustomer(){     
         CustomerDAO customerDAO = new CustomerDAO();
         customerDAO.createCustomer(this.getCustomerInfo());
        
@@ -62,11 +62,6 @@ public class CustomerCreateView extends javax.swing.JFrame {
         tfBirthDate.setName("tfBithDate"); // NOI18N
 
         tfAdress.setName("tfAdress"); // NOI18N
-        tfAdress.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfAdressActionPerformed(evt);
-            }
-        });
 
         jLabel1.setText("Nome");
 
@@ -135,12 +130,8 @@ public class CustomerCreateView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tfAdressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfAdressActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfAdressActionPerformed
-
     private void btCreateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateCustomerActionPerformed
-        // TODO add your handling code here:
+        this.createCustomer();
     }//GEN-LAST:event_btCreateCustomerActionPerformed
 
     /**
