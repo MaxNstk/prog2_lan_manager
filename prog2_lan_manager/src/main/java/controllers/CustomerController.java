@@ -17,7 +17,7 @@ public class CustomerController {
 
     CustomerDAO customerDAO = new CustomerDAO();
 
-    public List<Customer> getAll() {
+    public List<Customer> getAll(){
         filteredCustomers = new ArrayList<>();
         return filteredCustomers = customerDAO.getCustomers();
     }

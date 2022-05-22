@@ -11,7 +11,7 @@ import java.time.LocalDate;
  * @author max
  */
 
-public class Customer extends Person {
+public class Customer extends Person implements Comparable<Customer>{
     
     private int creditsAmount;
 
@@ -31,6 +31,11 @@ public class Customer extends Person {
     @Override
     public String toString(){
         return super.toString()+" Créditos disponíveis: "+this.creditsAmount+".";
+    }
+    
+    @Override
+    public int compareTo(Customer c){
+        return this.name.compareTo(c.name);
     }
     
 }

@@ -11,12 +11,13 @@ import models.Customer;
  */
  public class CustomerDAO implements ICustomerDAO {
      
-    private static final List<Customer> customers = new ArrayList<>();
+     private static List<Customer> customers = new ArrayList<>();
 
     @Override
     public void createCustomer(Customer customer) {
         customers.add(customer);
     }
+
     
     @Override
     public void retrieveCustomer(String CPF) {
@@ -25,7 +26,7 @@ import models.Customer;
 
     @Override
     public List<Customer> getCustomers() {
-        return this.customers;
+        return customers;
     }
     
 }

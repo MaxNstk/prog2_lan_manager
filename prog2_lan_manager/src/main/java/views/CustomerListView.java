@@ -8,6 +8,9 @@ import controllers.App;
 import controllers.CustomerController;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import models.Customer;
 
 /**
@@ -15,34 +18,47 @@ import models.Customer;
  * @author max
  */
 public class CustomerListView extends javax.swing.JFrame {
-    
+
     private CustomerController customerController;
     private List<Customer> customersToList;
-    
+    private Object[][] listData;
+
+    private final String[] columnNames = {
+        "Nome", "CPF", "Endereço", "Data de nascimento", "Créditos disponíveis"
+    };
+
     /**
      * Creates new form CustomerListView
      */
     public CustomerListView() {
         initComponents();
-        customerController = new CustomerController(); 
-        customersToList = new ArrayList<>();     
+        customerController = new CustomerController();
+        customersToList = new ArrayList<>();
+        
     }
-    
+
+    // todo a ser implementado
     public void ListCustomers() {
-        for(Customer customer : this.customersToList){
-            taCustomerList.setText(customer.toString());
-        }
+        listData = new Object[this.customersToList.size()][5];
+        IntStream.range(0, this.customersToList.size()).forEach(index -> {
+            listData[index][0] = this.customersToList.get(index).getName();
+            listData[index][1] = this.customersToList.get(index).getCPF();
+            listData[index][2] = this.customersToList.get(index).getAdress();
+            listData[index][3] = this.customersToList.get(index).getBirthDate();
+            listData[index][4] = this.customersToList.get(index).getCreditsAmount();
+        });
+        JTable customersTable = new JTable(this.listData, this.columnNames);
+        JScrollPane scrollPane = new JScrollPane(customersTable);
     }
-    
-    public void getSortedCustomers(){
-        if (this.cbSortOptions.getSelectedIndex() == 0)
-            System.out.println("as");
-        else
+
+    public void getSortedCustomers() {
+        // a listagem alfabeticamente é a padrão, customer implementa Comparable
+        if (this.cbSortOptions.getSelectedIndex() == 1)
             this.customersToList = this.customerController.sortByCreditsAmount();
     }
-    
-    public void getFilteredCustomers(){
-        switch (this.cbFilterOptions.getSelectedIndex()){
+
+    public void getFilteredCustomers() {
+        switch (this.cbFilterOptions.getSelectedIndex()) {
             case 0:
                 this.customersToList = this.customerController.getAll();
             case 1:
@@ -63,6 +79,8 @@ public class CustomerListView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         cbFilterOptions = new javax.swing.JComboBox<>();
         tfFilterField = new javax.swing.JScrollPane();
@@ -73,7 +91,20 @@ public class CustomerListView extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         cbSortOptions = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        taCustomerList = new javax.swing.JTextArea();
+        tbCustomerList = new javax.swing.JTable();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -111,9 +142,18 @@ public class CustomerListView extends javax.swing.JFrame {
 
         cbSortOptions.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ordem alfabética", "Quantidade de créditos" }));
 
-        taCustomerList.setColumns(20);
-        taCustomerList.setRows(5);
-        jScrollPane1.setViewportView(taCustomerList);
+        tbCustomerList.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tbCustomerList);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -122,30 +162,32 @@ public class CustomerListView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(btCreateCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(27, 27, 27)
-                                .addComponent(btCreateCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbSortOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbFilterOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(tfFilterField, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btFilterCustomer))))
+                                .addGap(6, 6, 6)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane1)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cbSortOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 436, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel1)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(cbFilterOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(tfFilterField, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(btFilterCustomer))))))
+                        .addGap(28, 28, 28)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -153,24 +195,25 @@ public class CustomerListView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addComponent(btCreateCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(btCreateCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(cbFilterOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tfFilterField, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(cbSortOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btFilterCustomer))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                        .addComponent(tfFilterField, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)
+                        .addComponent(btFilterCustomer))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(cbSortOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -184,14 +227,13 @@ public class CustomerListView extends javax.swing.JFrame {
     private void btCreateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateCustomerActionPerformed
         App.openCustomerCreateView();
     }//GEN-LAST:event_btCreateCustomerActionPerformed
-            
+
 //todo implements alphabetic filtering
     private void btFilterCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFilterCustomerActionPerformed
-        this.taCustomerList.setText("");
         this.getFilteredCustomers();
         this.getSortedCustomers();
-        this.ListCustomers();   
-                
+        this.ListCustomers();
+
     }//GEN-LAST:event_btFilterCustomerActionPerformed
 
     /**
@@ -207,7 +249,9 @@ public class CustomerListView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea taCustomerList;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tbCustomerList;
     private javax.swing.JTextArea tfCustomerName;
     private javax.swing.JScrollPane tfFilterField;
     // End of variables declaration//GEN-END:variables
