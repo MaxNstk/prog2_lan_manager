@@ -30,7 +30,7 @@ public class CustomerListView extends javax.swing.JFrame {
     
     public void ListCustomers(){
         for(Customer customer : this.customersToList){
-            taCustomerList.append(customer.toString());
+            taCustomerList.setText(customer.toString());
         }
     }
     
@@ -39,6 +39,19 @@ public class CustomerListView extends javax.swing.JFrame {
             System.out.println("as");
         else
             this.customersToList = this.customerController.sortByCreditsAmount();
+    }
+    
+    public void getFilteredCustomers(){
+        switch (this.cbFilterOptions.getSelectedIndex()){
+            case 0:
+                this.customersToList = this.customerController.getAll();
+            case 1:
+                this.customersToList = this.customerController.filterByName(this.tfCustomerName.getText());
+            case 2:
+                this.customersToList = this.customerController.filterByCPF(this.tfCustomerName.getText());
+            case 3:
+                this.customersToList = this.customerController.filterByAdress(this.tfCustomerName.getText());
+        }
     }
 
     /**
@@ -53,7 +66,7 @@ public class CustomerListView extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         cbFilterOptions = new javax.swing.JComboBox<>();
         tfFilterField = new javax.swing.JScrollPane();
-        taNomeCliente = new javax.swing.JTextArea();
+        tfCustomerName = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
         btCreateCustomer = new javax.swing.JButton();
         btFilterCustomer = new javax.swing.JButton();
@@ -73,9 +86,9 @@ public class CustomerListView extends javax.swing.JFrame {
             }
         });
 
-        taNomeCliente.setColumns(20);
-        taNomeCliente.setRows(5);
-        tfFilterField.setViewportView(taNomeCliente);
+        tfCustomerName.setColumns(20);
+        tfCustomerName.setRows(5);
+        tfFilterField.setViewportView(tfCustomerName);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel3.setText("Clientes");
@@ -174,9 +187,10 @@ public class CustomerListView extends javax.swing.JFrame {
             
 //todo implements alphabetic filtering
     private void btFilterCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFilterCustomerActionPerformed
+        this.taCustomerList.setText("");
+        this.getFilteredCustomers();
         this.getSortedCustomers();
-        this.ListCustomers();
-        
+        this.ListCustomers();   
                 
     }//GEN-LAST:event_btFilterCustomerActionPerformed
 
@@ -194,7 +208,7 @@ public class CustomerListView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea taCustomerList;
-    private javax.swing.JTextArea taNomeCliente;
+    private javax.swing.JTextArea tfCustomerName;
     private javax.swing.JScrollPane tfFilterField;
     // End of variables declaration//GEN-END:variables
 }

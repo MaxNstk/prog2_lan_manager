@@ -17,16 +17,43 @@ import models.Customer;
  */
 public class CustomerController  {
     
+    private List<Customer> filteredCustomers;
+    
     CustomerDAO customerDAO = new CustomerDAO();
-    List<Customer> filteredCustomers = new ArrayList<>();
     
-    public CustomerController(){
-        this.filteredCustomers = this.customerDAO.getCustomers();
+    
+    
+    
+    public List<Customer> getAll(){
+        filteredCustomers = new ArrayList<>();
+        return filteredCustomers = customerDAO.getCustomers();
+        
     }
-    
-    public List<Customer> filterByName(String searchParam){ 
+        
+    public List<Customer> filterByName(String searchParam){
+        filteredCustomers = new ArrayList<>();
         for (Customer customer : customerDAO.getCustomers()){
             if (customer.getName().contains(searchParam)){
+                filteredCustomers.add(customer);
+            }
+        }
+        return filteredCustomers;
+    }
+    
+    public List<Customer> filterByCPF(String searchParam){
+        filteredCustomers = new ArrayList<>();
+        for (Customer customer : customerDAO.getCustomers()){
+            if (customer.getCPF().contains(searchParam)){
+                filteredCustomers.add(customer);
+            }
+        }
+        return filteredCustomers;
+    }
+    
+    public List<Customer> filterByAdress(String searchParam){ 
+        filteredCustomers = new ArrayList<>();
+        for (Customer customer : customerDAO.getCustomers()){
+            if (customer.getAdress().contains(searchParam)){
                 filteredCustomers.add(customer);
             }
         }
