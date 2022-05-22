@@ -63,12 +63,16 @@ public class CustomerListView extends javax.swing.JFrame {
         switch (this.cbFilterOptions.getSelectedIndex()) {
             case 0:
                 this.customersToList = this.customerController.getAll();
+                break;
             case 1:
                 this.customersToList = this.customerController.filterByName(this.tfCustomerName.getText());
+                break;
             case 2:
                 this.customersToList = this.customerController.filterByCPF(this.tfCustomerName.getText());
+                break;
             case 3:
                 this.customersToList = this.customerController.filterByAdress(this.tfCustomerName.getText());
+                break;
         }
     }
 
