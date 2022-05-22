@@ -18,17 +18,17 @@ public class CustomerListView extends javax.swing.JFrame {
     
     private CustomerController customerController;
     private List<Customer> customersToList;
+    
     /**
      * Creates new form CustomerListView
      */
-    
     public CustomerListView() {
         initComponents();
         customerController = new CustomerController(); 
         customersToList = new ArrayList<>();     
     }
     
-    public void ListCustomers(){
+    public void ListCustomers() {
         for(Customer customer : this.customersToList){
             taCustomerList.setText(customer.toString());
         }
