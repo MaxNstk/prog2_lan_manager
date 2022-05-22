@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package models;
 
 import java.util.List;
@@ -11,7 +7,29 @@ import java.util.List;
  * @author max
  */
 public abstract class Device {
-    
+
     protected boolean active;
     protected List<Game> availableGames;
+
+    public Device(boolean active, List<Game> availableGames) {
+        this.active = active;
+        this.availableGames = availableGames;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public List<Game> getAvailableGames() {
+        return availableGames;
+    }
+
+    public void setAvailableGames(List<Game> availableGames) {
+        this.availableGames = availableGames;
+    }
+
 }
