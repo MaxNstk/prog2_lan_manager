@@ -66,6 +66,10 @@ public class CustomerController {
         return filteredCustomers;
     }
     
+    public void updateCustomer(int id){
+        App.openCustomerUpdateView(customerDAO.retrieveCustomer(id));
+    }
+    
      public List<Customer> sortAlphabetically() {
          Collections.sort(filteredCustomers);
          return filteredCustomers;

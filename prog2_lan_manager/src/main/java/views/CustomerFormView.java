@@ -11,14 +11,25 @@ import models.Customer;
  *
  * @author max
  */
-public class CustomerCreateView extends javax.swing.JFrame {
+public class CustomerFormView extends javax.swing.JFrame {
 
-    /**
-     * Creates new form CustomerCreate
-     */
-    public CustomerCreateView() {
+    private Customer customer;
+    
+    public CustomerFormView(Customer customer) {
         initComponents();
+        if (customer != null){
+            this.customer = customer;
+            this.setCustomerInfo(customer);
+        }
     }
+    
+    public void setCustomerInfo(Customer customer){
+        tfName.setText(customer.getName());
+        tfCPF.setText(customer.getCPF());
+        tfAdress.setText(customer.getAdress());
+        tfBirthDate.setText(customer.getBirthDate());
+    }
+    
     public Customer getCustomerInfo(){
         
         String name = tfName.getText();
@@ -32,6 +43,20 @@ public class CustomerCreateView extends javax.swing.JFrame {
         CustomerDAO customerDAO = new CustomerDAO();
         customerDAO.createCustomer(this.getCustomerInfo());
        
+    }
+    
+    public void updateCustomer(){
+        this.customer.setName(tfName.getText());
+        this.customer.setCPF(tfCPF.getText());
+        this.customer.setAdress(tfAdress.getText());
+        this.customer.setBirthDate(tfBirthDate.getText());
+    }
+    
+    public void clearFields(){
+        tfName.setText("");
+        tfCPF.setText("");
+        tfAdress.setText("");
+        tfBirthDate.setText("");
     }
 
     /**
@@ -131,7 +156,12 @@ public class CustomerCreateView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCreateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateCustomerActionPerformed
-        this.createCustomer();
+        if (this.customer != null)
+           this.updateCustomer(); 
+        else
+            this.createCustomer();
+        
+        this.clearFields();
     }//GEN-LAST:event_btCreateCustomerActionPerformed
 
     /**

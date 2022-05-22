@@ -25,6 +25,22 @@ public abstract class Person {
         this.active = true;
         
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCPF(String CPF) {
+        this.CPF = CPF;
+    }
+
+    public void setAdress(String adress) {
+        this.adress = adress;
+    }
+
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
+    }
     
     public int getId(){
         return this.id;

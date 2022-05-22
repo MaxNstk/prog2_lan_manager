@@ -4,7 +4,8 @@
  */
 package controllers;
 
-import views.CustomerCreateView;
+import models.Customer;
+import views.CustomerFormView;
 import views.CustomerListView;
 import views.MainView;
 
@@ -20,7 +21,12 @@ public class App {
     }
     
     public static void openCustomerCreateView(){
-        CustomerCreateView customerCreateView = new CustomerCreateView();
+        CustomerFormView customerCreateView = new CustomerFormView(null);
+        customerCreateView.setVisible(true);
+    }
+    
+    public static void openCustomerUpdateView(Customer customer){
+        CustomerFormView customerCreateView = new CustomerFormView(customer);
         customerCreateView.setVisible(true);
     }
     

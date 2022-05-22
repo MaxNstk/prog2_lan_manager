@@ -17,11 +17,14 @@ import models.Customer;
     public void createCustomer(Customer customer) {
         customers.add(customer);
     }
-
     
     @Override
-    public void retrieveCustomer(String CPF) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public Customer retrieveCustomer(int id) {
+        for (Customer customer : customers ){
+            if (customer.getId() == id)
+                return customer;
+        }
+        return customers.get(id-1);
     }
 
     @Override

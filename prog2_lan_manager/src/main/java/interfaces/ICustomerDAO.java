@@ -13,7 +13,7 @@ import models.Customer;
  */
 public interface ICustomerDAO {
     public void createCustomer(Customer p);
-    public void retrieveCustomer(String CPF);
+    public Customer retrieveCustomer(int id);
     public List<Customer> getCustomers();
     
 }
