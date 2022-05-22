@@ -7,7 +7,9 @@ import java.time.LocalDate;
  * @author max
  */
 public abstract class Person {
-
+    
+    private static int currentId = 0;
+    protected int id;
     protected String name;
     protected String CPF;
     protected String adress;
@@ -15,27 +17,38 @@ public abstract class Person {
     protected boolean active;
 
     public Person(String name, String CPF, String adress, String birthDate) {
-        this.name      = name;
-        this.CPF       = CPF;
-        this.adress    = adress;
+        this.id = getCurrentId();
+        this.name = name;
+        this.CPF = CPF;
+        this.adress = adress;
         this.birthDate = birthDate;
-        this.active    = true;
+        this.active = true;
+        
+    }
+    
+    public int getId(){
+        return this.id;
+    }
+    
+    private static int getCurrentId(){
+        currentId += 1;
+        return currentId;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public String getCPF() {
-        return CPF;
+        return this.CPF;
     }
 
     public String getAdress() {
-        return adress;
+        return this.adress;
     }
 
     public String getBirthDate() {
-        return birthDate;
+        return this.birthDate;
     }
 
     @Override

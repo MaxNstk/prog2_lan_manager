@@ -12,7 +12,7 @@ public class Category {
     private String description;
 
     public Category(int id, double creditsValue, String description) {
-        this.id           = id;
+        this.id = id;
         this.creditsValue = creditsValue;
         this.description  = description;
     }

@@ -22,7 +22,7 @@ public class CustomerListView extends javax.swing.JFrame {
     private DefaultTableModel dtmCustomers;
 
     private final String[] columnNames = {
-        "Nome", "CPF", "Endereço", "Data de nascimento", "Créditos disponíveis"
+        "Id", "Nome", "CPF", "Endereço", "Data de nascimento", "Créditos disponíveis"
     };
 
     /**
@@ -32,21 +32,21 @@ public class CustomerListView extends javax.swing.JFrame {
         initComponents();
         customerController = new CustomerController();
         customersToList = new ArrayList<>();
-        this.createTableModel();
-        
+        this.createTableModel();      
     }
     
     private void createTableModel(){
         this.dtmCustomers = (DefaultTableModel) this.tbCustomerList.getModel();
         this.dtmCustomers.setColumnIdentifiers(columnNames);
         this.dtmCustomers.setRowCount(0);
+        
     }
 
     // todo a ser implementado
     public void ListCustomers() {
         this.createTableModel();
         for (Customer customer : this.customersToList){
-            Object [] listData = {customer.getName(), customer.getCPF(),
+            Object [] listData = {customer.getId(), customer.getName(), customer.getCPF(),
             customer.getAdress(), customer.getBirthDate(), customer.getCreditsAmount()};
             dtmCustomers.addRow(listData);
         }            
