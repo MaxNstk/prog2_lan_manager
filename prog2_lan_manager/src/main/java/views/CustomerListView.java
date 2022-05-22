@@ -186,8 +186,8 @@ public class CustomerListView extends javax.swing.JFrame {
                                                 .addComponent(jLabel1)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(cbFilterOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(tfFilterField, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(btFilterCustomer))))))
+                                            .addComponent(btFilterCustomer)
+                                            .addComponent(tfFilterField))))))
                         .addGap(28, 28, 28)))
                 .addContainerGap())
         );
