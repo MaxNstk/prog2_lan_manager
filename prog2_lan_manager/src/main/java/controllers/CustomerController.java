@@ -65,5 +65,10 @@ public class CustomerController {
         });
         return filteredCustomers;
     }
+    
+     public List<Customer> sortAlphabetically() {
+         Collections.sort(filteredCustomers);
+         return filteredCustomers;
+     }
 
 }

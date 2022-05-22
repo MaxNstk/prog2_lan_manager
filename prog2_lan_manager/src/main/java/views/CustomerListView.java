@@ -8,9 +8,7 @@ import controllers.App;
 import controllers.CustomerController;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import models.Customer;
 
 /**
@@ -21,7 +19,7 @@ public class CustomerListView extends javax.swing.JFrame {
 
     private CustomerController customerController;
     private List<Customer> customersToList;
-    private Object[][] listData;
+    private DefaultTableModel dtmCustomers;
 
     private final String[] columnNames = {
         "Nome", "CPF", "Endereço", "Data de nascimento", "Créditos disponíveis"
@@ -34,26 +32,30 @@ public class CustomerListView extends javax.swing.JFrame {
         initComponents();
         customerController = new CustomerController();
         customersToList = new ArrayList<>();
+        this.createTableModel();
         
+    }
+    
+    private void createTableModel(){
+        this.dtmCustomers = (DefaultTableModel) this.tbCustomerList.getModel();
+        this.dtmCustomers.setColumnIdentifiers(columnNames);
+        this.dtmCustomers.setRowCount(0);
     }
 
     // todo a ser implementado
     public void ListCustomers() {
-        listData = new Object[this.customersToList.size()][5];
-        IntStream.range(0, this.customersToList.size()).forEach(index -> {
-            listData[index][0] = this.customersToList.get(index).getName();
-            listData[index][1] = this.customersToList.get(index).getCPF();
-            listData[index][2] = this.customersToList.get(index).getAdress();
-            listData[index][3] = this.customersToList.get(index).getBirthDate();
-            listData[index][4] = this.customersToList.get(index).getCreditsAmount();
-        });
-        JTable customersTable = new JTable(this.listData, this.columnNames);
-        JScrollPane scrollPane = new JScrollPane(customersTable);
+        this.createTableModel();
+        for (Customer customer : this.customersToList){
+            Object [] listData = {customer.getName(), customer.getCPF(),
+            customer.getAdress(), customer.getBirthDate(), customer.getCreditsAmount()};
+            dtmCustomers.addRow(listData);
+        }            
     }
 
     public void getSortedCustomers() {
-        // a listagem alfabeticamente é a padrão, customer implementa Comparable
-        if (this.cbSortOptions.getSelectedIndex() == 1)
+        if (this.cbSortOptions.getSelectedIndex() == 0)
+            this.customersToList = this.customerController.sortAlphabetically();
+        else
             this.customersToList = this.customerController.sortByCreditsAmount();
     }
 
@@ -111,11 +113,6 @@ public class CustomerListView extends javax.swing.JFrame {
         jLabel1.setText("Filtrar por:");
 
         cbFilterOptions.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Nome", "CPF", "Endereço" }));
-        cbFilterOptions.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbFilterOptionsActionPerformed(evt);
-            }
-        });
 
         tfCustomerName.setColumns(20);
         tfCustomerName.setRows(5);
@@ -220,20 +217,14 @@ public class CustomerListView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbFilterOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFilterOptionsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbFilterOptionsActionPerformed
-
     private void btCreateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateCustomerActionPerformed
         App.openCustomerCreateView();
     }//GEN-LAST:event_btCreateCustomerActionPerformed
 
-//todo implements alphabetic filtering
     private void btFilterCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFilterCustomerActionPerformed
         this.getFilteredCustomers();
         this.getSortedCustomers();
         this.ListCustomers();
-
     }//GEN-LAST:event_btFilterCustomerActionPerformed
 
     /**
