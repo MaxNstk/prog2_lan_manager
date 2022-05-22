@@ -20,6 +20,10 @@ public class Customer extends Person {
         this.creditsAmount = 0;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public int getCreditsAmount() {
         return creditsAmount;
     }

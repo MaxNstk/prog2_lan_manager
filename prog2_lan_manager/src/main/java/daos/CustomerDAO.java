@@ -22,6 +22,7 @@ import models.Customer;
         customers.add(customer);
     }
 
+    
     @Override
     public void retrieveCustomer(String CPF) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
