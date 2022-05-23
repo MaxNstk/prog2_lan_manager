@@ -18,33 +18,27 @@ import models.Customer;
 public class CustomerListView extends javax.swing.JFrame {
 
     private CustomerController customerController;
-    private List<Customer> customersToList;
     private DefaultTableModel dtmCustomers;
 
     private final String[] columnNames = {
         "Id", "Nome", "CPF", "Endereço", "Data de nascimento", "Créditos disponíveis"
     };
 
-    /**
-     * Creates new form CustomerListView
-     */
     public CustomerListView() {
         initComponents();
         customerController = new CustomerController();
-        customersToList = new ArrayList<>();
         this.createTableModel();      
     }
     
     private void createTableModel(){
         this.dtmCustomers = (DefaultTableModel) this.tbCustomerList.getModel();
         this.dtmCustomers.setColumnIdentifiers(columnNames);
-        this.dtmCustomers.setRowCount(0);
-        
+        this.dtmCustomers.setRowCount(0);        
     }
 
     public void ListCustomers() {
         this.createTableModel();
-        for (Customer customer : this.customersToList){
+        for (Customer customer : customerController.getFilteredCustomers()){
             Object [] listData = {customer.getId(), customer.getName(), customer.getCPF(),
             customer.getAdress(), customer.getBirthDate(), customer.getCreditsAmount()};
             dtmCustomers.addRow(listData);
@@ -53,24 +47,24 @@ public class CustomerListView extends javax.swing.JFrame {
 
     public void getSortedCustomers() {
         if (this.cbSortOptions.getSelectedIndex() == 0)
-            this.customersToList = this.customerController.sortAlphabetically();
+            this.customerController.sortAlphabetically();
         else
-            this.customersToList = this.customerController.sortByCreditsAmount();
+            this.customerController.sortByCreditsAmount();
     }
 
     public void getFilteredCustomers() {
         switch (this.cbFilterOptions.getSelectedIndex()) {
             case 0:
-                this.customersToList = this.customerController.getAll();
+                this.customerController.getAll();
                 break;
             case 1:
-                this.customersToList = this.customerController.filterByName(this.tfCustomerName.getText());
+                this.customerController.filterByName(this.tfCustomerName.getText());
                 break;
             case 2:
-                this.customersToList = this.customerController.filterByCPF(this.tfCustomerName.getText());
+                this.customerController.filterByCPF(this.tfCustomerName.getText());
                 break;
             case 3:
-                this.customersToList = this.customerController.filterByAdress(this.tfCustomerName.getText());
+                this.customerController.filterByAdress(this.tfCustomerName.getText());
                 break;
         }
     }
