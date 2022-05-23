@@ -20,7 +20,7 @@ import models.Customer;
     
     @Override
     public Customer retrieveCustomer(int id) {
-        for (Customer customer : customers ){
+        for (Customer customer : customers){
             if (customer.getId() == id)
                 return customer;
         }
