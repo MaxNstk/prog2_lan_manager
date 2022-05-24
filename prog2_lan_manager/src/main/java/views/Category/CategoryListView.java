@@ -15,7 +15,7 @@ public class CategoryListView extends javax.swing.JFrame {
 
     private CategoryController categoryController;
     private List<Category> categoriesToList;
-    private DefaultTableModel dtmCustomers;
+    private DefaultTableModel dtmCategories;
 
     private final String[] columnNames = {
         "Código", "Descrição", "Créditos",
@@ -32,9 +32,9 @@ public class CategoryListView extends javax.swing.JFrame {
     }
     
     private void createTableModel(){
-        this.dtmCustomers = (DefaultTableModel) this.tbCustomerList.getModel();
-        this.dtmCustomers.setColumnIdentifiers(columnNames);
-        this.dtmCustomers.setRowCount(0);
+        this.dtmCategories = (DefaultTableModel) this.tbCategoryList.getModel();
+        this.dtmCategories.setColumnIdentifiers(columnNames);
+        this.dtmCategories.setRowCount(0);
     }
 
     /**
@@ -56,7 +56,7 @@ public class CategoryListView extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         cbSortOptions = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbCustomerList = new javax.swing.JTable();
+        tbCategoryList = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -89,7 +89,7 @@ public class CategoryListView extends javax.swing.JFrame {
 
         cbSortOptions.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ordem alfabética", "Quantidade de créditos" }));
 
-        tbCustomerList.setModel(new javax.swing.table.DefaultTableModel(
+        tbCategoryList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -100,7 +100,7 @@ public class CategoryListView extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tbCustomerList);
+        jScrollPane1.setViewportView(tbCategoryList);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -223,7 +223,7 @@ public class CategoryListView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tbCustomerList;
+    private javax.swing.JTable tbCategoryList;
     private javax.swing.JTextArea tfCustomerName;
     private javax.swing.JScrollPane tfFilterField;
     // End of variables declaration//GEN-END:variables
