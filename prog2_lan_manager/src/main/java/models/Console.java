@@ -14,9 +14,8 @@ public class Console extends Device {
         super(active, availableGames);
         this.model = model;
     }
-    
 
-    public String getModel() {
+    public String getModel(){
         return model;
     }
 
