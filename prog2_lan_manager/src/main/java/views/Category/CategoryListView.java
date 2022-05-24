@@ -1,4 +1,4 @@
-package views;
+package views.Category;
 
 import controllers.App;
 import controllers.CategoryController;

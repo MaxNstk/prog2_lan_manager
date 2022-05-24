@@ -5,8 +5,8 @@
 package controllers;
 
 import models.Customer;
-import views.CustomerFormView;
-import views.CustomerListView;
+import views.Customer.CustomerFormView;
+import views.Customer.CustomerListView;
 import views.MainView;
 
 /**
