@@ -28,7 +28,6 @@ public class CustomerFormView extends javax.swing.JFrame {
     }
     
     public Customer getCustomerInfo(){
-        
         String name = tfName.getText();
         String CPF = tfCPF.getText();
         String adress = tfAdress.getText();
