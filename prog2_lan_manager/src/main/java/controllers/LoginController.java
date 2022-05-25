@@ -16,7 +16,6 @@ public class LoginController {
      * este motivo o login segue "chumbado"
      * @param login
      * @param password
-     * @return boolean
      */
     public void verifyUserHasAccess(String login, String password, LoginView loginView) {
         if (login.equals("admin") && password.equals("admin")) {
