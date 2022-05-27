@@ -1,5 +1,10 @@
 package views;
 
+import controllers.LoginController;
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.JTextField;
+
 /**
  *
  * @author petrix
@@ -9,8 +14,18 @@ public class LoginView extends javax.swing.JFrame {
 
     public LoginView() {
         initComponents();
+        addPlaceHolderSyle(tfUser);
+        addPlaceHolderSyle(tfPassword);
+        ajustScreenCenter();
     }
 
+    /**
+     * Centraliza a tela de visualização
+     */
+    private void ajustScreenCenter() {
+        setLocationRelativeTo(null);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -21,30 +36,65 @@ public class LoginView extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel3 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        tfName = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        tfCPF = new javax.swing.JTextField();
-        btCreateCustomer = new javax.swing.JButton();
+        tfUser = new javax.swing.JTextField();
+        btLogin = new javax.swing.JButton();
+        tfPassword = new javax.swing.JPasswordField();
+        btShowPassword = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Century Schoolbook L", 1, 36)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Lan Manager");
 
-        jLabel1.setText("Login");
+        tfUser.setText("Username");
+        tfUser.setName("tfUser"); // NOI18N
+        tfUser.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tfUserFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tfUserFocusLost(evt);
+            }
+        });
 
-        tfName.setName("tfName"); // NOI18N
-
-        jLabel2.setText("Senha");
-
-        tfCPF.setName("tfCPF"); // NOI18N
-
-        btCreateCustomer.setText("Entrar");
-        btCreateCustomer.setName("btLogin"); // NOI18N
-        btCreateCustomer.addActionListener(new java.awt.event.ActionListener() {
+        btLogin.setFont(new java.awt.Font("MathJax_SansSerif", 1, 18)); // NOI18N
+        btLogin.setText("Entrar");
+        btLogin.setName("btLogin"); // NOI18N
+        btLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btLogin(evt);
+            }
+        });
+
+        tfPassword.setText("Password");
+        tfPassword.setEchoChar('\u0000');
+        tfPassword.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tfPasswordFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tfPasswordFocusLost(evt);
+            }
+        });
+        tfPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfPasswordActionPerformed(evt);
+            }
+        });
+
+        btShowPassword.setFont(new java.awt.Font("Padauk Book", 1, 12)); // NOI18N
+        btShowPassword.setText("Mostrar");
+        btShowPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btShowPasswordActionPerformed(evt);
             }
         });
 
@@ -52,47 +102,88 @@ public class LoginView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(323, 323, 323))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(210, 210, 210)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(115, 115, 115)
-                        .addComponent(btCreateCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(85, 85, 85)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfName)
-                            .addComponent(tfCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(78, Short.MAX_VALUE))
+                        .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btShowPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfUser)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(204, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(90, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addGap(2, 2, 2)
-                .addComponent(tfCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(btCreateCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
+                .addComponent(tfUser, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btShowPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addComponent(btLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(110, 110, 110))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        this.requestFocusInWindow();
+    }//GEN-LAST:event_formWindowGainedFocus
+
+    private void btShowPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btShowPasswordActionPerformed
+        if (!tfPassword.getText().equals("Password") && tfPassword.getText().length() > 0)
+        changeTypeCharacterTfPassword();
+    }//GEN-LAST:event_btShowPasswordActionPerformed
+
+    private void tfPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfPasswordActionPerformed
+
+    private void tfPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfPasswordFocusLost
+        if (tfPassword.getText().length() == 0) {
+            addPlaceHolderSyle(tfPassword);
+            tfPassword.setText("Password");
+            tfPassword.setEchoChar('\u0000');
+        }
+    }//GEN-LAST:event_tfPasswordFocusLost
+
+    private void tfPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfPasswordFocusGained
+        if (tfPassword.getText().equals("Password")) {
+            tfPassword.setText(null);
+            tfPassword.requestFocus();
+            tfPassword.setEchoChar('\u25cf');
+            removePlaceHolderSyle(tfPassword);
+        }
+    }//GEN-LAST:event_tfPasswordFocusGained
+
     private void btLogin(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogin
-        this.isValid();
+        this.getLoginController().verifyUserHasAccess(tfUser.getText(), tfPassword.getText(), this);
     }//GEN-LAST:event_btLogin
+
+    private void tfUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfUserFocusLost
+        if (tfUser.getText().length()  == 0) {
+            addPlaceHolderSyle(tfUser);
+            tfUser.setText("Username");
+        }
+    }//GEN-LAST:event_tfUserFocusLost
+
+    private void tfUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfUserFocusGained
+        if (tfUser.getText().equals("Username")) {
+            tfUser.setText(null);
+            tfUser.requestFocus();
+            removePlaceHolderSyle(tfUser);
+        }
+    }//GEN-LAST:event_tfUserFocusGained
 
     /**
      * @param args the command line arguments
@@ -130,16 +221,40 @@ public class LoginView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btCreateCustomer;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton btLogin;
+    private javax.swing.JButton btShowPassword;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField tfCPF;
-    private javax.swing.JTextField tfName;
+    private javax.swing.JPasswordField tfPassword;
+    private javax.swing.JTextField tfUser;
     // End of variables declaration//GEN-END:variables
 
-    private boolean isValidLogin() {
-        return true;
+    private LoginController getLoginController() {
+        return new LoginController();
     }
+    
+    private void addPlaceHolderSyle(JTextField tf) {
+        Font font = tf.getFont();
+        font      = font.deriveFont(Font.ITALIC);
+        tf.setFont(font);
+        tf.setForeground(Color.gray);
+    }
+    
+    private void removePlaceHolderSyle(JTextField tf) {
+        Font font = tf.getFont();
+        font      = font.deriveFont(Font.PLAIN|Font.BOLD);
+        tf.setFont(font);
+        tf.setForeground(Color.black);
+    }
+    
+    private void changeTypeCharacterTfPassword() {
+        if (tfPassword.getEchoChar() == '\u0000') {
+            btShowPassword.setText("Mostrar");
+            tfPassword.setEchoChar('\u25cf');
+        } else {
+            btShowPassword.setText("Ocultar");
+            tfPassword.setEchoChar('\u0000');
+        }
+    }
+    
     
 }
