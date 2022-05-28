@@ -21,7 +21,10 @@ public class GameFormView extends javax.swing.JFrame {
           if (game != null){
             this.game = game;
             this.setGameInfo(game);
+        }
     }
+    private void setValuesComboBoxCategories(){
+        //cbCategory.set
     }
      public void setGameInfo(Game game){
         tfName.setText(game.getName());
@@ -65,6 +68,8 @@ public class GameFormView extends javax.swing.JFrame {
         jLabel2.setText("Categoria:");
 
         jLabel3.setText("Dispositivo:");
+
+        cbDevice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Computador", "Console" }));
 
         jLabel4.setText("Descrição:");
 
@@ -152,7 +157,7 @@ public class GameFormView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<Category> cbCategory;
-    private javax.swing.JComboBox<Device> cbDevice;
+    private javax.swing.JComboBox<String> cbDevice;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
