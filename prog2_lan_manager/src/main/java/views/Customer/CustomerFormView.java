@@ -1,7 +1,7 @@
-
 package views.Customer;
 
 import daos.CustomerDAO;
+import javax.swing.JOptionPane;
 import models.Customer;
 
 /**
@@ -11,44 +11,45 @@ import models.Customer;
 public class CustomerFormView extends javax.swing.JFrame {
 
     private Customer customer;
-    
+
     public CustomerFormView(Customer customer) {
         initComponents();
-        if (customer != null){
+        if (customer != null) {
             this.customer = customer;
             this.setCustomerInfo(customer);
         }
     }
-    
-    public void setCustomerInfo(Customer customer){
+
+    public void setCustomerInfo(Customer customer) {
         tfName.setText(customer.getName());
         tfCPF.setText(customer.getCPF());
         tfAdress.setText(customer.getAdress());
         tfBirthDate.setText(customer.getBirthDate());
     }
-    
-    public Customer getCustomerInfo(){
+
+    public Customer getCustomerInfo() {
         String name = tfName.getText();
         String CPF = tfCPF.getText();
         String adress = tfAdress.getText();
         String birthDate = tfBirthDate.getText();
         return new Customer(name, CPF, adress, birthDate);
-        
+
     }
-    public void createCustomer(){     
+
+    public void createCustomer() {
         CustomerDAO customerDAO = new CustomerDAO();
         customerDAO.createCustomer(this.getCustomerInfo());
-       
+
     }
-    
-    public void updateCustomer(){
+
+    public void updateCustomer() {
         this.customer.setName(tfName.getText());
         this.customer.setCPF(tfCPF.getText());
         this.customer.setAdress(tfAdress.getText());
         this.customer.setBirthDate(tfBirthDate.getText());
     }
-    
-    public void clearFields(){
+
+    public void clearFields() {
         tfName.setText("");
         tfCPF.setText("");
         tfAdress.setText("");
@@ -152,12 +153,14 @@ public class CustomerFormView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCreateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateCustomerActionPerformed
-        if (this.customer != null)
-           this.updateCustomer(); 
-        else
+        if (this.customer != null) {
+            this.updateCustomer();
+        } else {
             this.createCustomer();
-        
+        }
+
         this.clearFields();
+        JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso");
     }//GEN-LAST:event_btCreateCustomerActionPerformed
 
     /**

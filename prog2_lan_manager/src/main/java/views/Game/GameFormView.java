@@ -7,6 +7,7 @@ package views.Game;
 import daos.CategoryDAO;
 import daos.GameDAO;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import models.Category;
 import models.Device;
 import models.Game;
@@ -162,8 +163,8 @@ public class GameFormView extends javax.swing.JFrame {
             this.createGame();
 
         this.clearFields();
+        JOptionPane.showMessageDialog(null, "Jogo cadastrado com sucesso");
     }//GEN-LAST:event_btCreateGameActionPerformedActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCreateGameActionPerformed;
