@@ -4,6 +4,9 @@
  */
 package views.Game;
 
+import daos.CategoryDAO;
+import daos.GameDAO;
+import javax.swing.JComboBox;
 import models.Category;
 import models.Device;
 import models.Game;
@@ -15,32 +18,55 @@ import models.Game;
 public class GameFormView extends javax.swing.JFrame {
 
     private Game game;
-    
+
     public GameFormView() {
         initComponents();
-          if (game != null){
+        this.setValuesComboBoxCategories();
+        if (game != null) {
             this.game = game;
             this.setGameInfo(game);
         }
     }
-    private void setValuesComboBoxCategories(){
-        //cbCategory.set
+
+    private void setValuesComboBoxCategories() {
+        CategoryDAO categoryDAO = new CategoryDAO();
+        for (Category category : categoryDAO.getCategories()) {
+            cbCategory.addItem(category);
+        }
     }
-     public void setGameInfo(Game game){
+
+    public void setGameInfo(Game game) {
         tfName.setText(game.getName());
-        //cbCategory.set
+        cbCategory.addItem(game.getCategory());
         taDescription.setText(game.getDescription());
     }
-    
-    public Game getGameInfo(){
-        /*String name = tfName.getText();
+
+    public Game getGameInfo() {
+        String name = tfName.getText();
         String description = taDescription.getText();
-        Category category = cbCategory.getSelectedIndex();
-        return new Game(name, description, category);
-        */
-        return null;
+        Category category = (Category) cbCategory.getSelectedItem();
+        Device device = (Device) cbDevice.getSelectedItem();
+        return new Game(name, description, category, device);
     }
-     
+
+    public void createGame() {
+        GameDAO gameDAO = new GameDAO();
+        gameDAO.createGame(this.getGameInfo());
+    }
+
+    public void updateGame() {
+        this.game.setName(tfName.getText());
+        this.game.setCategory((Category) cbCategory.getSelectedItem());
+        this.game.setDevice((Device) cbDevice.getSelectedItem());
+        this.game.setDescription(taDescription.getText());
+    }
+
+    public void clearFields() {
+        tfName.setText("");
+        cbCategory.getItemAt(-1);
+        cbDevice.getItemAt(-1);
+        taDescription.setText("");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -60,6 +86,7 @@ public class GameFormView extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         taDescription = new javax.swing.JTextArea();
+        btCreateGameActionPerformed = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,13 +96,18 @@ public class GameFormView extends javax.swing.JFrame {
 
         jLabel3.setText("Dispositivo:");
 
-        cbDevice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Computador", "Console" }));
-
         jLabel4.setText("Descrição:");
 
         taDescription.setColumns(20);
         taDescription.setRows(5);
         jScrollPane1.setViewportView(taDescription);
+
+        btCreateGameActionPerformed.setText("Cadastrar");
+        btCreateGameActionPerformed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCreateGameActionPerformedActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -83,15 +115,17 @@ public class GameFormView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
-                    .addComponent(cbDevice, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cbCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tfName))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btCreateGameActionPerformed)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3)
+                        .addComponent(jLabel4)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
+                        .addComponent(cbDevice, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cbCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tfName)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -113,51 +147,28 @@ public class GameFormView extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addComponent(btCreateGameActionPerformed)
+                .addGap(20, 20, 20))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GameFormView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GameFormView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GameFormView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GameFormView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+    private void btCreateGameActionPerformedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateGameActionPerformedActionPerformed
+        if (this.game != null)
+            this.updateGame();
+        else
+            this.createGame();
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GameFormView().setVisible(true);
-            }
-        });
-    }
+        this.clearFields();
+    }//GEN-LAST:event_btCreateGameActionPerformedActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btCreateGameActionPerformed;
     private javax.swing.JComboBox<Category> cbCategory;
-    private javax.swing.JComboBox<String> cbDevice;
+    private javax.swing.JComboBox<Device> cbDevice;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

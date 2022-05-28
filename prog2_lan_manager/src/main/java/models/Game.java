@@ -8,14 +8,16 @@ public class Game {
 
     public static int currentId = 0;
     String name;
+    Device device;
     String description;
     Category category;
     protected int id;
 
-    public Game(String name, String description, Category category) {
+    public Game(String name, String description, Category category, Device device) {
         this.name = name;
         this.description = description;
         this.category = category;
+        this.device = device;
         this.id = getCurrentId();
     }
 
@@ -30,13 +32,13 @@ public class Game {
     public String getDescription() {
         return description;
     }
-    
-    public int getId(){
+
+    public int getId() {
         return this.id;
     }
-    
+
     public static int getCurrentId() {
-        currentId =+ 1;
+        currentId = +1;
         return currentId;
     }
 
@@ -52,4 +54,11 @@ public class Game {
         this.category = category;
     }
 
+    public Device getDevice() {
+        return device;
+    }
+
+    public void setDevice(Device device) {
+        this.device = device;
+    }
 }

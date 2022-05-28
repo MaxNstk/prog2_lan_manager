@@ -1,6 +1,7 @@
 package controllers;
 
 import models.Customer;
+import models.Game;
 import views.Customer.CustomerFormView;
 import views.Customer.CustomerListView;
 import views.Game.GameFormView;
@@ -24,8 +25,8 @@ public class App {
     }
     
     public static void openGameFormView(){
-       /* GameFormView gameFormView = new GameFormView(null);
-        gameFormView.setVisible(true);*/
+      GameFormView gameFormView = new GameFormView();
+      gameFormView.setVisible(true);
     }
 
     public static void openCustomerCreateView() {
