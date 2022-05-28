@@ -3,6 +3,7 @@ package controllers;
 import models.Customer;
 import views.Customer.CustomerFormView;
 import views.Customer.CustomerListView;
+import views.Game.GameFormView;
 import views.LoginView;
 import views.MainView;
 
@@ -20,6 +21,11 @@ public class App {
     public static void openMainScreen() {
         MainView mainView = new MainView();
         mainView.setVisible(true);
+    }
+    
+    public static void openGameFormView(){
+       /* GameFormView gameFormView = new GameFormView(null);
+        gameFormView.setVisible(true);*/
     }
 
     public static void openCustomerCreateView() {
