@@ -7,6 +7,8 @@ package controllers;
 import daos.GameDAO;
 import java.util.ArrayList;
 import java.util.List;
+import models.Category;
+import models.Device;
 import models.Game;
 
 /**
@@ -14,22 +16,44 @@ import models.Game;
  * @author João Eduardo
  */
 public class GameController {
-    
-    private List <Game> filteredGames;
-    
+
+    private List<Game> filteredGames;
+
     GameDAO gameDAO = new GameDAO();
-    
-    public void getAll(){
+
+    public void getAll() {
         this.filteredGames = new ArrayList<>();
         this.filteredGames = gameDAO.getGames();
     }
-    
-    public void filterByName (String searchParam){
+
+    public void filterByName(String searchParam) {
         filteredGames = new ArrayList<>();
-        for (Game game : gameDAO.getGames()){
-            if (game.getName().contains(searchParam)){
+        for (Game game : gameDAO.getGames()) {
+            if (game.getName().contains(searchParam)) {
                 this.filteredGames.add(game);
             }
         }
+    }
+
+    public void filterByDevice(Device device) {
+        filteredGames = new ArrayList<>();
+        for (Game game : gameDAO.getGames()) {
+            if (game.getDevice().equals(device)) {
+                this.filteredGames.add(game);
+            }
+        }
+    }
+
+    public void filterByCategory(Category category) {
+        filteredGames = new ArrayList<>();
+        for (Game game : gameDAO.getGames()) {
+            if (game.getDevice().equals(category)) {
+                this.filteredGames.add(game);
+            }
+        }
+    }
+
+    public List<Game> getFilteredGames() {
+        return this.filteredGames;
     }
 }
