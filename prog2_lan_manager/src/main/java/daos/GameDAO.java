@@ -30,7 +30,7 @@ public class GameDAO implements IGameDAO{
                 return game;
             }
         }
-        return games.get(-1);
+        return games.get(id-1);
     }
 
     @Override

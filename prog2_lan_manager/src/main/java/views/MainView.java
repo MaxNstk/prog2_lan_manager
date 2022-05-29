@@ -91,7 +91,7 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_miCustomerCreateActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        App.openGameFormView();
+        App.openGameListView();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**

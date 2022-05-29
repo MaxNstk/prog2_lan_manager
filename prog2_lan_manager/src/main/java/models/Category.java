@@ -9,12 +9,12 @@ public class Category {
 
     private int id;
     private double creditsValue;
-    private String description;
+    private String name;
 
-    public Category(int id, double creditsValue, String description) {
+    public Category(int id, double creditsValue, String name) {
         this.id = id;
         this.creditsValue = creditsValue;
-        this.description  = description;
+        this.name = name;
     }
 
     public int getId() {
@@ -33,12 +33,12 @@ public class Category {
         this.creditsValue = creditsValue;
     }
 
-    public String getDescription() {
-        return description;
+    public String getName() {
+        return name;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setName(String name) {
+        this.name = name;
     }
 
 }

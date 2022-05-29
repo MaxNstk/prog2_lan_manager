@@ -35,22 +35,22 @@ public class GameController {
         }
     }
 
-    public void filterByDevice(Device device) {
+    public void filterByCategory(String searchParam) {
         filteredGames = new ArrayList<>();
         for (Game game : gameDAO.getGames()) {
-            if (game.getDevice().equals(device)) {
+            if (game.getCategory().getName().contains(searchParam)) {
                 this.filteredGames.add(game);
             }
         }
     }
 
-    public void filterByCategory(Category category) {
+    public void filterByDevice(String searchParam) {
         filteredGames = new ArrayList<>();
-        for (Game game : gameDAO.getGames()) {
-            if (game.getDevice().equals(category)) {
-                this.filteredGames.add(game);
-            }
-        }
+        /*Implementar*/
+    }
+
+    public void updateGame(int id) {
+       App.openGameUpdateView(gameDAO.retrieveGame(id));
     }
 
     public List<Game> getFilteredGames() {

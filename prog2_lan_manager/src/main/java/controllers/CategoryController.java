@@ -29,10 +29,10 @@ public class CategoryController {
         return filteredCategories;
     }
 
-    public List<Category> filterByDescription(String searchParam) {
+    public List<Category> filterByName(String searchParam) {
         filteredCategories = new ArrayList<>();
         for (Category cat : categoryDAO.getCategories()) {
-            if (cat.getDescription().contains(searchParam)) {
+            if (cat.getName().contains(searchParam)) {
                 filteredCategories.add(cat);
             }
         }

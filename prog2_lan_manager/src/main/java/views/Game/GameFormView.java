@@ -20,7 +20,7 @@ public class GameFormView extends javax.swing.JFrame {
 
     private Game game;
 
-    public GameFormView() {
+    public GameFormView(Game game) {
         initComponents();
         this.setValuesComboBoxCategories();
         if (game != null) {
@@ -89,7 +89,7 @@ public class GameFormView extends javax.swing.JFrame {
         taDescription = new javax.swing.JTextArea();
         btCreateGameActionPerformed = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Nome:");
 
