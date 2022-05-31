@@ -50,7 +50,7 @@ public class GameController {
     }
 
     public void updateGame(int id) {
-       App.openGameUpdateView(gameDAO.retrieveGame(id));
+        App.openGameUpdateView(gameDAO.retrieveGame(id));
     }
 
     public List<Game> getFilteredGames() {

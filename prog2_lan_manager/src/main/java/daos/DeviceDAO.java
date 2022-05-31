@@ -26,5 +26,14 @@ public class DeviceDAO implements IDeviceDAO{
     public void createDevice(Device device) {
          devices.add(device);
     }
+
+    @Override
+    public Device retrieveDevice(int id) {
+        for (Device device : devices){
+            if (device.getId() == id)
+                return device;
+        }
+        return devices.get(id-1);
+    }
     
 }

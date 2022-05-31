@@ -8,8 +8,10 @@ import java.util.List;
  */
 public abstract class Device {
 
+    public static int currentId = 0;
     protected boolean active;
     protected List<Game> availableGames;
+    protected int id;
 
     public Device(boolean active, List<Game> availableGames) {
         this.active = active;
@@ -30,6 +32,14 @@ public abstract class Device {
 
     public void setAvailableGames(List<Game> availableGames) {
         this.availableGames = availableGames;
+    }
+    public static int getCurrentId() {
+        currentId = +1;
+        return currentId;
+    }
+
+    public int getId() {
+       return this.id;
     }
 
 }
