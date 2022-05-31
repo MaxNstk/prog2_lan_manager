@@ -5,6 +5,7 @@
 package views.Gameplay;
 
 import controllers.CustomerController;
+import controllers.DeviceController;
 import controllers.GameController;
 import models.Customer;
 import models.Device;
@@ -25,32 +26,37 @@ public class GameplayFormView extends javax.swing.JPanel {
      */
     public GameplayFormView() {
         initComponents();
-        
-        for (CarroCombustao carro : this.sistemaView.getCarrosCombustao()){
-            cbCarroCombustao.addItem(carro);
-        }
-        cbCarroCombustao.setSelectedItem(null);
-        for (Empresa emp : this.sistemaView.getEmpresa()){
-            cbEmpresa.addItem(emp);
-        }
+        this.setUpConstrollers();
+        this.fillCustomersCb();
+        this.fillDeviceCb();
+        this.fillGamesCb();
     }
     
     private void setUpConstrollers(){
         this.customerController = new CustomerController();
         this.gameController = new GameController();
-        this.customerController = new CustomerController();
+        this.deviceController = new DeviceController();
     }
     
     private void fillCustomersCb(){
         for (Customer customer : customerController.getFilteredCustomers()){
             cbCustomer.addItem(customer);
-        }    
+        }
+        cbCustomer.setSelectedItem(null);
     }
     
     private void fillGamesCb(){
         for (Game game : gameController.getFilteredGames()){
             cbGame.addItem(game);
         }
+        cbGame.setSelectedItem(null);
+    }
+    
+    private void fillDeviceCb(){
+        for(Device device : deviceController.getFilteredDevices()){
+            cbDevice.addItem(device);
+        }
+        cbDevice.setSelectedItem(null);
     }
 
     /**
@@ -67,7 +73,7 @@ public class GameplayFormView extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         cbCustomer = new javax.swing.JComboBox<>();
         cbGame = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        cbDevice = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
 
         jLabel1.setText("Cliente");
@@ -94,7 +100,7 @@ public class GameplayFormView extends javax.swing.JPanel {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(cbDevice, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -121,7 +127,7 @@ public class GameplayFormView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbDevice, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(299, 299, 299))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -129,8 +135,8 @@ public class GameplayFormView extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<Customer> cbCustomer;
+    private javax.swing.JComboBox<Device> cbDevice;
     private javax.swing.JComboBox<Game> cbGame;
-    private javax.swing.JComboBox<Device> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

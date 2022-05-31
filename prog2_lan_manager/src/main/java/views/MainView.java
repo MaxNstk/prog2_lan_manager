@@ -67,7 +67,7 @@ public class MainView extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText("Agenda");
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);

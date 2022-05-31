@@ -34,7 +34,7 @@ public class GameController {
             }
         }
     }
-
+    
     public void filterByCategory(String searchParam) {
         filteredGames = new ArrayList<>();
         for (Game game : gameDAO.getGames()) {
@@ -58,6 +58,8 @@ public class GameController {
     }
 
     public List<Game> getFilteredGames() {
+        if (this.filteredGames == null)
+            this.getAll();
         return this.filteredGames;
     }
 }

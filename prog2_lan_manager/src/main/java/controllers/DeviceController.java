@@ -22,4 +22,10 @@ public class DeviceController {
         this.filteredDevices = new ArrayList<>();
         this.filteredDevices = deviceDAO.getDevices();
     }
+    
+    public List<Device> getFilteredDevices(){
+        if (this.filteredDevices == null)
+            this.getAll();
+        return this.filteredDevices;            
+    }
 }

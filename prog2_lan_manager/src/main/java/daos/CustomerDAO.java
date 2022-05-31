@@ -14,7 +14,7 @@ import models.Customer;
      private static List<Customer> customers = new ArrayList<>();
 
     @Override
-    public void createCustomer(Customer customer) {
+    public void createCustomer(Customer customer){
         customers.add(customer);
     }
     
