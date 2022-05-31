@@ -13,11 +13,10 @@ public class Game {
     Category category;
     protected int id;
 
-    public Game(String name, String description, Category category, Device device) {
+    public Game(String name, String description, Category category) {
         this.name = name;
         this.description = description;
         this.category = category;
-        this.device = device;
         this.id = getCurrentId();
     }
 

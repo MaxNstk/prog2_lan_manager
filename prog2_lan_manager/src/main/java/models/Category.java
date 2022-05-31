@@ -7,12 +7,13 @@ package models;
  */
 public class Category {
 
-    private int id;
+    public static int currentId = 0;
+    protected int id;
     private double creditsValue;
     private String name;
 
-    public Category(int id, double creditsValue, String name) {
-        this.id = id;
+    public Category(double creditsValue, String name) {
+        this.id = getCurrentId();
         this.creditsValue = creditsValue;
         this.name = name;
     }
@@ -31,6 +32,11 @@ public class Category {
 
     public void setCreditsValue(double creditsValue) {
         this.creditsValue = creditsValue;
+    }
+    
+    public static int getCurrentId(){
+        currentId = +1;
+        return currentId;
     }
 
     public String getName() {

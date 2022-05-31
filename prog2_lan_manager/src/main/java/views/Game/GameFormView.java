@@ -46,8 +46,8 @@ public class GameFormView extends javax.swing.JFrame {
         String name = tfName.getText();
         String description = taDescription.getText();
         Category category = (Category) cbCategory.getSelectedItem();
-        Device device = (Device) cbDevice.getSelectedItem();
-        return new Game(name, description, category, device);
+       // Device device = (Device) cbDevice.getSelectedItem();
+        return new Game(name, description, category);
     }
 
     public void createGame() {
@@ -58,14 +58,14 @@ public class GameFormView extends javax.swing.JFrame {
     public void updateGame() {
         this.game.setName(tfName.getText());
         this.game.setCategory((Category) cbCategory.getSelectedItem());
-        this.game.setDevice((Device) cbDevice.getSelectedItem());
+        //this.game.setDevice((Device) cbDevice.getSelectedItem());
         this.game.setDescription(taDescription.getText());
     }
 
     public void clearFields() {
         tfName.setText("");
         cbCategory.getItemAt(-1);
-        cbDevice.getItemAt(-1);
+        //cbDevice.getItemAt(-1);
         taDescription.setText("");
     }
 
@@ -82,8 +82,6 @@ public class GameFormView extends javax.swing.JFrame {
         tfName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         cbCategory = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
-        cbDevice = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         taDescription = new javax.swing.JTextArea();
@@ -94,8 +92,6 @@ public class GameFormView extends javax.swing.JFrame {
         jLabel1.setText("Nome:");
 
         jLabel2.setText("Categoria:");
-
-        jLabel3.setText("Dispositivo:");
 
         jLabel4.setText("Descrição:");
 
@@ -121,10 +117,8 @@ public class GameFormView extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3)
                         .addComponent(jLabel4)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
-                        .addComponent(cbDevice, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(cbCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(tfName)))
                 .addContainerGap(20, Short.MAX_VALUE))
@@ -136,19 +130,15 @@ public class GameFormView extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(20, 20, 20)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cbCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbDevice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                .addGap(20, 20, 20)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(btCreateGameActionPerformed)
                 .addGap(20, 20, 20))
         );
@@ -169,10 +159,8 @@ public class GameFormView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCreateGameActionPerformed;
     private javax.swing.JComboBox<Category> cbCategory;
-    private javax.swing.JComboBox<Device> cbDevice;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea taDescription;
