@@ -46,7 +46,11 @@ public class GameController {
 
     public void filterByDevice(String searchParam) {
         filteredGames = new ArrayList<>();
-        /*Implementar*/
+        for (Game game : gameDAO.getGames()) {
+            if (game.getDevice().getName().contains(searchParam)) {
+                this.filteredGames.add(game);
+            }
+        }
     }
 
     public void updateGame(int id) {

@@ -12,10 +12,20 @@ public abstract class Device {
     protected boolean active;
     protected List<Game> availableGames;
     protected int id;
+    protected String name;
 
-    public Device(boolean active, List<Game> availableGames) {
+    public Device(String name, boolean active, List<Game> availableGames) {
+        this.name = name;
         this.active = active;
         this.availableGames = availableGames;
+    }
+    
+    public void setName(String name){
+        this.name = name;
+    }
+    
+    public String getName(){
+        return name;
     }
 
     public boolean isActive() {

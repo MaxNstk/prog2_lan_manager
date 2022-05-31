@@ -10,8 +10,8 @@ public class Console extends Device {
 
     String model;
 
-    public Console(String model, boolean active, List<Game> availableGames) {
-        super(active, availableGames);
+    public Console(String name, String model, boolean active, List<Game> availableGames) {
+        super(name, active, availableGames);
         this.model = model;
     }
 
