@@ -14,8 +14,8 @@ public class CategoryDAO implements ICategoryDAO {
     private static final List<Category> categories = new ArrayList<>();
 
     @Override
-    public void createCategory(Category c) {
-        categories.add(c);
+    public void createCategory(Category category) {
+        categories.add(category);
     }
 
     @Override

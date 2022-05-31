@@ -1,5 +1,7 @@
 package controllers;
 
+import daos.CategoryDAO;
+import daos.GameDAO;
 import models.Category;
 import models.Customer;
 import models.Game;
@@ -19,18 +21,24 @@ public class App {
     public static void main(String[] args) {
         LoginView loginView = new LoginView();
         loginView.setVisible(true);
-        
-        Category Estrategia = new Category(20, "Estratégia");
-        Game ageOfEmpires = new Game("Age of Empires", "Civilizações ancestrais", Estrategia);
-        Game Chess = new Game("Chess", "Xadrez clássico", Estrategia);
-        
+
+        CategoryDAO categoryDAO = new CategoryDAO();
         Category FPS = new Category(40, "FPS");
-        Game CounterStrike = new Game("Counter-Strike", "FPS multiplayer", FPS);
-        Game Valorant = new Game("Valorant", "FPS multiplayer", FPS);
-        
+        categoryDAO.createCategory(FPS);
+        Category Estrategia = new Category(20, "Estratégia");
+        categoryDAO.createCategory(Estrategia);
         Category BattleRoyale = new Category(60, "Battle Royale");
-        Game PUBG = new Game("PUBG", "Armas e sobrevivência", BattleRoyale);
+        categoryDAO.createCategory(BattleRoyale);
+
+        GameDAO gameDAO = new GameDAO();
+        Game ageOfEmpires = new Game("Age of Empires", "Civilizações ancestrais", Estrategia);
+        gameDAO.createGame(ageOfEmpires);
+        Game Chess = new Game("Chess", "Xadrez clássico", Estrategia);
+        gameDAO.createGame(Chess);
+        Game CounterStrike = new Game("Counter-Strike", "FPS multiplayer", FPS);
+        gameDAO.createGame(CounterStrike);
         Game Warzone = new Game("Warzone", "Armas e sobrevivência", BattleRoyale);
+        gameDAO.createGame(Warzone);
     }
 
     public static void openMainScreen() {

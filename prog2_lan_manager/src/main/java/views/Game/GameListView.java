@@ -13,6 +13,7 @@ import models.Game;
  *
  * @author João Eduardo
  */
+
 public class GameListView extends javax.swing.JFrame {
 
     private GameController gameController;
@@ -37,7 +38,7 @@ public class GameListView extends javax.swing.JFrame {
     public void ListGames() {
         this.createTableModel();
         for (Game game : gameController.getFilteredGames()) {
-            Object[] listData = {game.getId(), game.getName(), game.getDevice(), game.getCategory(), game.getDescription()};
+            Object[] listData = {game.getId(), game.getName(), game.getDevice(), game.getCategory().getName(), game.getDescription()};
             dtmGames.addRow(listData);
         }
     }
