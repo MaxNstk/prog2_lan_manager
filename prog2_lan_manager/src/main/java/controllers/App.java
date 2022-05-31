@@ -9,6 +9,7 @@ import views.Customer.CustomerFormView;
 import views.Customer.CustomerListView;
 import views.Game.GameFormView;
 import views.Game.GameListView;
+import views.Gameplay.GameplayFormView;
 import views.LoginView;
 import views.MainView;
 
@@ -74,6 +75,11 @@ public class App {
     public static void openCustomerListView() {
         CustomerListView customerListView = new CustomerListView();
         customerListView.setVisible(true);
+    }
+
+    public static void openGamePlayFormView() {
+        GameplayFormView gameplayFormView = new GameplayFormView();
+        gameplayFormView.setVisible(true);
     }
 
 }

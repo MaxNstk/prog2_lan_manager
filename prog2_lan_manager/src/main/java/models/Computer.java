@@ -20,7 +20,10 @@ public class Computer extends Device {
     }
 
     public void setSpecs(String specs) {
+        if(specs.isBlank()){
+            //exception
+        }else{
         this.specs = specs;
     }
-
+    }
 }
