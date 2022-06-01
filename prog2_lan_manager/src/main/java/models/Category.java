@@ -44,9 +44,6 @@ public class Category {
     }
 
     public void setName(String name) {
-        if(name.isBlank()){
-            //exception
-        }else
         this.name = name;
     }
 
