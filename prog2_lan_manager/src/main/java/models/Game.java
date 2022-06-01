@@ -60,4 +60,9 @@ public class Game {
     public void setDevice(Device device) {
         this.device = device;
     }
+    
+    @Override
+    public String toString(){
+        return this.description;
+    }
 }
