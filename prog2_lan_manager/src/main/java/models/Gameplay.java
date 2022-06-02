@@ -13,19 +13,24 @@ public class Gameplay {
     protected Device device;
     protected LocalDateTime startDateTime;
     protected LocalDateTime endDateTime;
+    protected boolean playingNow;
 
 
-    public Gameplay(Customer customer, Game game, Device device,
-        LocalDateTime startDateTime, LocalDateTime endDateTime){
+    public Gameplay(Customer customer, Game game, Device device, int timePlaying){
         this.customer = customer;
         this.game = game;
         this.device = device;
-        this.startDateTime = startDateTime;
-        this.endDateTime = endDateTime;
+        this.startDateTime = LocalDateTime.now();
+        this.endDateTime = this.startDateTime.plusHours(timePlaying);
+        this.playingNow = true;
     }
 
     public LocalDateTime getStartDateTime() {
         return startDateTime;
+    }
+    
+    public boolean isBeingPlayed(){
+        return this.playingNow;
     }
 
     public LocalDateTime getEndDateTime() {

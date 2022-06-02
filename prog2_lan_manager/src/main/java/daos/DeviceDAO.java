@@ -35,5 +35,15 @@ public class DeviceDAO implements IDeviceDAO{
         }
         return devices.get(id-1);
     }
+
+    @Override
+    public List<Device> getAvailableDevices(){
+        List<Device> availableDevices = new ArrayList();
+        for (Device d : this.getDevices()){
+            if (d.isAvailable())
+                availableDevices.add(d);
+        }
+        return availableDevices;
+    }
     
 }

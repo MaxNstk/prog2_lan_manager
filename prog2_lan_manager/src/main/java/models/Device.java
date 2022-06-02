@@ -10,6 +10,7 @@ public abstract class Device {
 
     public static int currentId = 0;
     protected boolean active;
+    protected boolean available;
     protected List<Game> availableGames;
     protected int id;
     protected String name;
@@ -18,6 +19,7 @@ public abstract class Device {
         this.name = name;
         this.active = active;
         this.availableGames = availableGames;
+        this.available = true;
     }
     
     public void setName(String name){
@@ -26,6 +28,10 @@ public abstract class Device {
     
     public String getName(){
         return name;
+    }
+    
+    public boolean isAvailable(){
+        return this.available;
     }
 
     public boolean isActive() {

@@ -20,7 +20,7 @@ public class DeviceController {
 
     public void getAll() {
         this.filteredDevices = new ArrayList<>();
-        this.filteredDevices = deviceDAO.getDevices();
+        this.filteredDevices = deviceDAO.getAvailableDevices();
     }
     
     public List<Device> getFilteredDevices(){
