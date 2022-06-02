@@ -96,6 +96,11 @@ public class GameplayFormView extends javax.swing.JFrame {
         jLabel5.setText("Quantidade de horas");
 
         btGameplayCreate.setText("Iniciar Jogatina!");
+        btGameplayCreate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btGameplayCreateActionPerformed(evt);
+            }
+        });
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -189,6 +194,10 @@ public class GameplayFormView extends javax.swing.JFrame {
     private void btUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUpdateActionPerformed
         this.setUpInitialData();
     }//GEN-LAST:event_btUpdateActionPerformed
+
+    private void btGameplayCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGameplayCreateActionPerformed
+        
+    }//GEN-LAST:event_btGameplayCreateActionPerformed
 
     /**
      * @param args the command line arguments

@@ -31,6 +31,11 @@ public class CustomerController {
             }
         }
     }
+    
+    public void addCredits(int creditsAmount, int customerId){
+        Customer customer = customerDAO.retrieveCustomer(customerId);
+        customer.addCredits(creditsAmount);
+    }
 
     public void filterByCPF(String searchParam) {
         filteredCustomers = new ArrayList<>();

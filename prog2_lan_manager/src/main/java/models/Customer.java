@@ -17,6 +17,10 @@ public class Customer extends Person implements Comparable<Customer>{
         return creditsAmount;
     }
     
+    public void addCredits(int credits){
+        this.creditsAmount += this.creditsAmount;
+    }
+    
     @Override
     public String toString(){
         return super.toString()+" Créditos disponíveis: "+this.creditsAmount+".";
