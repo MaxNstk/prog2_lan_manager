@@ -18,7 +18,7 @@ public class Customer extends Person implements Comparable<Customer>{
     }
     
     public void addCredits(int credits){
-        this.creditsAmount += this.creditsAmount;
+        this.creditsAmount += credits;
     }
     
     @Override

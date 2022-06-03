@@ -32,6 +32,10 @@ public class CustomerController {
         }
     }
     
+    public Customer retrieveCostumer(int id){
+       return customerDAO.retrieveCustomer(id);
+    }
+    
     public void addCredits(int creditsAmount, int customerId){
         Customer customer = customerDAO.retrieveCustomer(customerId);
         customer.addCredits(creditsAmount);
