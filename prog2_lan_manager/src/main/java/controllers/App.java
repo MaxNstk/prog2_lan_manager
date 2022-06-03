@@ -5,6 +5,7 @@ import daos.GameDAO;
 import models.Category;
 import models.Customer;
 import models.Game;
+import views.Customer.AddCreditsView;
 import views.Customer.CustomerFormView;
 import views.Customer.CustomerListView;
 import views.Game.GameFormView;
@@ -80,6 +81,11 @@ public class App {
     public static void openGamePlayFormView() {
         GameplayFormView gameplayFormView = new GameplayFormView();
         gameplayFormView.setVisible(true);
+    }
+
+    public static void openAddCreditsView(int id) {
+        AddCreditsView addCreditsView = new AddCreditsView(id);
+        addCreditsView.setVisible(true);
     }
 
 }

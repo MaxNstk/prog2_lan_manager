@@ -96,10 +96,6 @@ public class MainView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void miCustomerCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCustomerCreateActionPerformed
-        App.openCustomerListView();
-    }//GEN-LAST:event_miCustomerCreateActionPerformed
-
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         App.openGameListView();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
@@ -107,6 +103,10 @@ public class MainView extends javax.swing.JFrame {
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         App.openGamePlayFormView();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void miCustomerCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCustomerCreateActionPerformed
+        App.openCustomerListView();
+    }//GEN-LAST:event_miCustomerCreateActionPerformed
 
     /**
      * @param args the command line arguments

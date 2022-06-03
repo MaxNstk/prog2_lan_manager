@@ -246,7 +246,8 @@ public class CustomerListView extends javax.swing.JFrame {
     }//GEN-LAST:event_btUpdateCustomerActionPerformed
 
     private void btAddCreditsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddCreditsActionPerformed
-        
+        int customerId = (Integer) this.dtmCustomers.getValueAt(this.tbCustomerList.getSelectedRow(),0);
+        App.openAddCreditsView(customerId);
     }//GEN-LAST:event_btAddCreditsActionPerformed
 
     /**

@@ -63,6 +63,6 @@ public class Game {
     
     @Override
     public String toString(){
-        return this.description;
+        return this.name;
     }
 }
