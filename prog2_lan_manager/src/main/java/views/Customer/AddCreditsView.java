@@ -5,6 +5,7 @@
 package views.Customer;
 
 import controllers.CustomerController;
+import controllers.FormatFieldController;
 import models.Customer;
 
 /**
@@ -12,18 +13,19 @@ import models.Customer;
  * @author max
  */
 public class AddCreditsView extends javax.swing.JFrame {
-
     
     int customerId;
     CustomerController customerController;
+
     public AddCreditsView(int id) {
         initComponents();
+        tfCreditsAmount.setDocument(new FormatFieldController());
         customerController = new CustomerController();
         Customer customer = customerController.retrieveCostumer(id);
         this.lbCustomerName.setText(customer.getName());
         this.customerId = id;
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -90,7 +92,7 @@ public class AddCreditsView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btAddCreditsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddCreditsActionPerformed
-        customerController.addCredits(Integer.parseInt(this.tfCreditsAmount.getText()), this.customerId);                                                                                               
+        customerController.addCredits(Integer.parseInt(this.tfCreditsAmount.getText()), this.customerId);        
     }//GEN-LAST:event_btAddCreditsActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

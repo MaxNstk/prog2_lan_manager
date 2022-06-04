@@ -6,6 +6,7 @@ package views.Gameplay;
 
 import controllers.CustomerController;
 import controllers.DeviceController;
+import controllers.FormatFieldController;
 import controllers.GameController;
 import daos.GameplayDAO;
 import models.Customer;
@@ -18,7 +19,7 @@ import models.Gameplay;
  * @author max
  */
 public class GameplayFormView extends javax.swing.JFrame {
-
+    
     private CustomerController customerController;
     private DeviceController deviceController;
     private GameController gameController;
@@ -26,41 +27,44 @@ public class GameplayFormView extends javax.swing.JFrame {
     /**
      * Creates new form GameplayFormView
      */
-    public GameplayFormView(){
+    public GameplayFormView() {
         initComponents();
+        tfTime.setDocument(new FormatFieldController());
         this.setUpInitialData();
     }
-    private void setUpInitialData(){
+
+    private void setUpInitialData() {
         this.setUpConstrollers();
         this.fillCustomersCb();
         this.fillDeviceCb();
         this.fillGamesCb();
     }
-    private void setUpConstrollers(){
+
+    private void setUpConstrollers() {
         this.customerController = new CustomerController();
         this.gameController = new GameController();
         this.deviceController = new DeviceController();
     }
     
-    private void fillCustomersCb(){
+    private void fillCustomersCb() {
         this.cbCustomer.removeAllItems();
-        for (Customer customer : customerController.getFilteredCustomers()){
+        for (Customer customer : customerController.getFilteredCustomers()) {
             cbCustomer.addItem(customer);
         }
         cbCustomer.setSelectedItem(null);
     }
     
-    private void fillGamesCb(){
+    private void fillGamesCb() {
         this.cbGame.removeAllItems();
-        for (Game game : gameController.getFilteredGames()){
+        for (Game game : gameController.getFilteredGames()) {
             cbGame.addItem(game);
         }
         cbGame.setSelectedItem(null);
     }
     
-    private void fillDeviceCb(){
+    private void fillDeviceCb() {
         this.cbDevice.removeAllItems();
-        for(Device device : deviceController.getFilteredDevices()){
+        for (Device device : deviceController.getFilteredDevices()) {
             cbDevice.addItem(device);
         }
         cbDevice.setSelectedItem(null);
@@ -74,11 +78,10 @@ public class GameplayFormView extends javax.swing.JFrame {
         return new Gameplay(customer, game, device, timePlaying);
     }
 
-   /* public void createGameplay(){;
+    /* public void createGameplay(){;
         GameplayDAO gameplayDAO = new GameplayDAO();
         gameplayDAO.createGameplay(this.getGampleyInfo());
     } */
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

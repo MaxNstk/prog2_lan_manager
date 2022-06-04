@@ -1,5 +1,6 @@
 package views.Customer;
 
+import controllers.FormatFieldController;
 import daos.CustomerDAO;
 import javax.swing.JOptionPane;
 import models.Customer;
@@ -14,6 +15,8 @@ public class CustomerFormView extends javax.swing.JFrame {
 
     public CustomerFormView(Customer customer) {
         initComponents();
+        tfCPF.setDocument(new FormatFieldController());
+        tfBirthDate.setDocument(new FormatFieldController());
         if (customer != null) {
             this.customer = customer;
             this.setCustomerInfo(customer);
