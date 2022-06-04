@@ -35,9 +35,9 @@ public class App {
         Customer marcos = new Customer("Marcos", "22233344455", "Rua Stein, 233", "10022004");
         customerDAO.createCustomer(marcos);
         Customer maria = new Customer("Maria", "33344455566", "Avenida Ramos, 333", "17051999");
-        customerDAO.createCustomer(marcos);
+        customerDAO.createCustomer(maria);
         Customer ana = new Customer("Ana", "44455566677", "Rua Gertrudes", "25072000");
-        customerDAO.createCustomer(marcos);
+        customerDAO.createCustomer(ana);
         
         DeviceDAO deviceDAO = new DeviceDAO();
         Computer computador1 = new Computer("Computador 1", "Intel i5 | RAM DDR4 8GB | GTX1650 2GB", true);
