@@ -23,7 +23,7 @@ public class Customer extends Person implements Comparable<Customer>{
     
     @Override
     public String toString(){
-        return super.toString()+" Créditos disponíveis: "+this.creditsAmount+".";
+        return super.toString();
     }
     
     @Override

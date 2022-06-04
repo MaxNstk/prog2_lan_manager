@@ -77,10 +77,7 @@ public abstract class Person {
 
     @Override
     public String toString() {
-        String response = "Nome: " + this.name + "; CPF: " + this.CPF + "; ";
-        response += "Endereço: " + this.adress + "; ";
-        response += "Data de nascimento: " + this.birthDate + ";";
-        return response;
+        return this.name;
     }
 
 }
