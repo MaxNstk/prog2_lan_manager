@@ -11,6 +11,7 @@ import views.Customer.CustomerListView;
 import views.Game.GameFormView;
 import views.Game.GameListView;
 import views.Gameplay.GameplayFormView;
+import views.Gameplay.GameplayListView;
 import views.LoginView;
 import views.MainView;
 
@@ -87,5 +88,9 @@ public class App {
         AddCreditsView addCreditsView = new AddCreditsView(id);
         addCreditsView.setVisible(true);
     }
-
+    
+    public static void openGameplayListView(){
+        GameplayListView gameplayListView = new GameplayListView();
+        gameplayListView.setVisible(true);
+    }   
 }

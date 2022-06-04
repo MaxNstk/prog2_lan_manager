@@ -8,6 +8,9 @@ package Exceptions;
  *
  * @author max
  */
-public class InsufficientCreditsException {
+public class InsufficientCreditsException extends Exception {
     
+  public InsufficientCreditsException(String message){
+      super(message);
+  }    
 }

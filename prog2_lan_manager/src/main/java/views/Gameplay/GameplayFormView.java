@@ -9,6 +9,8 @@ import controllers.DeviceController;
 import controllers.FormatFieldController;
 import controllers.GameController;
 import controllers.GameplayController;
+import java.util.HashMap;
+import java.util.Map;
 import models.Customer;
 import models.Device;
 import models.Game;
@@ -68,17 +70,14 @@ public class GameplayFormView extends javax.swing.JFrame {
         cbDevice.setSelectedItem(null);
     }
     
-    public Gameplay getGampleyInfo() {
-        Customer customer = this.cbCustomer.getItemAt(this.cbCustomer.getSelectedIndex());
-        Device device = this.cbDevice.getItemAt(this.cbDevice.getSelectedIndex());
-        Game game = this.cbGame.getItemAt(this.cbGame.getSelectedIndex());
-        int timePlaying = Integer.parseInt(this.tfTime.getText());        
-        return new Gameplay(customer, game, device, timePlaying);
+    public Map<String, Object> getGampleyInfo() {
+        Map<String, Object> gameplayData = new HashMap();
+        gameplayData.put("customer", this.cbCustomer.getItemAt(this.cbCustomer.getSelectedIndex()));
+        gameplayData.put("game", this.cbCustomer.getItemAt(this.cbCustomer.getSelectedIndex()));
+        gameplayData.put("device", this.cbDevice.getItemAt(this.cbDevice.getSelectedIndex()));
+        gameplayData.put("timePlaying", this.tfTime.getText());
+        return gameplayData;
     }
-
-    public void createGameplay(){;
-        gameplayController.createGameplay(this.getGampleyInfo());
-    } 
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -169,7 +168,6 @@ public class GameplayFormView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(tfTime, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbGame, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
@@ -179,7 +177,9 @@ public class GameplayFormView extends javax.swing.JFrame {
                             .addComponent(cbCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+                            .addComponent(cbGame, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(2, 2, 2)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -197,7 +197,7 @@ public class GameplayFormView extends javax.swing.JFrame {
     }//GEN-LAST:event_btUpdateActionPerformed
 
     private void btGameplayCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGameplayCreateActionPerformed
-        this.createGameplay();
+        this.getGampleyInfo();
     }//GEN-LAST:event_btGameplayCreateActionPerformed
 
     /**

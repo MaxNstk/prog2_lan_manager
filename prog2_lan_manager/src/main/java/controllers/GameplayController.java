@@ -7,6 +7,10 @@ package controllers;
 import Exceptions.InsufficientCreditsException;
 import daos.GameplayDAO;
 import java.util.List;
+import java.util.Map;
+import models.Customer;
+import models.Device;
+import models.Game;
 import models.Gameplay;
 
 /**
@@ -21,8 +25,12 @@ public class GameplayController {
         return gameplayDAO.getActiveGamplays();
     }
     
-    public void createGampeplay(Gameplay gameplay) throws InsufficientCreditsException{
-        
+    public void createGampeplay(Map<String, Object> customerData) throws InsufficientCreditsException{
+        Customer customer = (Customer) customerData.get("customer");
+        Device device = (Device) customerData.get("customer");
+        Game game = (Game) customerData.get("customer");
+        int timePlaying = (int) customerData.get("playingTime");  
+        gameplayDAO.createGameplay(new Gameplay(customer, game, device, timePlaying));
     } 
     
 }
