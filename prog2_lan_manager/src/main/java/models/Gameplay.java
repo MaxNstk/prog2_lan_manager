@@ -1,5 +1,6 @@
 package models;
 
+import Exceptions.NotANumberException;
 import java.time.LocalDateTime;
 
 /**
@@ -16,15 +17,17 @@ public class Gameplay {
     protected boolean playingNow;
 
 
-    public Gameplay(Customer customer, Game game, Device device, int timePlaying){
+    public Gameplay(Customer customer, Game game, Device device, int timePlaying) {
         this.customer = customer;
         this.game = game;
         this.device = device;
         this.startDateTime = LocalDateTime.now();
+        
         this.endDateTime = this.startDateTime.plusHours(timePlaying);
         this.playingNow = true;
+        this.device.active = false;
     }
-
+    
     public LocalDateTime getStartDateTime() {
         return startDateTime;
     }

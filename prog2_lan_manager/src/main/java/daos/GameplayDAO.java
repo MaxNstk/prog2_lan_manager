@@ -35,7 +35,7 @@ public class GameplayDAO implements IGameplayDAO{
     @Override
     public List<Gameplay> getActiveGamplays() {
         List<Gameplay> activeGamplays = new ArrayList();
-        for(Gameplay gameplay : this.gameplays){
+        for(Gameplay gameplay : gameplays){
             if (gameplay.isBeingPlayed())
                activeGamplays.add(gameplay);
         }

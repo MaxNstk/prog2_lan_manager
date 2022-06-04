@@ -7,9 +7,11 @@ package views.Gameplay;
 import controllers.CustomerController;
 import controllers.DeviceController;
 import controllers.GameController;
+import daos.GameplayDAO;
 import models.Customer;
 import models.Device;
 import models.Game;
+import models.Gameplay;
 
 /**
  *
@@ -63,6 +65,20 @@ public class GameplayFormView extends javax.swing.JFrame {
         }
         cbDevice.setSelectedItem(null);
     }
+    
+    public Gameplay getGampleyInfo() {
+        Customer customer = this.cbCustomer.getItemAt(this.cbCustomer.getSelectedIndex());
+        Device device = this.cbDevice.getItemAt(this.cbDevice.getSelectedIndex());
+        Game game = this.cbGame.getItemAt(this.cbGame.getSelectedIndex());
+        int timePlaying = Integer.parseInt(this.tfTime.getText());        
+        return new Gameplay(customer, game, device, timePlaying);
+    }
+
+   /* public void createGameplay(){;
+        GameplayDAO gameplayDAO = new GameplayDAO();
+        gameplayDAO.createGameplay(this.getGampleyInfo());
+    } */
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -176,10 +192,9 @@ public class GameplayFormView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cbDevice, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(cbDevice, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btGameplayCreate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
