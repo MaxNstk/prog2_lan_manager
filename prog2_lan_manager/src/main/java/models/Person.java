@@ -1,13 +1,14 @@
 package models;
 
-import java.time.LocalDate;
+import Exceptions.EmptyFieldException;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author max
  */
 public abstract class Person {
-    
+
     private static int currentId = 0;
     protected int id;
     protected String name;
@@ -18,15 +19,22 @@ public abstract class Person {
 
     public Person(String name, String CPF, String adress, String birthDate) {
         this.id = getCurrentId();
-        this.name = name;
-        this.CPF = CPF;
-        this.adress = adress;
+        this.name = validateNotNull(name);
+        this.CPF = validateNotNull(name);
+        this.adress = validateNotNull(name);
         this.birthDate = birthDate;
         this.active = true;
-        
+
     }
 
-    public void setName(String name) {
+    public String validateNotNull(String value) throws EmptyFieldException {
+        if (value == null || value.isEmpty()) {
+            throw new EmptyFieldException("O valor não deve ser nulo ou vazio");
+        }
+        return value;
+    }
+
+    public void setName(String name) throws EmptyFieldException {
         this.name = name;
     }
 
@@ -41,12 +49,12 @@ public abstract class Person {
     public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
-    
-    public int getId(){
+
+    public int getId() {
         return this.id;
     }
-    
-    private static int getCurrentId(){
+
+    private static int getCurrentId() {
         currentId += 1;
         return currentId;
     }

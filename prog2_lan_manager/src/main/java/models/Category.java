@@ -1,5 +1,6 @@
-
 package models;
+
+import Exceptions.EmptyFieldException;
 
 /**
  *
@@ -33,8 +34,8 @@ public class Category {
     public void setCreditsValue(double creditsValue) {
         this.creditsValue = creditsValue;
     }
-    
-    public static int getCurrentId(){
+
+    public static int getCurrentId() {
         currentId = +1;
         return currentId;
     }
@@ -47,7 +48,7 @@ public class Category {
         this.name = name;
     }
 
-    public String toString(){
+    public String toString() {
         return this.name;
     }
 }
