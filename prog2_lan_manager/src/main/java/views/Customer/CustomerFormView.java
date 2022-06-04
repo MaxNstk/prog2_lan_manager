@@ -1,5 +1,6 @@
 package views.Customer;
 
+import Exceptions.EmptyFieldException;
 import controllers.FormatFieldController;
 import daos.CustomerDAO;
 import javax.swing.JOptionPane;
@@ -30,13 +31,17 @@ public class CustomerFormView extends javax.swing.JFrame {
         tfBirthDate.setText(customer.getBirthDate());
     }
 
-    public Customer getCustomerInfo() {
-        String name = tfName.getText();
-        String CPF = tfCPF.getText();
-        String adress = tfAdress.getText();
-        String birthDate = tfBirthDate.getText();
-        return new Customer(name, CPF, adress, birthDate);
-
+    public Customer getCustomerInfo() throws EmptyFieldException {
+        try {
+            String name = tfName.getText();
+            String CPF = tfCPF.getText();
+            String adress = tfAdress.getText();
+            String birthDate = tfBirthDate.getText();
+            return new Customer(name, CPF, adress, birthDate);
+        } catch (EmptyFieldException emptyFieldException) {
+            JOptionPane.showMessageDialog(null, emptyFieldException.getMessage());
+            return null;
+        }
     }
 
     public void createCustomer() {
@@ -163,7 +168,6 @@ public class CustomerFormView extends javax.swing.JFrame {
         }
 
         this.clearFields();
-        JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso");
     }//GEN-LAST:event_btCreateCustomerActionPerformed
 
     /**

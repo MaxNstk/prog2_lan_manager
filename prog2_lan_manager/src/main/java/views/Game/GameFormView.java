@@ -153,7 +153,6 @@ public class GameFormView extends javax.swing.JFrame {
             this.createGame();
 
         this.clearFields();
-        JOptionPane.showMessageDialog(null, "Jogo cadastrado com sucesso");
     }//GEN-LAST:event_btCreateGameActionPerformedActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
