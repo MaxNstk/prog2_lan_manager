@@ -4,12 +4,18 @@
  */
 package views.Gameplay;
 
+import Exceptions.EmptyCbException;
+import Exceptions.InsufficientCreditsException;
+import Exceptions.NullSelectionException;
 import controllers.CustomerController;
 import controllers.DeviceController;
 import controllers.GameController;
 import controllers.GameplayController;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import models.Customer;
 import models.Device;
 import models.Game;
@@ -44,6 +50,14 @@ public class GameplayFormView extends javax.swing.JFrame {
         this.deviceController = new DeviceController();
     }
     
+    private void fillDeviceCb() {
+        this.cbDevice.removeAllItems();
+        for (Device device : deviceController.getFilteredDevices()) {
+            cbDevice.addItem(device);
+        }
+        cbDevice.setSelectedItem(null);
+    }
+    
     private void fillCustomersCb() {
         this.cbCustomer.removeAllItems();
         for (Customer customer : customerController.getFilteredCustomers()) {
@@ -60,18 +74,10 @@ public class GameplayFormView extends javax.swing.JFrame {
         cbGame.setSelectedItem(null);
     }
     
-    private void fillDeviceCb() {
-        this.cbDevice.removeAllItems();
-        for (Device device : deviceController.getFilteredDevices()) {
-            cbDevice.addItem(device);
-        }
-        cbDevice.setSelectedItem(null);
-    }
-    
-    public Map<String, Object> getGampleyInfo() {
+    public Map<String, Object> getGampleyInfo(){
         Map<String, Object> gameplayData = new HashMap();
         gameplayData.put("customer", this.cbCustomer.getItemAt(this.cbCustomer.getSelectedIndex()));
-        gameplayData.put("game", this.cbCustomer.getItemAt(this.cbCustomer.getSelectedIndex()));
+        gameplayData.put("game", this.cbGame.getItemAt(this.cbCustomer.getSelectedIndex()));
         gameplayData.put("device", this.cbDevice.getItemAt(this.cbDevice.getSelectedIndex()));
         gameplayData.put("timePlaying", this.tfTime.getText());
         return gameplayData;
@@ -93,7 +99,7 @@ public class GameplayFormView extends javax.swing.JFrame {
         btGameplayCreate = new javax.swing.JButton();
         btUpdate = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Cliente");
 
@@ -195,7 +201,11 @@ public class GameplayFormView extends javax.swing.JFrame {
     }//GEN-LAST:event_btUpdateActionPerformed
 
     private void btGameplayCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGameplayCreateActionPerformed
-        this.getGampleyInfo();
+        try {
+            gameplayController.createGampeplay(this.getGampleyInfo());
+        } catch (InsufficientCreditsException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
     }//GEN-LAST:event_btGameplayCreateActionPerformed
 
     /**

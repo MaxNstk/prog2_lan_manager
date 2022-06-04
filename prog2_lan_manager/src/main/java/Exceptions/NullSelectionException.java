@@ -10,7 +10,7 @@ package Exceptions;
  */
 public class NullSelectionException extends Exception {
 
-    public NullSelectionException(String message) {
-        super("Erro: Objeto não selecionado.");
+    public NullSelectionException(String object) {
+        super("Erro: Não há "+object+" selecionado.");
     }
 }

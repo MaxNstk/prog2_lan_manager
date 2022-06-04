@@ -25,7 +25,7 @@ public class GameplayController {
         return gameplayDAO.getActiveGamplays();
     }
     
-    public void createGampeplay(Map<String, Object> customerData) throws InsufficientCreditsException{
+    public void createGampeplay(Map<String, Object> customerData) throws InsufficientCreditsException {
         Customer customer = (Customer) customerData.get("customer");
         Device device = (Device) customerData.get("customer");
         Game game = (Game) customerData.get("customer");
