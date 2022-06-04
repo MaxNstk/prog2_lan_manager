@@ -13,7 +13,7 @@ import models.Gameplay;
  */
 public interface IGameplayDAO {
     
-    public void createGame(Gameplay game);
+    public void createGameplay(Gameplay gameplay);
     public Gameplay retrieveGameplay(int id);
     public List<Gameplay> getGameplays();
     public List<Gameplay> getActiveGamplays();

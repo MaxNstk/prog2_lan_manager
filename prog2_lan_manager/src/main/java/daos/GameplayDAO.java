@@ -18,8 +18,8 @@ public class GameplayDAO implements IGameplayDAO{
     private static List<Gameplay> gameplays = new ArrayList();
 
     @Override
-    public void createGame(Gameplay game) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void createGameplay(Gameplay gameplay) {
+        gameplays.add(gameplay);
     }
 
     @Override
@@ -40,6 +40,6 @@ public class GameplayDAO implements IGameplayDAO{
                activeGamplays.add(gameplay);
         }
         return activeGamplays;
-    }
     
+    }
 }
