@@ -28,13 +28,13 @@
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="btCreateCustomer" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" pref="37" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" pref="37" max="-2" attributes="0"/>
                   <Component id="jLabel3" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
                   <Component id="tfName" alignment="0" max="32767" attributes="0"/>
                   <Component id="tfAdress" alignment="0" pref="259" max="32767" attributes="0"/>
                   <Component id="jLabel4" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
                   <Component id="tfCPF" alignment="0" max="32767" attributes="0"/>
                   <Component id="tfBirthDate" max="32767" attributes="0"/>
+                  <Component id="jLabel1" alignment="0" min="-2" pref="54" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="107" max="32767" attributes="0"/>
           </Group>

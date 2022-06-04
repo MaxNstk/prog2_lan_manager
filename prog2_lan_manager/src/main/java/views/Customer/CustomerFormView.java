@@ -15,6 +15,7 @@ public class CustomerFormView extends javax.swing.JFrame {
 
     public CustomerFormView(Customer customer) {
         initComponents();
+        ajustScreenCenter();
         if (customer != null) {
             this.customer = customer;
             this.setCustomerInfo(customer);
@@ -60,6 +61,13 @@ public class CustomerFormView extends javax.swing.JFrame {
         tfCPF.setText("");
         tfAdress.setText("");
         tfBirthDate.setText("");
+    }
+    
+    /**
+     * Centraliza a tela de visualização
+     */
+    private void ajustScreenCenter() {
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -125,13 +133,13 @@ public class CustomerFormView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btCreateCustomer)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfName)
                     .addComponent(tfAdress, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfCPF)
-                    .addComponent(tfBirthDate))
+                    .addComponent(tfBirthDate)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(107, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(

@@ -14,8 +14,23 @@ public class MainView extends javax.swing.JFrame {
 
     public MainView() {
         initComponents();
+        this.ajustScreenCenter();
+        this.setTitleScreen();
     }
 
+    /**
+     * Centraliza a tela de visualização
+     */
+    private void ajustScreenCenter() {
+        this.setExtendedState(MAXIMIZED_BOTH);
+    }
+    
+    /**
+     * Define o título que será apresentado na parte superior da aba
+     */
+    private void setTitleScreen() {
+        setTitle("Lan Manager - Zukünftige Glatzköpfige Männer");
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

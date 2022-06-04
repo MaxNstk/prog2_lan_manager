@@ -18,10 +18,18 @@ public class AddCreditsView extends javax.swing.JFrame {
 
     public AddCreditsView(int id) {
         initComponents();
+        ajustScreenCenter();
         customerController = new CustomerController();
         Customer customer = customerController.retrieveCostumer(id);
         this.lbCustomerName.setText(customer.getName());
         this.customerId = id;
+    }
+    
+    /**
+     * Centraliza a tela de visualização
+     */
+    private void ajustScreenCenter() {
+        setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")

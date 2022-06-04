@@ -17,6 +17,7 @@ public class LoginView extends javax.swing.JFrame {
         addPlaceHolderSyle(tfUser);
         addPlaceHolderSyle(tfPassword);
         ajustScreenCenter();
+        setTitleScreen();
     }
 
     /**
@@ -25,6 +26,14 @@ public class LoginView extends javax.swing.JFrame {
     private void ajustScreenCenter() {
         setLocationRelativeTo(null);
     }
+    
+    /**
+     * Define o título que será apresentado na parte superior da aba
+     */
+    private void setTitleScreen() {
+        setTitle("Lan Manager - Zukünftige Glatzköpfige Männer");
+    }
+    
     
     /**
      * This method is called from within the constructor to initialize the form.

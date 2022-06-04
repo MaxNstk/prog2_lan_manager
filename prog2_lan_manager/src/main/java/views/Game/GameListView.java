@@ -26,6 +26,7 @@ public class GameListView extends javax.swing.JFrame {
 
     public GameListView() {
         initComponents();
+        ajustScreenCenter();
         gameController = new GameController();
         this.createTableModel();
     }
@@ -66,6 +67,13 @@ public class GameListView extends javax.swing.JFrame {
             throw new NullSelectionException("Erro: Objeto não selecionado.");
         }
         return (Integer) this.dtmGames.getValueAt(this.tbGameList.getSelectedRow(), 0);
+    }
+    
+    /**
+     * Centraliza a tela de visualização
+     */
+    private void ajustScreenCenter() {
+        setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")

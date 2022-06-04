@@ -23,6 +23,7 @@ public class GameplayListView extends javax.swing.JFrame {
 
     public GameplayListView() {
         initComponents();
+        ajustScreenCenter();
         gameplayController = new GameplayController();
         this.createTableModel();
     }
@@ -42,6 +43,13 @@ public class GameplayListView extends javax.swing.JFrame {
             }           
         }
 
+    /**
+     * Centraliza a tela de visualização
+     */
+    private void ajustScreenCenter() {
+        setLocationRelativeTo(null);
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -50,7 +58,7 @@ public class GameplayListView extends javax.swing.JFrame {
         tbGamplayList = new javax.swing.JTable();
         btCreateGameplay = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         tbGamplayList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -79,7 +87,7 @@ public class GameplayListView extends javax.swing.JFrame {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btCreateGameplay, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btCreateGameplay, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
