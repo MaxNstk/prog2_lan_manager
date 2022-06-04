@@ -1,5 +1,7 @@
 package models;
 
+import Exceptions.EmptyFieldException;
+
 /**
  *
  * @author max
@@ -14,10 +16,17 @@ public class Game {
     protected int id;
 
     public Game(String name, String description, Category category) {
-        this.name = name;
-        this.description = description;
+        this.name = validateNotNull(name);
+        this.description = validateNotNull(description);
         this.category = category;
         this.id = getCurrentId();
+    }
+
+    public String validateNotNull(String value) throws EmptyFieldException {
+        if (value == null || value.isEmpty()) {
+            throw new EmptyFieldException("O valor não deve ser nulo ou vazio");
+        }
+        return value;
     }
 
     public String getName() {
@@ -60,9 +69,9 @@ public class Game {
     public void setDevice(Device device) {
         this.device = device;
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return this.name;
     }
 }

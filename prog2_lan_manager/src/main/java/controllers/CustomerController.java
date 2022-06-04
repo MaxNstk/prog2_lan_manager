@@ -16,9 +16,8 @@ public class CustomerController {
     private List<Customer> filteredCustomers;
 
     CustomerDAO customerDAO = new CustomerDAO();
-    
-    
-    public void getAll(){
+
+    public void getAll() {
         this.filteredCustomers = new ArrayList<>();
         this.filteredCustomers = customerDAO.getCustomers();
     }
@@ -31,12 +30,12 @@ public class CustomerController {
             }
         }
     }
-    
-    public Customer retrieveCostumer(int id){
-       return customerDAO.retrieveCustomer(id);
+
+    public Customer retrieveCostumer(int id) {
+        return customerDAO.retrieveCustomer(id);
     }
-    
-    public void addCredits(int creditsAmount, int customerId){
+
+    public void addCredits(int creditsAmount, int customerId) {
         Customer customer = customerDAO.retrieveCustomer(customerId);
         customer.addCredits(creditsAmount);
     }
@@ -72,21 +71,21 @@ public class CustomerController {
         });
         return this.filteredCustomers;
     }
-    
 
-    public void updateCustomer(int id){
-        App.openCustomerUpdateView(customerDAO.retrieveCustomer(id));
+    public void updateCustomer(int id) {
+            App.openCustomerUpdateView(customerDAO.retrieveCustomer(id));
     }
-    
-     public List<Customer> sortAlphabetically() {
-         Collections.sort(filteredCustomers);
-         return this.filteredCustomers;
-     }
-     
-     public List<Customer> getFilteredCustomers(){
-         if (this.filteredCustomers == null)
-             this.getAll();
-         return this.filteredCustomers;       
-     }
+
+    public List<Customer> sortAlphabetically() {
+        Collections.sort(filteredCustomers);
+        return this.filteredCustomers;
+    }
+
+    public List<Customer> getFilteredCustomers() {
+        if (this.filteredCustomers == null) {
+            this.getAll();
+        }
+        return this.filteredCustomers;
+    }
 
 }

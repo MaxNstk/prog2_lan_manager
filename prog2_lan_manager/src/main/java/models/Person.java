@@ -20,9 +20,9 @@ public abstract class Person {
     public Person(String name, String CPF, String adress, String birthDate) {
         this.id = getCurrentId();
         this.name = validateNotNull(name);
-        this.CPF = validateNotNull(name);
-        this.adress = validateNotNull(name);
-        this.birthDate = birthDate;
+        this.CPF = validateNotNull(CPF);
+        this.adress = validateNotNull(adress);
+        this.birthDate = validateNotNull(birthDate);
         this.active = true;
 
     }

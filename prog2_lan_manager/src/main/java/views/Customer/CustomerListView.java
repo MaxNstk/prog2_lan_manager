@@ -4,10 +4,12 @@
  */
 package views.Customer;
 
+import Exceptions.NullSelectionException;
 import controllers.App;
 import controllers.CustomerController;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import models.Customer;
 
@@ -27,29 +29,30 @@ public class CustomerListView extends javax.swing.JFrame {
     public CustomerListView() {
         initComponents();
         customerController = new CustomerController();
-        this.createTableModel();      
+        this.createTableModel();
     }
-    
-    private void createTableModel(){
+
+    private void createTableModel() {
         this.dtmCustomers = (DefaultTableModel) this.tbCustomerList.getModel();
         this.dtmCustomers.setColumnIdentifiers(columnNames);
-        this.dtmCustomers.setRowCount(0);        
+        this.dtmCustomers.setRowCount(0);
     }
 
     public void ListCustomers() {
         this.createTableModel();
-        for (Customer customer : customerController.getFilteredCustomers()){
-            Object [] listData = {customer.getId(), customer.getName(), customer.getCPF(),
-            customer.getAdress(), customer.getBirthDate(), customer.getCreditsAmount()};
+        for (Customer customer : customerController.getFilteredCustomers()) {
+            Object[] listData = {customer.getId(), customer.getName(), customer.getCPF(),
+                customer.getAdress(), customer.getBirthDate(), customer.getCreditsAmount()};
             dtmCustomers.addRow(listData);
-        }            
+        }
     }
 
     public void getSortedCustomers() {
-        if (this.cbSortOptions.getSelectedIndex() == 0)
+        if (this.cbSortOptions.getSelectedIndex() == 0) {
             this.customerController.sortAlphabetically();
-        else
+        } else {
             this.customerController.sortByCreditsAmount();
+        }
     }
 
     public void getFilteredCustomers() {
@@ -67,6 +70,13 @@ public class CustomerListView extends javax.swing.JFrame {
                 this.customerController.filterByAdress(this.tfCustomerName.getText());
                 break;
         }
+    }
+
+    public int validateSelection(Object object) throws NullSelectionException {
+        if ((Integer) object == -1) {
+            throw new NullSelectionException("Erro: Objeto não selecionado.");
+        }
+        return (Integer) this.dtmCustomers.getValueAt(this.tbCustomerList.getSelectedRow(), 0);
     }
 
     /**
@@ -241,14 +251,22 @@ public class CustomerListView extends javax.swing.JFrame {
     }//GEN-LAST:event_btFilterCustomerActionPerformed
 
     private void btUpdateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUpdateCustomerActionPerformed
-        int customerId = (Integer) this.dtmCustomers.getValueAt(this.tbCustomerList.getSelectedRow(), 0);
-        customerController.updateCustomer(customerId);
+        try {
+            int customerId = validateSelection(this.tbCustomerList.getSelectedRow());
+            customerController.updateCustomer(customerId);
+        } catch (NullSelectionException nullSelectionException) {
+            JOptionPane.showMessageDialog(null, nullSelectionException.getMessage());
+        }
     }//GEN-LAST:event_btUpdateCustomerActionPerformed
 
     private void btAddCreditsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddCreditsActionPerformed
-        int customerId = (Integer) this.dtmCustomers.getValueAt(this.tbCustomerList.getSelectedRow(),0);
-        String customerName = (String) this.dtmCustomers.getValueAt(this.tbCustomerList.getSelectedRow(),1);
-        App.openAddCreditsView(customerId);
+        try {
+            int customerId = validateSelection(this.tbCustomerList.getSelectedRow());
+            String customerName = (String) this.dtmCustomers.getValueAt(this.tbCustomerList.getSelectedRow(), 1);
+            App.openAddCreditsView(customerId);
+        } catch (NullSelectionException nullSelectionException) {
+            JOptionPane.showMessageDialog(null, nullSelectionException.getMessage());
+        }
     }//GEN-LAST:event_btAddCreditsActionPerformed
 
     /**

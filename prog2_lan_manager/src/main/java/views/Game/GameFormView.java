@@ -4,6 +4,7 @@
  */
 package views.Game;
 
+import Exceptions.EmptyFieldException;
 import daos.CategoryDAO;
 import daos.GameDAO;
 import javax.swing.JComboBox;
@@ -43,11 +44,16 @@ public class GameFormView extends javax.swing.JFrame {
     }
 
     public Game getGameInfo() {
-        String name = tfName.getText();
-        String description = taDescription.getText();
-        Category category = (Category) cbCategory.getSelectedItem();
-       // Device device = (Device) cbDevice.getSelectedItem();
-        return new Game(name, description, category);
+        try {
+            String name = tfName.getText();
+            String description = taDescription.getText();
+            Category category = (Category) cbCategory.getSelectedItem();
+            return new Game(name, description, category);
+        } catch (EmptyFieldException emptyFieldException) {
+            JOptionPane.showMessageDialog(null, emptyFieldException.getMessage());
+            return null;
+        }
+
     }
 
     public void createGame() {
@@ -147,10 +153,11 @@ public class GameFormView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCreateGameActionPerformedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateGameActionPerformedActionPerformed
-        if (this.game != null)
+        if (this.game != null) {
             this.updateGame();
-        else
+        } else {
             this.createGame();
+        }
 
         this.clearFields();
     }//GEN-LAST:event_btCreateGameActionPerformedActionPerformed

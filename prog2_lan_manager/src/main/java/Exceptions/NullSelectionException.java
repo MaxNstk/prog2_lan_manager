@@ -6,11 +6,11 @@ package Exceptions;
 
 /**
  *
- * @author JEKrieger
+ * @author João Eduardo
  */
-public class EmptyFieldException extends IllegalArgumentException {
+public class NullSelectionException extends Exception {
 
-    public EmptyFieldException(String message) {
-        super("Erro: O valor não deve ser nulo ou vazio.");
+    public NullSelectionException(String message) {
+        super("Erro: Objeto não selecionado.");
     }
 }
