@@ -13,9 +13,8 @@ public class Category {
     private double creditsValue;
     private String name;
 
-    public Category(double creditsValue, String name) {
+    public Category(String name) {
         this.id = getCurrentId();
-        this.creditsValue = creditsValue;
         this.name = name;
     }
 

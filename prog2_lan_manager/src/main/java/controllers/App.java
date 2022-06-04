@@ -48,20 +48,24 @@ public class App {
         deviceDAO.createDevice(computador3);
         Console xboxSeriesX = new Console("Xbox Series X", true);
         deviceDAO.createDevice(xboxSeriesX);
-        Console xboxSeriesS = new Console("Xbox Series S", true);
-        deviceDAO.createDevice(xboxSeriesS);
         Console playstation5 = new Console("Playstation 5", true);
-        deviceDAO.createDevice(xboxSeriesS);
-        Console playstation4 = new Console("Playstation 4", true);
-        deviceDAO.createDevice(xboxSeriesS);
+        deviceDAO.createDevice(playstation5);
         
         CategoryDAO categoryDAO = new CategoryDAO();
-        Category fps = new Category(40, "FPS");
+        Category fps = new Category("FPS");
         categoryDAO.createCategory(fps);
-        Category estrategia = new Category(20, "Estratégia");
+        Category estrategia = new Category("Estratégia");
         categoryDAO.createCategory(estrategia);
-        Category battleRoyale = new Category(60, "Battle Royale");
+        Category battleRoyale = new Category("Battle Royale");
         categoryDAO.createCategory(battleRoyale);
+        Category acao = new Category("Ação");
+        categoryDAO.createCategory(acao);
+        Category luta = new Category("Luta");
+        categoryDAO.createCategory(luta);
+        Category sobrevivencia = new Category("Sobrevivência");
+        categoryDAO.createCategory(sobrevivencia);
+        Category rpg = new Category("RPG");
+        categoryDAO.createCategory(rpg);
         
         GameDAO gameDAO = new GameDAO();
         Game ageOfEmpires = new Game("Age of Empires", "Civilizações ancestrais", estrategia);
@@ -122,5 +126,5 @@ public class App {
     public static void openGameplayListView() {
         GameplayListView gameplayListView = new GameplayListView();
         gameplayListView.setVisible(true);
-    }    
+    }
 }
