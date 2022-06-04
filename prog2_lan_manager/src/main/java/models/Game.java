@@ -46,7 +46,7 @@ public class Game {
     }
 
     public static int getCurrentId() {
-        currentId = +1;
+        currentId++;
         return currentId;
     }
 

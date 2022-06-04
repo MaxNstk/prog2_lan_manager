@@ -4,8 +4,10 @@
  */
 package views.Game;
 
+import Exceptions.NullSelectionException;
 import controllers.App;
 import controllers.GameController;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import models.Game;
 
@@ -13,14 +15,13 @@ import models.Game;
  *
  * @author João Eduardo
  */
-
 public class GameListView extends javax.swing.JFrame {
 
     private GameController gameController;
     private DefaultTableModel dtmGames;
 
     private final String[] columnNames = {
-        "Id", "Nome", "Dispositivo", "Categoria", "Descrição"
+        "Id", "Nome", "Categoria", "Descrição"
     };
 
     public GameListView() {
@@ -38,7 +39,7 @@ public class GameListView extends javax.swing.JFrame {
     public void ListGames() {
         this.createTableModel();
         for (Game game : gameController.getFilteredGames()) {
-            Object[] listData = {game.getId(), game.getName(), game.getDevice(), game.getCategory().getName(), game.getDescription()};
+            Object[] listData = {game.getId(), game.getName(), game.getCategory().getName(), game.getDescription()};
             dtmGames.addRow(listData);
         }
     }
@@ -58,6 +59,13 @@ public class GameListView extends javax.swing.JFrame {
                 this.gameController.filterByCategory(this.tfGameName.getName());
                 break;
         }
+    }
+
+    public int validateSelection(Object object) throws NullSelectionException {
+        if ((Integer) object == -1) {
+            throw new NullSelectionException("Erro: Objeto não selecionado.");
+        }
+        return (Integer) this.dtmGames.getValueAt(this.tbGameList.getSelectedRow(), 0);
     }
 
     @SuppressWarnings("unchecked")
@@ -175,8 +183,12 @@ public class GameListView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btUpdateGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUpdateGameActionPerformed
-        int gameId = (Integer) this.dtmGames.getValueAt(this.tbGameList.getSelectedRow(), 0);
-        gameController.updateGame(gameId);
+        try {
+            int gameId = validateSelection(this.tbGameList.getSelectedRow());
+            gameController.updateGame(gameId);
+        } catch (NullSelectionException nullSelectionException) {
+            JOptionPane.showMessageDialog(null, nullSelectionException.getMessage());
+        }
     }//GEN-LAST:event_btUpdateGameActionPerformed
 
     private void btCreateGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateGameActionPerformed
