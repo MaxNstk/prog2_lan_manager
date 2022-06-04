@@ -15,22 +15,21 @@ public abstract class Device {
     protected int id;
     protected String name;
 
-    public Device(String name, boolean active, List<Game> availableGames) {
+    public Device(String name, boolean active) {
         this.name = name;
         this.active = active;
-        this.availableGames = availableGames;
         this.available = true;
     }
-    
-    public void setName(String name){
+
+    public void setName(String name) {
         this.name = name;
     }
-    
-    public String getName(){
+
+    public String getName() {
         return name;
     }
-    
-    public boolean isAvailable(){
+
+    public boolean isAvailable() {
         return this.available;
     }
 
@@ -49,13 +48,18 @@ public abstract class Device {
     public void setAvailableGames(List<Game> availableGames) {
         this.availableGames = availableGames;
     }
+
     public static int getCurrentId() {
         currentId = +1;
         return currentId;
     }
 
     public int getId() {
-       return this.id;
+        return this.id;
+    }
+
+    public String toString() {
+        return this.name;
     }
 
 }

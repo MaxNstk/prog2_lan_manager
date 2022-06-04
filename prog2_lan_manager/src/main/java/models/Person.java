@@ -29,7 +29,7 @@ public abstract class Person {
 
     public String validateNotNull(String value) throws EmptyFieldException {
         if (value == null || value.isEmpty()) {
-            throw new EmptyFieldException("O valor não deve ser nulo ou vazio");
+            throw new EmptyFieldException("Erro: O valor não deve ser nulo ou vazio.");
         }
         return value;
     }

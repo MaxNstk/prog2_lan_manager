@@ -10,17 +10,17 @@ public class Console extends Device {
 
     String model;
 
-    public Console(String name, String model, boolean active, List<Game> availableGames) {
-        super(name, active, availableGames);
+    public Console(String name, boolean active) {
+        super(name, active);
         this.model = model;
     }
 
-    public String getModel(){
-        return model;
+    public String getName(){
+        return name;
     }
 
-    public void setModel(String model) {
-        this.model = model;
+    public void setName(String name) {
+        this.name = name;
     }
 
 } 

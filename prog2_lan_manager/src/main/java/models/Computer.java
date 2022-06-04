@@ -10,8 +10,8 @@ public class Computer extends Device {
 
     String specs;
 
-    public Computer(String name, String specs, boolean active, List<Game> availableGames) {
-        super(name, active, availableGames);
+    public Computer(String name, String specs, boolean active) {
+        super(name, active);
         this.specs = specs;
     }
 

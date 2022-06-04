@@ -1,8 +1,12 @@
 package controllers;
 
 import daos.CategoryDAO;
+import daos.CustomerDAO;
+import daos.DeviceDAO;
 import daos.GameDAO;
 import models.Category;
+import models.Computer;
+import models.Console;
 import models.Customer;
 import models.Game;
 import views.Customer.AddCreditsView;
@@ -24,23 +28,45 @@ public class App {
     public static void main(String[] args) {
         LoginView loginView = new LoginView();
         loginView.setVisible(true);
+/*
+        CustomerDAO customerDAO = new CustomerDAO();
+        Customer leandro = new Customer("Leandro", "11122233344", "Ibirama", birthDate);
+        Customer marcos = new Customer("Marcos", "22233344455", "", birthDate);
+        Customer maria = new Customer("Maria", "33344455566", adress, birthDate);
+        Customer ana = new Customer("Ana", "44455566677", adress, birthDate);
+*/
+        DeviceDAO deviceDAO = new DeviceDAO();
+        Computer computador1 = new Computer("Computador 1", "Intel i5 | RAM DDR4 8GB | GTX1650 2GB", true);
+        deviceDAO.createDevice(computador1);
+        Computer computador2 = new Computer("Computador 2", "AMD Ryzen 7 | RAM DDR5 16GB | RTX3060 6GB", true);
+        deviceDAO.createDevice(computador2);
+        Computer computador3 = new Computer("Computador 3", "Pentium | RAM DDR3 4GB | GTX1050 2GB", true);
+        deviceDAO.createDevice(computador3);
+        Console xboxSeriesX = new Console("Xbox Series X", true);
+        deviceDAO.createDevice(xboxSeriesX);
+        Console xboxSeriesS = new Console("Xbox Series S", true);
+        deviceDAO.createDevice(xboxSeriesS);
+        Console playstation5 = new Console("Playstation 5", true);
+        deviceDAO.createDevice(xboxSeriesS);
+        Console playstation4 = new Console("Playstation 4", true);
+        deviceDAO.createDevice(xboxSeriesS);
 
         CategoryDAO categoryDAO = new CategoryDAO();
-        Category FPS = new Category(40, "FPS");
-        categoryDAO.createCategory(FPS);
-        Category Estrategia = new Category(20, "Estratégia");
-        categoryDAO.createCategory(Estrategia);
-        Category BattleRoyale = new Category(60, "Battle Royale");
-        categoryDAO.createCategory(BattleRoyale);
+        Category fps = new Category(40, "FPS");
+        categoryDAO.createCategory(fps);
+        Category estrategia = new Category(20, "Estratégia");
+        categoryDAO.createCategory(estrategia);
+        Category battleRoyale = new Category(60, "Battle Royale");
+        categoryDAO.createCategory(battleRoyale);
 
         GameDAO gameDAO = new GameDAO();
-        Game ageOfEmpires = new Game("Age of Empires", "Civilizações ancestrais", Estrategia);
+        Game ageOfEmpires = new Game("Age of Empires", "Civilizações ancestrais", estrategia);
         gameDAO.createGame(ageOfEmpires);
-        Game Chess = new Game("Chess", "Xadrez clássico", Estrategia);
+        Game Chess = new Game("Chess", "Xadrez clássico", estrategia);
         gameDAO.createGame(Chess);
-        Game CounterStrike = new Game("Counter-Strike", "FPS multiplayer", FPS);
+        Game CounterStrike = new Game("Counter-Strike", "FPS multiplayer", fps);
         gameDAO.createGame(CounterStrike);
-        Game Warzone = new Game("Warzone", "Armas e sobrevivência", BattleRoyale);
+        Game Warzone = new Game("Warzone", "Armas e sobrevivência", battleRoyale);
         gameDAO.createGame(Warzone);
     }
 
