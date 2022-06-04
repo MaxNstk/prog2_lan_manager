@@ -44,21 +44,20 @@ public class GameFormView extends javax.swing.JFrame {
     }
 
     public Game getGameInfo() {
-        try {
-            String name = tfName.getText();
-            String description = taDescription.getText();
-            Category category = (Category) cbCategory.getSelectedItem();
-            return new Game(name, description, category);
-        } catch (EmptyFieldException emptyFieldException) {
-            JOptionPane.showMessageDialog(null, emptyFieldException.getMessage());
-            return null;
-        }
+        String name = tfName.getText();
+        String description = taDescription.getText();
+        Category category = (Category) cbCategory.getSelectedItem();
+        return new Game(name, description, category);
 
     }
 
-    public void createGame() {
-        GameDAO gameDAO = new GameDAO();
-        gameDAO.createGame(this.getGameInfo());
+    public void createGame() throws EmptyFieldException {
+        try {
+            GameDAO gameDAO = new GameDAO();
+            gameDAO.createGame(this.getGameInfo());
+        } catch (EmptyFieldException emptyFieldException) {
+            JOptionPane.showMessageDialog(null, emptyFieldException.getMessage());
+        }
     }
 
     public void updateGame() {

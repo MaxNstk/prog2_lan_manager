@@ -29,21 +29,22 @@ public class CustomerFormView extends javax.swing.JFrame {
     }
 
     public Customer getCustomerInfo() throws EmptyFieldException {
-        try {
-            String name = tfName.getText();
-            String CPF = tfCPF.getText();
-            String adress = tfAdress.getText();
-            String birthDate = tfBirthDate.getText();
-            return new Customer(name, CPF, adress, birthDate);
-        } catch (EmptyFieldException emptyFieldException) {
-            JOptionPane.showMessageDialog(null, emptyFieldException.getMessage());
-            return null;
-        }
+        String name = tfName.getText();
+        String CPF = tfCPF.getText();
+        String adress = tfAdress.getText();
+        String birthDate = tfBirthDate.getText();
+        return new Customer(name, CPF, adress, birthDate);
+
     }
 
-    public void createCustomer() {
-        CustomerDAO customerDAO = new CustomerDAO();
-        customerDAO.createCustomer(this.getCustomerInfo());
+    public void createCustomer() throws EmptyFieldException {
+        try {
+            CustomerDAO customerDAO = new CustomerDAO();
+            customerDAO.createCustomer(this.getCustomerInfo());
+
+        } catch (EmptyFieldException emptyFieldException) {
+            JOptionPane.showMessageDialog(null, emptyFieldException.getMessage());
+        }
 
     }
 
