@@ -30,13 +30,13 @@ public class App {
         loginView.setVisible(true);
         
         CustomerDAO customerDAO = new CustomerDAO();
-        Customer alan = new Customer("Alan", "11122233344", "Rua Alvarez, 123", "09112001");
+        Customer alan = new Customer("Alan Santos", "111.222.333-44", "Rua Alvarez, 123", "09/11/2001");
         customerDAO.createCustomer(alan);
-        Customer bruna = new Customer("Bruna", "22233344455", "Rua Stein, 233", "10022004");
+        Customer bruna = new Customer("Bruna Pereira", "222.333.444-55", "Rua Stein, 233", "10/02/2004");
         customerDAO.createCustomer(bruna);
-        Customer maria = new Customer("Maria", "33344455566", "Avenida Ramos, 333", "17051999");
+        Customer maria = new Customer("Maria Alves", "333.444.555-66", "Avenida Ramos, 333", "17/05/1999");
         customerDAO.createCustomer(maria);
-        Customer pedro = new Customer("Pedro", "44455566677", "Rua Gertrudes", "25072000");
+        Customer pedro = new Customer("Pedro Gustavo", "444.555.666-77", "Rua Gertrudes, 901", "25/07/2000");
         customerDAO.createCustomer(pedro);
         
         DeviceDAO deviceDAO = new DeviceDAO();

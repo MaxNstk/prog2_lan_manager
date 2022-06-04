@@ -7,8 +7,6 @@ package views.Customer;
 import Exceptions.NullSelectionException;
 import controllers.App;
 import controllers.CustomerController;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import models.Customer;

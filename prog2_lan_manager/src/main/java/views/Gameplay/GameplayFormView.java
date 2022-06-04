@@ -6,7 +6,6 @@ package views.Gameplay;
 
 import controllers.CustomerController;
 import controllers.DeviceController;
-import controllers.FormatFieldController;
 import controllers.GameController;
 import controllers.GameplayController;
 import java.util.HashMap;
@@ -29,7 +28,6 @@ public class GameplayFormView extends javax.swing.JFrame {
     
     public GameplayFormView(){
         initComponents();
-        tfTime.setDocument(new FormatFieldController());
         this.setUpInitialData();
     }
 
