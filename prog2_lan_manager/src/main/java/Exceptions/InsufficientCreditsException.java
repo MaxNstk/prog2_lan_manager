@@ -10,7 +10,7 @@ package Exceptions;
  */
 public class InsufficientCreditsException extends Exception {
     
-  public InsufficientCreditsException(){
-      super("O cliente não possuí créditos suficientes para conseguir jogar!");
+  public InsufficientCreditsException(int customerCredits, int necessaryCredits){
+      super("O cliente possuí "+customerCredits+" créditos. Entretanto são necessários "+necessaryCredits+" para conseguir jogar!");
   }    
 }

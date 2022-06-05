@@ -179,10 +179,10 @@ public class GameplayFormView extends views.View {
 
     private void btGameplayCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGameplayCreateActionPerformed
         try {
-            gameplayController.createGameplay(this.getGameplayInfo());
+        gameplayController.createGameplay(this.getGameplayInfo());
             this.setUpInitialData();
 
-        } catch (InsufficientCreditsException ex) {
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }//GEN-LAST:event_btGameplayCreateActionPerformed

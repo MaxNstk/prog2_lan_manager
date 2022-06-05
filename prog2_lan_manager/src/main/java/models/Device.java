@@ -11,7 +11,6 @@ public abstract class Device {
     public static int currentId = 0;
     protected boolean active;
     protected boolean available;
-    protected List<Game> availableGames;
     protected int id;
     protected String name;
 
@@ -40,13 +39,9 @@ public abstract class Device {
     public void setActive(boolean active) {
         this.active = active;
     }
-
-    public List<Game> getAvailableGames() {
-        return availableGames;
-    }
-
-    public void setAvailableGames(List<Game> availableGames) {
-        this.availableGames = availableGames;
+    
+    public void setAvailableStatus(boolean status){
+        this.available = status;
     }
 
     public static int getCurrentId() {

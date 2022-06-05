@@ -37,7 +37,7 @@ public class GameplayListView extends View {
         this.createTableModel();
         for (Gameplay gameplay : gameplayController.getActiveGameplays()){
             Object[] listData = {gameplay.getCustomer(), gameplay.getGame(),
-            gameplay.getDevice(), gameplay.getEndDateTime()};
+            gameplay.getDevice(), gameplay.getFormatedDateTime()};
             this.dtmGameplays.addRow(listData);
             }           
         }
@@ -115,8 +115,8 @@ public class GameplayListView extends View {
     }//GEN-LAST:event_btCreateGameplayActionPerformed
 
     private void btUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUpdateActionPerformed
-        this.listActiveGameplays();
         gameplayController.updateCurrentGameplays();
+        this.listActiveGameplays();
     }//GEN-LAST:event_btUpdateActionPerformed
 
 

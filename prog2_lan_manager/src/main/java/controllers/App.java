@@ -52,19 +52,19 @@ public class App {
         deviceDAO.createDevice(playstation5);
         
         CategoryDAO categoryDAO = new CategoryDAO();
-        Category fps = new Category("FPS");
+        Category fps = new Category("FPS", 2);
         categoryDAO.createCategory(fps);
-        Category estrategia = new Category("Estratégia");
+        Category estrategia = new Category("Estratégia", 1);
         categoryDAO.createCategory(estrategia);
-        Category battleRoyale = new Category("Battle Royale");
+        Category battleRoyale = new Category("Battle Royale", 2);
         categoryDAO.createCategory(battleRoyale);
-        Category acao = new Category("Ação");
+        Category acao = new Category("Ação",3);
         categoryDAO.createCategory(acao);
-        Category luta = new Category("Luta");
+        Category luta = new Category("Luta", 2);
         categoryDAO.createCategory(luta);
-        Category sobrevivencia = new Category("Sobrevivência");
+        Category sobrevivencia = new Category("Sobrevivência", 2);
         categoryDAO.createCategory(sobrevivencia);
-        Category rpg = new Category("RPG");
+        Category rpg = new Category("RPG", 1);
         categoryDAO.createCategory(rpg);
         
         GameDAO gameDAO = new GameDAO();

@@ -26,6 +26,8 @@ public class CustomerListView extends views.View {
         ajustScreenCenter();
         customerController = new CustomerController();
         this.createTableModel();
+        this.ListCustomers();
+
     }
 
     private void createTableModel() {
@@ -35,6 +37,8 @@ public class CustomerListView extends views.View {
     }
 
     public void ListCustomers() {
+        this.getFilteredCustomers();
+        this.getSortedCustomers();
         this.createTableModel();
         for (Customer customer : customerController.getFilteredCustomers()) {
             Object[] listData = {customer.getId(), customer.getName(), customer.getCPF(),
@@ -234,8 +238,6 @@ public class CustomerListView extends views.View {
     }//GEN-LAST:event_btCreateCustomerActionPerformed
 
     private void btFilterCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFilterCustomerActionPerformed
-        this.getFilteredCustomers();
-        this.getSortedCustomers();
         this.ListCustomers();
     }//GEN-LAST:event_btFilterCustomerActionPerformed
 

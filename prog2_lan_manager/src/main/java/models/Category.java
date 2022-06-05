@@ -1,7 +1,5 @@
 package models;
 
-import Exceptions.EmptyFieldException;
-
 /**
  *
  * @author max
@@ -10,12 +8,13 @@ public class Category {
 
     public static int currentId = 0;
     protected int id;
-    private double creditsValue;
+    private int creditsValue;
     private String name;
 
-    public Category(String name) {
+    public Category(String name, int creditsValue) {
         this.id = getCurrentId();
         this.name = name;
+        this.creditsValue = creditsValue;
     }
 
     public int getId() {
@@ -26,11 +25,11 @@ public class Category {
         this.id = id;
     }
 
-    public double getCreditsValue() {
+    public int getCreditsValue() {
         return creditsValue;
     }
 
-    public void setCreditsValue(double creditsValue) {
+    public void setCreditsValue(int creditsValue) {
         this.creditsValue = creditsValue;
     }
 

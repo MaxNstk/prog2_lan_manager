@@ -1,6 +1,7 @@
 package models;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -23,7 +24,7 @@ public class Gameplay {
         this.startDateTime = LocalDateTime.now();      
         this.endDateTime = this.startDateTime.plusHours(timePlaying);
         this.playingNow = true;
-        this.device.available = false;
+        this.device.setAvailableStatus(false);
     }
     
     public LocalDateTime getStartDateTime() {
@@ -36,10 +37,16 @@ public class Gameplay {
     
     public void setPlayingStatus(boolean status){
         this.playingNow = false;
+        this.device.setAvailableStatus(true);
     }
 
     public LocalDateTime getEndDateTime() {
         return endDateTime;
+    }
+    
+    public String getFormatedDateTime() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        return this.endDateTime.format(formatter);
     }
 
     public Customer getCustomer() {

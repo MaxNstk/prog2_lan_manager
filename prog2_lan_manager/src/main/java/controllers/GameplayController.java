@@ -30,14 +30,24 @@ public class GameplayController {
         Customer customer = (Customer) customerData.get("customer");
         Device device = (Device) customerData.get("device");
         Game game = (Game) customerData.get("game");
-        int timePlaying = Integer.parseInt((String) customerData.get("timePlaying")); 
+        int timePlaying = Integer.parseInt((String) customerData.get("timePlaying"));
+        if (!this.validateIfCustomerCanPlay(customer, game, timePlaying))
+            throw new InsufficientCreditsException(
+                customer.getCreditsAmount(), (game.getCategory().getCreditsValue()*timePlaying));           
         gameplayDAO.createGameplay(new Gameplay(customer, game, device, timePlaying));
     }
+    
+    public boolean validateIfCustomerCanPlay(Customer customer, Game game, int timePlaying){
+        if (customer.getCreditsAmount() < game.getCategory().getCreditsValue()* timePlaying)
+            return false;
+        else
+            return true;
+    } 
     
     public void updateCurrentGameplays(){
         for (Gameplay gameplay : gameplayDAO.getActiveGamplays()){
             if (LocalDateTime.now().isAfter(gameplay.getEndDateTime()))
-                gameplay.
+                gameplay.setPlayingStatus(false);
         }
     }
     
