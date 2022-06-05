@@ -1,4 +1,3 @@
-
 package views.Gameplay;
 
 import Exceptions.EmptyCbException;
@@ -19,13 +18,13 @@ import models.Game;
  * @author max
  */
 public class GameplayFormView extends views.View {
-    
+
     private CustomerController customerController;
     private DeviceController deviceController;
     private GameController gameController;
     private GameplayController gameplayController = new GameplayController();
-    
-    public GameplayFormView(){
+
+    public GameplayFormView() {
         initComponents();
         ajustScreenCenter();
         this.setUpInitialData();
@@ -43,7 +42,7 @@ public class GameplayFormView extends views.View {
         this.gameController = new GameController();
         this.deviceController = new DeviceController();
     }
-    
+
     private void fillDeviceCb() {
         this.cbDevice.removeAllItems();
         for (Device device : deviceController.getFilteredDevices()) {
@@ -51,7 +50,7 @@ public class GameplayFormView extends views.View {
         }
         cbDevice.setSelectedItem(null);
     }
-    
+
     private void fillCustomersCb() {
         this.cbCustomer.removeAllItems();
         for (Customer customer : customerController.getFilteredCustomers()) {
@@ -59,7 +58,7 @@ public class GameplayFormView extends views.View {
         }
         cbCustomer.setSelectedItem(null);
     }
-    
+
     private void fillGamesCb() {
         this.cbGame.removeAllItems();
         for (Game game : gameController.getFilteredGames()) {
@@ -67,16 +66,18 @@ public class GameplayFormView extends views.View {
         }
         cbGame.setSelectedItem(null);
     }
-    public void validateCbs() throws EmptyCbException{
-        if (this.cbCustomer.getSelectedIndex() == -1)
-           throw new EmptyCbException("cliente");
-        else if (this.cbGame.getSelectedIndex() == -1)
-           throw new EmptyCbException("jogo");
-        else if (this.cbDevice.getSelectedIndex() == -1)
-           throw new EmptyCbException("dispositivo");
-    }   
-    
-    public Map<String, Object> getGameplayInfo(){
+
+    public void validateCbs() throws EmptyCbException {
+        if (this.cbCustomer.getSelectedIndex() == -1) {
+            throw new EmptyCbException("cliente");
+        } else if (this.cbGame.getSelectedIndex() == -1) {
+            throw new EmptyCbException("jogo");
+        } else if (this.cbDevice.getSelectedIndex() == -1) {
+            throw new EmptyCbException("dispositivo");
+        }
+    }
+
+    public Map<String, Object> getGameplayInfo() {
         Map<String, Object> gameplayData = new HashMap();
         gameplayData.put("customer", this.cbCustomer.getItemAt(this.cbCustomer.getSelectedIndex()));
         gameplayData.put("game", this.cbGame.getItemAt(this.cbGame.getSelectedIndex()));
@@ -84,7 +85,7 @@ public class GameplayFormView extends views.View {
         gameplayData.put("timePlaying", this.cbPlayingTime.getItemAt(this.cbPlayingTime.getSelectedIndex()));
         return gameplayData;
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -192,6 +193,8 @@ public class GameplayFormView extends views.View {
         try {
             this.validateCbs();
             gameplayController.createGameplay(this.getGameplayInfo());
+            JOptionPane.showMessageDialog(null, "Jogatina cadastrada com sucesso.");
+            setVisible(false);
             this.setUpInitialData();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());

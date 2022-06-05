@@ -6,7 +6,7 @@ package Exceptions;
 
 /**
  *
- * @author João Eduardo
+ * @author JEKrieger
  */
 public class NullSelectionException extends Exception {
 
