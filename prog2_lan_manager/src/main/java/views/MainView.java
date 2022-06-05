@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package views;
 
 import controllers.App;
@@ -10,27 +7,20 @@ import controllers.App;
  *
  * @author max
  */
-public class MainView extends javax.swing.JFrame {
+public class MainView extends View {
 
     public MainView() {
         initComponents();
         this.ajustScreenCenter();
-        this.setTitleScreen();
     }
 
     /**
-     * Centraliza a tela de visualização
+     * Define para que o componente seja apresentado em tela cheia
      */
-    private void ajustScreenCenter() {
+    protected void ajustScreenCenter() {
         this.setExtendedState(MAXIMIZED_BOTH);
     }
     
-    /**
-     * Define o título que será apresentado na parte superior da aba
-     */
-    private void setTitleScreen() {
-        setTitle("Lan Manager - Zukünftige Glatzköpfige Männer");
-    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -127,4 +117,9 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JMenuItem miGameCreate;
     private javax.swing.JMenuItem miJogatina;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void setTitleScreen() {
+        setTitle("Lan Manager - Zukünftige Glatzköpfige Männer");
+    }
 }

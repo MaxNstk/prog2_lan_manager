@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package views.Game;
 
 import Exceptions.EmptyFieldException;
@@ -15,8 +12,8 @@ import models.Game;
  *
  * @author João Eduardo
  */
-public class GameFormView extends javax.swing.JFrame {
-    
+public class GameFormView extends views.View {
+
     private Game game;
     
     public GameFormView(Game game) {
@@ -72,13 +69,6 @@ public class GameFormView extends javax.swing.JFrame {
         cbCategory.getItemAt(-1);
         //cbDevice.getItemAt(-1);
         taDescription.setText("");
-    }
-
-    /**
-     * Centraliza a tela de visualização
-     */
-    private void ajustScreenCenter() {
-        setLocationRelativeTo(null);
     }
 
     /**
@@ -179,4 +169,9 @@ public class GameFormView extends javax.swing.JFrame {
     private javax.swing.JTextArea taDescription;
     private javax.swing.JTextField tfName;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void setTitleScreen() {
+        setTitle("Manutenção de Jogos");
+    }
 }

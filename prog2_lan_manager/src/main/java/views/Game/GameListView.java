@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package views.Game;
 
 import Exceptions.NullSelectionException;
@@ -15,7 +12,7 @@ import models.Game;
  *
  * @author João Eduardo
  */
-public class GameListView extends javax.swing.JFrame {
+public class GameListView extends views.View {
 
     private GameController gameController;
     private DefaultTableModel dtmGames;
@@ -69,12 +66,12 @@ public class GameListView extends javax.swing.JFrame {
         return (Integer) this.dtmGames.getValueAt(this.tbGameList.getSelectedRow(), 0);
     }
     
-    /**
-     * Centraliza a tela de visualização
-     */
-    private void ajustScreenCenter() {
-        setLocationRelativeTo(null);
-    }
+//    /**
+//     * Centraliza a tela de visualização
+//     */
+//    private void ajustScreenCenter() {
+//        setLocationRelativeTo(null);
+//    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -220,4 +217,9 @@ public class GameListView extends javax.swing.JFrame {
     private javax.swing.JTable tbGameList;
     private javax.swing.JTextField tfGameName;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void setTitleScreen() {
+        setTitle("Consulta de Jogos");
+    }
 }

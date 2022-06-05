@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 
 package views.Gameplay;
 
@@ -9,9 +5,10 @@ import controllers.App;
 import controllers.GameplayController;
 import javax.swing.table.DefaultTableModel;
 import models.Gameplay;
+import views.View;
 
 
-public class GameplayListView extends javax.swing.JFrame {
+public class GameplayListView extends View {
     
     private GameplayController gameplayController;
     private DefaultTableModel dtmGameplays;
@@ -42,13 +39,6 @@ public class GameplayListView extends javax.swing.JFrame {
             this.dtmGameplays.addRow(listData);
             }           
         }
-
-    /**
-     * Centraliza a tela de visualização
-     */
-    private void ajustScreenCenter() {
-        setLocationRelativeTo(null);
-    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -113,5 +103,10 @@ public class GameplayListView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbGamplayList;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void setTitleScreen() {
+       setTitle("Consulta de Jogatina");
+    }
 
 }

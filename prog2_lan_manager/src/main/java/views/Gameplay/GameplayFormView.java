@@ -1,31 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package views.Gameplay;
 
-import Exceptions.EmptyCbException;
 import Exceptions.InsufficientCreditsException;
-import Exceptions.NullSelectionException;
 import controllers.CustomerController;
 import controllers.DeviceController;
 import controllers.GameController;
 import controllers.GameplayController;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import models.Customer;
 import models.Device;
 import models.Game;
-import models.Gameplay;
 
 /**
  *
  * @author max
  */
-public class GameplayFormView extends javax.swing.JFrame {
+public class GameplayFormView extends views.View {
     
     private CustomerController customerController;
     private DeviceController deviceController;
@@ -82,13 +74,6 @@ public class GameplayFormView extends javax.swing.JFrame {
         gameplayData.put("device", this.cbDevice.getItemAt(this.cbDevice.getSelectedIndex()));
         gameplayData.put("timePlaying", this.tfTime.getText());
         return gameplayData;
-    }
-    
-    /**
-     * Centraliza a tela de visualização
-     */
-    private void ajustScreenCenter() {
-        setLocationRelativeTo(null);
     }
     
     @SuppressWarnings("unchecked")
@@ -233,4 +218,9 @@ public class GameplayFormView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField tfTime;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void setTitleScreen() {
+        setTitle("Manutenção de Jogatina");
+    }
 }

@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package views.Customer;
 
 import controllers.CustomerController;
@@ -12,7 +9,7 @@ import models.Customer;
  *
  * @author max
  */
-public class AddCreditsView extends javax.swing.JFrame {
+public class AddCreditsView extends views.View {
 
     int customerId;
     CustomerController customerController;
@@ -24,13 +21,6 @@ public class AddCreditsView extends javax.swing.JFrame {
         Customer customer = customerController.retrieveCostumer(id);
         this.lbCustomerName.setText(customer.getName());
         this.customerId = id;
-    }
-
-    /**
-     * Centraliza a tela de visualização
-     */
-    private void ajustScreenCenter() {
-        setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")
@@ -120,4 +110,10 @@ public class AddCreditsView extends javax.swing.JFrame {
     private javax.swing.JLabel lbCustomerName;
     private javax.swing.JFormattedTextField tfCreditsAmount;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void setTitleScreen() {
+        setTitle("Créditos");
+    }
+    
 }

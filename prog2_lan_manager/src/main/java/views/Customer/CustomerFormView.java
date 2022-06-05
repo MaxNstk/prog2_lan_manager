@@ -9,7 +9,7 @@ import models.Customer;
  *
  * @author max
  */
-public class CustomerFormView extends javax.swing.JFrame {
+public class CustomerFormView extends views.View {
 
     private Customer customer;
 
@@ -62,13 +62,6 @@ public class CustomerFormView extends javax.swing.JFrame {
         tfCPF.setText("");
         tfAdress.setText("");
         tfBirthDate.setText("");
-    }
-
-    /**
-     * Centraliza a tela de visualização
-     */
-    private void ajustScreenCenter() {
-        setLocationRelativeTo(null);
     }
 
     /**
@@ -199,4 +192,9 @@ public class CustomerFormView extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField tfCPF;
     private javax.swing.JTextField tfName;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void setTitleScreen() {
+        setTitle("Manutenção de Clientes");
+    }
 }

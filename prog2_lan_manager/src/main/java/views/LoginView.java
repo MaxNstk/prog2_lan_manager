@@ -9,31 +9,15 @@ import javax.swing.JTextField;
  *
  * @author petrix
  */
-public class LoginView extends javax.swing.JFrame {
+public class LoginView extends View {
 
 
     public LoginView() {
         initComponents();
+        ajustScreenCenter();
         addPlaceHolderSyle(tfUser);
         addPlaceHolderSyle(tfPassword);
-        ajustScreenCenter();
-        setTitleScreen();
     }
-
-    /**
-     * Centraliza a tela de visualização
-     */
-    private void ajustScreenCenter() {
-        setLocationRelativeTo(null);
-    }
-    
-    /**
-     * Define o título que será apresentado na parte superior da aba
-     */
-    private void setTitleScreen() {
-        setTitle("Lan Manager - Zukünftige Glatzköpfige Männer");
-    }
-    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -129,7 +113,7 @@ public class LoginView extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(90, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfUser, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -263,6 +247,11 @@ public class LoginView extends javax.swing.JFrame {
             btShowPassword.setText("Ocultar");
             tfPassword.setEchoChar('\u0000');
         }
+    }
+
+    @Override
+    public void setTitleScreen() {
+        setTitle("Lan Manager - Zukünftige Glatzköpfige Männer");
     }
     
     
