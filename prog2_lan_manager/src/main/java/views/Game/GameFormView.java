@@ -18,9 +18,9 @@ import models.Game;
  * @author João Eduardo
  */
 public class GameFormView extends javax.swing.JFrame {
-
+    
     private Game game;
-
+    
     public GameFormView(Game game) {
         initComponents();
         ajustScreenCenter();
@@ -30,58 +30,59 @@ public class GameFormView extends javax.swing.JFrame {
             this.setGameInfo(game);
         }
     }
-
+    
     private void setValuesComboBoxCategories() {
         CategoryDAO categoryDAO = new CategoryDAO();
         for (Category category : categoryDAO.getCategories()) {
             cbCategory.addItem(category);
         }
     }
-
+    
     public void setGameInfo(Game game) {
         tfName.setText(game.getName());
         cbCategory.addItem(game.getCategory());
         taDescription.setText(game.getDescription());
     }
-
+    
     public Game getGameInfo() {
         String name = tfName.getText();
         String description = taDescription.getText();
         Category category = (Category) cbCategory.getSelectedItem();
         return new Game(name, description, category);
-
+        
     }
-
+    
     public void createGame() throws EmptyFieldException {
         try {
             GameDAO gameDAO = new GameDAO();
             gameDAO.createGame(this.getGameInfo());
+            JOptionPane.showMessageDialog(null, "Jogo cadastrado com sucesso.");
         } catch (EmptyFieldException emptyFieldException) {
             JOptionPane.showMessageDialog(null, emptyFieldException.getMessage());
         }
     }
-
+    
     public void updateGame() {
         this.game.setName(tfName.getText());
         this.game.setCategory((Category) cbCategory.getSelectedItem());
-        //this.game.setDevice((Device) cbDevice.getSelectedItem());
         this.game.setDescription(taDescription.getText());
+        JOptionPane.showMessageDialog(null, "Jogo alterado com sucesso.");
     }
-
+    
     public void clearFields() {
         tfName.setText("");
         cbCategory.getItemAt(-1);
         //cbDevice.getItemAt(-1);
         taDescription.setText("");
     }
-    
+
     /**
      * Centraliza a tela de visualização
      */
     private void ajustScreenCenter() {
         setLocationRelativeTo(null);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -160,12 +161,13 @@ public class GameFormView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCreateGameActionPerformedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateGameActionPerformedActionPerformed
+        setVisible(false);
         if (this.game != null) {
             this.updateGame();
         } else {
             this.createGame();
         }
-
+        
         this.clearFields();
     }//GEN-LAST:event_btCreateGameActionPerformedActionPerformed
 

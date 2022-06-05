@@ -1,7 +1,6 @@
 package models;
 
 import Exceptions.EmptyFieldException;
-import javax.swing.JOptionPane;
 
 /**
  *

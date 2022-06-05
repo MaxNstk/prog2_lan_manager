@@ -42,7 +42,7 @@ public class CustomerFormView extends javax.swing.JFrame {
         try {
             CustomerDAO customerDAO = new CustomerDAO();
             customerDAO.createCustomer(this.getCustomerInfo());
-
+            JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso.");
         } catch (EmptyFieldException emptyFieldException) {
             JOptionPane.showMessageDialog(null, emptyFieldException.getMessage());
         }
@@ -54,6 +54,7 @@ public class CustomerFormView extends javax.swing.JFrame {
         this.customer.setCPF(tfCPF.getText());
         this.customer.setAdress(tfAdress.getText());
         this.customer.setBirthDate(tfBirthDate.getText());
+        JOptionPane.showMessageDialog(null, "Cliente alterado com sucesso.");
     }
 
     public void clearFields() {
@@ -62,7 +63,7 @@ public class CustomerFormView extends javax.swing.JFrame {
         tfAdress.setText("");
         tfBirthDate.setText("");
     }
-    
+
     /**
      * Centraliza a tela de visualização
      */
@@ -174,6 +175,7 @@ public class CustomerFormView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCreateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateCustomerActionPerformed
+        setVisible(false);
         if (this.customer != null) {
             this.updateCustomer();
         } else {
