@@ -12,8 +12,10 @@ import models.Gameplay;
  * @author max
  */
 public interface IGameplayDAO {
-    
+
     public void createGameplay(Gameplay gameplay);
+
     public List<Gameplay> getGameplays();
     public List<Gameplay> getActiveGamplays();
+    public Gameplay retrieveGameplay(int id);
 }

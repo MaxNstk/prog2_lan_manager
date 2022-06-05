@@ -13,8 +13,8 @@ import models.Gameplay;
  *
  * @author max
  */
-public class GameplayDAO implements IGameplayDAO{
-    
+public class GameplayDAO implements IGameplayDAO {
+
     private static List<Gameplay> gameplays = new ArrayList();
 
     @Override
@@ -30,11 +30,21 @@ public class GameplayDAO implements IGameplayDAO{
     @Override
     public List<Gameplay> getActiveGamplays() {
         List<Gameplay> activeGamplays = new ArrayList();
-        for(Gameplay gameplay : gameplays){
-            if (gameplay.isBeingPlayed())
-               activeGamplays.add(gameplay);
+        for (Gameplay gameplay : gameplays) {
+            if (gameplay.isBeingPlayed()) {
+                activeGamplays.add(gameplay);
+            }
         }
         return activeGamplays;
-    
+
+    }
+
+    public Gameplay retrieveGameplay(int id) {
+        for (Gameplay gameplay : gameplays) {
+            if (gameplay.getId() == id) {
+                return gameplay;
+            }
+        }
+        return gameplays.get(id-1);
     }
 }
