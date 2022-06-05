@@ -8,10 +8,13 @@ import models.Category;
 import models.Computer;
 import models.Console;
 import models.Customer;
+import models.Device;
 import models.Game;
 import views.Customer.AddCreditsView;
 import views.Customer.CustomerFormView;
 import views.Customer.CustomerListView;
+import views.Device.DeviceFormView;
+import views.Device.DeviceListView;
 import views.Game.GameFormView;
 import views.Game.GameListView;
 import views.Gameplay.GameplayFormView;
@@ -131,4 +134,20 @@ public class App {
         GameplayListView gameplayListView = new GameplayListView();
         gameplayListView.setVisible(true);
     }
+    
+    public static void openDeviceCreateView() {
+        DeviceFormView deviceFormView = new DeviceFormView();
+        deviceFormView.setVisible(true);
+    }
+    
+    public static void openDeviceUpdateView(Device dev) {
+        DeviceFormView deviceFormView = new DeviceFormView();
+        deviceFormView.setVisible(true);
+    }
+    
+    public static void openDeviceListView() {
+        DeviceListView deviceListView = new DeviceListView();
+        deviceListView.setVisible(true);
+    }
+    
 }

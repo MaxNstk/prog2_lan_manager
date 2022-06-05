@@ -31,6 +31,7 @@ public class MainView extends View {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         miCreateCustomer = new javax.swing.JMenuItem();
+        miCreateDevice = new javax.swing.JMenuItem();
         miGameCreate = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         miJogatina = new javax.swing.JMenuItem();
@@ -52,6 +53,14 @@ public class MainView extends View {
             }
         });
         jMenu1.add(miCreateCustomer);
+
+        miCreateDevice.setText("Dispositivo");
+        miCreateDevice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miCreateDeviceActionPerformed(evt);
+            }
+        });
+        jMenu1.add(miCreateDevice);
 
         miGameCreate.setText("Jogo");
         miGameCreate.addActionListener(new java.awt.event.ActionListener() {
@@ -103,6 +112,10 @@ public class MainView extends View {
         App.openCustomerListView();
     }//GEN-LAST:event_miCreateCustomerActionPerformed
 
+    private void miCreateDeviceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCreateDeviceActionPerformed
+        App.openDeviceListView();
+    }//GEN-LAST:event_miCreateDeviceActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -114,6 +127,7 @@ public class MainView extends View {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem miCreateCustomer;
+    private javax.swing.JMenuItem miCreateDevice;
     private javax.swing.JMenuItem miGameCreate;
     private javax.swing.JMenuItem miJogatina;
     // End of variables declaration//GEN-END:variables

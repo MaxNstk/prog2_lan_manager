@@ -15,6 +15,7 @@ public abstract class Device {
     protected String name;
 
     public Device(String name, boolean active) {
+        this.id = getCurrentId();
         this.name = name;
         this.active = active;
         this.available = true;

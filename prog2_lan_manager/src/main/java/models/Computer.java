@@ -20,7 +20,6 @@ public class Computer extends Device {
     }
 
     public void setSpecs(String specs) {
-
         this.specs = specs;
     }
 }

@@ -27,7 +27,6 @@ public class CustomerListView extends views.View {
         customerController = new CustomerController();
         this.createTableModel();
         this.ListCustomers();
-
     }
 
     private void createTableModel() {

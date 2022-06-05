@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package controllers;
 
 import daos.DeviceDAO;
@@ -14,6 +11,7 @@ import models.Device;
  * @author João Eduardo
  */
 public class DeviceController {
+    
     private List<Device> filteredDevices;
 
     DeviceDAO deviceDAO = new DeviceDAO();
@@ -27,5 +25,16 @@ public class DeviceController {
         if (this.filteredDevices == null)
             this.getAll();
         return this.filteredDevices;            
+    }
+    
+    public void updateDevice(int id) {
+        App.openDeviceUpdateView(deviceDAO.retrieveDevice(id));
+    }
+    
+    public List<Device> getFilteredCustomers() {
+        if (this.filteredDevices == null) {
+            this.getAll();
+        }
+        return this.filteredDevices;
     }
 }
