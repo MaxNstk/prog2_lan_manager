@@ -21,6 +21,10 @@ public class Customer extends Person implements Comparable<Customer>{
         this.creditsAmount += credits;
     }
     
+    public void decreaseCredits(int credits){
+        this.creditsAmount -= credits;
+    }
+    
     @Override
     public int compareTo(Customer c){
         return this.name.compareTo(c.name);

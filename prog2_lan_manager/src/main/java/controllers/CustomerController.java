@@ -62,7 +62,7 @@ public class CustomerController {
         Collections.sort(filteredCustomers, new Comparator<Customer>() {
             @Override
             public int compare(Customer c1, Customer c2) {
-                if (c1.getCreditsAmount() > c2.getCreditsAmount()) {
+                if (c1.getCreditsAmount() < c2.getCreditsAmount()) {
                     return 1;
                 } else {
                     return -1;

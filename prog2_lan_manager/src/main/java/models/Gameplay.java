@@ -25,6 +25,7 @@ public class Gameplay {
         this.endDateTime = this.startDateTime.plusHours(timePlaying);
         this.playingNow = true;
         this.device.setAvailableStatus(false);
+        this.customer.decreaseCredits(timePlaying * game.getCategory().getCreditsValue()); 
     }
     
     public LocalDateTime getStartDateTime() {

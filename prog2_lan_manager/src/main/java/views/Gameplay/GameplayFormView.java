@@ -67,15 +67,13 @@ public class GameplayFormView extends views.View {
         }
         cbGame.setSelectedItem(null);
     }
-    public boolean validateCbs() throws EmptyCbException{
+    public void validateCbs() throws EmptyCbException{
         if (this.cbCustomer.getSelectedIndex() == -1)
            throw new EmptyCbException("cliente");
         else if (this.cbGame.getSelectedIndex() == -1)
            throw new EmptyCbException("jogo");
         else if (this.cbDevice.getSelectedIndex() == -1)
            throw new EmptyCbException("dispositivo");
-        else
-            return true;
     }   
     
     public Map<String, Object> getGameplayInfo(){
@@ -192,10 +190,9 @@ public class GameplayFormView extends views.View {
 
     private void btGameplayCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGameplayCreateActionPerformed
         try {
-            if (this.validateCbs()){
-                gameplayController.createGameplay(this.getGameplayInfo());
-                this.setUpInitialData();
-            }
+            this.validateCbs();
+            gameplayController.createGameplay(this.getGameplayInfo());
+            this.setUpInitialData();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
