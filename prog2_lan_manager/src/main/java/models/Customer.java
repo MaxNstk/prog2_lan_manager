@@ -22,13 +22,13 @@ public class Customer extends Person implements Comparable<Customer>{
     }
     
     @Override
-    public String toString(){
-        return super.toString();
+    public int compareTo(Customer c){
+        return this.name.compareTo(c.name);
     }
     
     @Override
-    public int compareTo(Customer c){
-        return this.name.compareTo(c.name);
+    public String toString(){
+        return this.name+": "+this.creditsAmount+" créditos";
     }
     
 }

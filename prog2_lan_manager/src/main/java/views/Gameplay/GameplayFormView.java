@@ -1,6 +1,7 @@
 
 package views.Gameplay;
 
+import Exceptions.EmptyCbException;
 import Exceptions.InsufficientCreditsException;
 import controllers.CustomerController;
 import controllers.DeviceController;
@@ -66,13 +67,23 @@ public class GameplayFormView extends views.View {
         }
         cbGame.setSelectedItem(null);
     }
+    public boolean validateCbs() throws EmptyCbException{
+        if (this.cbCustomer.getSelectedIndex() == -1)
+           throw new EmptyCbException("cliente");
+        else if (this.cbGame.getSelectedIndex() == -1)
+           throw new EmptyCbException("jogo");
+        else if (this.cbDevice.getSelectedIndex() == -1)
+           throw new EmptyCbException("dispositivo");
+        else
+            return true;
+    }   
     
     public Map<String, Object> getGameplayInfo(){
         Map<String, Object> gameplayData = new HashMap();
         gameplayData.put("customer", this.cbCustomer.getItemAt(this.cbCustomer.getSelectedIndex()));
         gameplayData.put("game", this.cbGame.getItemAt(this.cbCustomer.getSelectedIndex()));
         gameplayData.put("device", this.cbDevice.getItemAt(this.cbDevice.getSelectedIndex()));
-        gameplayData.put("timePlaying", this.tfTime.getText());
+        gameplayData.put("timePlaying", this.cbPlayingTime.getItemAt(this.cbPlayingTime.getSelectedIndex()));
         return gameplayData;
     }
     
@@ -87,9 +98,9 @@ public class GameplayFormView extends views.View {
         cbGame = new javax.swing.JComboBox<>();
         cbDevice = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        tfTime = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         btGameplayCreate = new javax.swing.JButton();
+        cbPlayingTime = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -110,6 +121,8 @@ public class GameplayFormView extends views.View {
                 btGameplayCreateActionPerformed(evt);
             }
         });
+
+        cbPlayingTime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -137,9 +150,9 @@ public class GameplayFormView extends views.View {
                                     .addComponent(cbCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(cbGame, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(tfTime)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbPlayingTime, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(cbDevice, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(57, 57, 57)
                         .addComponent(btGameplayCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -152,8 +165,7 @@ public class GameplayFormView extends views.View {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(112, 112, 112)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfTime, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jLabel4)
@@ -164,7 +176,8 @@ public class GameplayFormView extends views.View {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cbGame, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cbGame, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbPlayingTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(2, 2, 2)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -179,9 +192,10 @@ public class GameplayFormView extends views.View {
 
     private void btGameplayCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGameplayCreateActionPerformed
         try {
-        gameplayController.createGameplay(this.getGameplayInfo());
-            this.setUpInitialData();
-
+            if (this.validateCbs()){
+                gameplayController.createGameplay(this.getGameplayInfo());
+                this.setUpInitialData();
+            }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
@@ -193,12 +207,12 @@ public class GameplayFormView extends views.View {
     private javax.swing.JComboBox<Customer> cbCustomer;
     private javax.swing.JComboBox<Device> cbDevice;
     private javax.swing.JComboBox<Game> cbGame;
+    private javax.swing.JComboBox<String> cbPlayingTime;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField tfTime;
     // End of variables declaration//GEN-END:variables
 
     @Override
