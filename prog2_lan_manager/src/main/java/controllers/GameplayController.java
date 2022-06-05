@@ -22,8 +22,11 @@ public class GameplayController {
     
     GameplayDAO gameplayDAO = new GameplayDAO();
         
-    public List<Gameplay> getActiveGameplays(){
-        return gameplayDAO.getActiveGamplays();
+    public List<Gameplay> getGameplays(int selectedFilter){
+        if (selectedFilter == 0)
+            return gameplayDAO.getActiveGamplays();
+        else
+            return gameplayDAO.getGameplays();
     }
     
     public void createGameplay(Map<String, Object> customerData) throws InsufficientCreditsException {

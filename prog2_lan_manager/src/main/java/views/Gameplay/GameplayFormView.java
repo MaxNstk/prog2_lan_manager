@@ -79,7 +79,7 @@ public class GameplayFormView extends views.View {
     public Map<String, Object> getGameplayInfo(){
         Map<String, Object> gameplayData = new HashMap();
         gameplayData.put("customer", this.cbCustomer.getItemAt(this.cbCustomer.getSelectedIndex()));
-        gameplayData.put("game", this.cbGame.getItemAt(this.cbCustomer.getSelectedIndex()));
+        gameplayData.put("game", this.cbGame.getItemAt(this.cbGame.getSelectedIndex()));
         gameplayData.put("device", this.cbDevice.getItemAt(this.cbDevice.getSelectedIndex()));
         gameplayData.put("timePlaying", this.cbPlayingTime.getItemAt(this.cbPlayingTime.getSelectedIndex()));
         return gameplayData;

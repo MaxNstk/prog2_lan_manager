@@ -25,7 +25,7 @@ public class Category {
         this.id = id;
     }
 
-    public int getCreditsValue() {
+    public int getCreditsValue(){
         return creditsValue;
     }
 

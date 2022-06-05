@@ -45,9 +45,14 @@ public class Gameplay {
         return endDateTime;
     }
     
-    public String getFormatedDateTime() {
+    public String getFormatedEndDateTime() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         return this.endDateTime.format(formatter);
+    }
+    
+    public String getFormatedStartDateTime(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        return this.startDateTime.format(formatter);
     }
 
     public Customer getCustomer() {

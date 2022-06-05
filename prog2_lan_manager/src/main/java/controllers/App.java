@@ -31,13 +31,17 @@ public class App {
         
         CustomerDAO customerDAO = new CustomerDAO();
         Customer alan = new Customer("Alan Santos", "111.222.333-44", "Rua Alvarez, 123", "09/11/2001");
+        alan.addCredits(15);
         customerDAO.createCustomer(alan);
         Customer bruna = new Customer("Bruna Pereira", "222.333.444-55", "Rua Stein, 233", "10/02/2004");
+        bruna.addCredits(35);
         customerDAO.createCustomer(bruna);
         Customer maria = new Customer("Maria Alves", "333.444.555-66", "Avenida Ramos, 333", "17/05/1999");
         customerDAO.createCustomer(maria);
+        maria.addCredits(10);
         Customer pedro = new Customer("Pedro Gustavo", "444.555.666-77", "Rua Gertrudes, 901", "25/07/2000");
         customerDAO.createCustomer(pedro);
+        pedro.addCredits(25);
         
         DeviceDAO deviceDAO = new DeviceDAO();
         Computer computador1 = new Computer("Computador 1", "Intel i5 | RAM DDR4 8GB | GTX1650 2GB", true);
