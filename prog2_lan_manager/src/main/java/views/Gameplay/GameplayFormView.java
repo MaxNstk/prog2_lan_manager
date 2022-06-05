@@ -67,7 +67,7 @@ public class GameplayFormView extends views.View {
         cbGame.setSelectedItem(null);
     }
     
-    public Map<String, Object> getGampleyInfo(){
+    public Map<String, Object> getGameplayInfo(){
         Map<String, Object> gameplayData = new HashMap();
         gameplayData.put("customer", this.cbCustomer.getItemAt(this.cbCustomer.getSelectedIndex()));
         gameplayData.put("game", this.cbGame.getItemAt(this.cbCustomer.getSelectedIndex()));
@@ -90,7 +90,6 @@ public class GameplayFormView extends views.View {
         tfTime = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         btGameplayCreate = new javax.swing.JButton();
-        btUpdate = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -109,13 +108,6 @@ public class GameplayFormView extends views.View {
         btGameplayCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btGameplayCreateActionPerformed(evt);
-            }
-        });
-
-        btUpdate.setText("Atualizar");
-        btUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btUpdateActionPerformed(evt);
             }
         });
 
@@ -150,9 +142,7 @@ public class GameplayFormView extends views.View {
                                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)))
                             .addComponent(cbDevice, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(57, 57, 57)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btGameplayCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(btGameplayCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(426, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -163,9 +153,7 @@ public class GameplayFormView extends views.View {
                         .addGap(112, 112, 112)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfTime, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tfTime, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jLabel4)
@@ -189,25 +177,19 @@ public class GameplayFormView extends views.View {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUpdateActionPerformed
-        this.setUpInitialData();
-    }//GEN-LAST:event_btUpdateActionPerformed
-
     private void btGameplayCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGameplayCreateActionPerformed
         try {
-            gameplayController.createGampeplay(this.getGampleyInfo());
+            gameplayController.createGameplay(this.getGameplayInfo());
+            this.setUpInitialData();
+
         } catch (InsufficientCreditsException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }//GEN-LAST:event_btGameplayCreateActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btGameplayCreate;
-    private javax.swing.JButton btUpdate;
     private javax.swing.JComboBox<Customer> cbCustomer;
     private javax.swing.JComboBox<Device> cbDevice;
     private javax.swing.JComboBox<Game> cbGame;

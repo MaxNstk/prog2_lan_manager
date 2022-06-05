@@ -10,7 +10,7 @@ package Exceptions;
  */
 public class InsufficientCreditsException extends Exception {
     
-  public InsufficientCreditsException(String message){
-      super(message);
+  public InsufficientCreditsException(){
+      super("O cliente não possuí créditos suficientes para conseguir jogar!");
   }    
 }
