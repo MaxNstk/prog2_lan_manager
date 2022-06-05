@@ -23,13 +23,8 @@ public class GameplayDAO implements IGameplayDAO{
     }
 
     @Override
-    public Gameplay retrieveGameplay(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
     public List<Gameplay> getGameplays() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return gameplays;
     }
 
     @Override
