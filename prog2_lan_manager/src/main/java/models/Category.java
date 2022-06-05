@@ -6,8 +6,8 @@ package models;
  */
 public class Category {
 
-    public static int currentId = 0;
-    protected int id;
+    private static int currentId = 0;
+    private final int id;
     private int creditsValue;
     private String name;
 
@@ -16,13 +16,14 @@ public class Category {
         this.name = name;
         this.creditsValue = creditsValue;
     }
+    
+    public static int getCurrentId() {
+        currentId = +1;
+        return currentId;
+    }
 
     public int getId() {
         return this.id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getCreditsValue(){
@@ -31,11 +32,6 @@ public class Category {
 
     public void setCreditsValue(int creditsValue) {
         this.creditsValue = creditsValue;
-    }
-
-    public static int getCurrentId() {
-        currentId = +1;
-        return currentId;
     }
 
     public String getName() {
