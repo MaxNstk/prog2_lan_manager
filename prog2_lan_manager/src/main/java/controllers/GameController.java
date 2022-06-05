@@ -7,13 +7,11 @@ package controllers;
 import daos.GameDAO;
 import java.util.ArrayList;
 import java.util.List;
-import models.Category;
-import models.Device;
 import models.Game;
 
 /**
  *
- * @author João Eduardo
+ * @author JEKrieger
  */
 public class GameController {
 

@@ -11,7 +11,7 @@ import models.Game;
 
 /**
  *
- * @author João Eduardo
+ * @author JEKrieger
  */
 
 public class GameDAO implements IGameDAO{

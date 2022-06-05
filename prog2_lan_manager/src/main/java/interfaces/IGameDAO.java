@@ -9,7 +9,7 @@ import models.Game;
 
 /**
  *
- * @author João Eduardo
+ * @author JEKrieger
  */
 public interface IGameDAO {
     

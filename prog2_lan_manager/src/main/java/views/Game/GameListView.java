@@ -1,4 +1,3 @@
-
 package views.Game;
 
 import Exceptions.NullSelectionException;
@@ -26,6 +25,7 @@ public class GameListView extends views.View {
         ajustScreenCenter();
         gameController = new GameController();
         this.createTableModel();
+        this.ListGames();
     }
 
     private void createTableModel() {
@@ -35,6 +35,7 @@ public class GameListView extends views.View {
     }
 
     public void ListGames() {
+        this.getFilteredGames();
         this.createTableModel();
         for (Game game : gameController.getFilteredGames()) {
             Object[] listData = {game.getId(), game.getName(), game.getCategory().getName(), game.getDescription()};
@@ -48,13 +49,10 @@ public class GameListView extends views.View {
                 this.gameController.getAll();
                 break;
             case 1:
-                this.gameController.filterByName(this.tfGameName.getName());
+                this.gameController.filterByName(this.tfGameName.getText());
                 break;
             case 2:
-                this.gameController.filterByDevice(this.tfGameName.getName());
-                break;
-            case 3:
-                this.gameController.filterByCategory(this.tfGameName.getName());
+                this.gameController.filterByCategory(this.tfGameName.getText());
                 break;
         }
     }
@@ -65,14 +63,13 @@ public class GameListView extends views.View {
         }
         return (Integer) this.dtmGames.getValueAt(this.tbGameList.getSelectedRow(), 0);
     }
-    
+
 //    /**
 //     * Centraliza a tela de visualização
 //     */
 //    private void ajustScreenCenter() {
 //        setLocationRelativeTo(null);
 //    }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -98,7 +95,7 @@ public class GameListView extends views.View {
 
         jLabel1.setText("Filtrar por:");
 
-        cbFilterOptions.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Nome", "Dispositivo", "Categoria" }));
+        cbFilterOptions.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Nome", "Categoria" }));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel3.setText("Jogos");
@@ -201,7 +198,6 @@ public class GameListView extends views.View {
     }//GEN-LAST:event_btCreateGameActionPerformed
 
     private void btFilterGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFilterGameActionPerformed
-        this.getFilteredGames();
         this.ListGames();
     }//GEN-LAST:event_btFilterGameActionPerformed
 
