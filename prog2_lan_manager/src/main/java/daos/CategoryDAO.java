@@ -2,7 +2,9 @@ package daos;
 
 import interfaces.ICategoryDAO;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import models.Category;
 
 /**
@@ -11,7 +13,7 @@ import models.Category;
  */
 public class CategoryDAO implements ICategoryDAO {
 
-    private static final List<Category> categories = new ArrayList<>();
+    private static final Set<Category> categories = new HashSet<>();
 
     @Override
     public void createCategory(Category category) {
@@ -19,12 +21,7 @@ public class CategoryDAO implements ICategoryDAO {
     }
 
     @Override
-    public void retrieveCategory(int id) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public List<Category> getCategories() {
+    public Set<Category> getCategories() {
         return this.categories;
     }
 

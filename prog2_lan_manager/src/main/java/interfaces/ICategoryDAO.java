@@ -1,6 +1,6 @@
 package interfaces;
 
-import java.util.List;
+import java.util.Set;
 import models.Category;
 
 /**
@@ -15,16 +15,10 @@ public interface ICategoryDAO {
      */
     public void createCategory(Category c);
 
-   /**
-    * Retorna a categoria correspondente ao ID
-    * @param id 
-    */
-    public void retrieveCategory (int id);
-
     /**
      * Retorna todas as categorias cadastradas
-     * @return List<Category>
+     * @return Set<Category>
      */
-    public List<Category> getCategories();
+    public Set<Category> getCategories();
     
 }
