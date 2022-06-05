@@ -40,10 +40,10 @@ public class MainView extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        miCustomerCreate = new javax.swing.JRadioButtonMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        miCreateCustomer = new javax.swing.JMenuItem();
+        miGameCreate = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        miJogatina = new javax.swing.JMenuItem();
 
         jMenu3.setText("jMenu3");
 
@@ -55,35 +55,33 @@ public class MainView extends javax.swing.JFrame {
 
         jMenu1.setText("Cadastros");
 
-        miCustomerCreate.setSelected(true);
-        miCustomerCreate.setText("Clientes");
-        miCustomerCreate.setName("miCustomerCreate"); // NOI18N
-        miCustomerCreate.addActionListener(new java.awt.event.ActionListener() {
+        miCreateCustomer.setText("Cliente");
+        miCreateCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miCustomerCreateActionPerformed(evt);
+                miCreateCustomerActionPerformed(evt);
             }
         });
-        jMenu1.add(miCustomerCreate);
+        jMenu1.add(miCreateCustomer);
 
-        jMenuItem1.setText("Jogo");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        miGameCreate.setText("Jogo");
+        miGameCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                miGameCreateActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(miGameCreate);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Agenda");
 
-        jMenuItem2.setText("Jogatina");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        miJogatina.setText("Jogatina");
+        miJogatina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                miJogatinaActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem2);
+        jMenu2.add(miJogatina);
 
         jMenuBar1.add(jMenu2);
 
@@ -103,17 +101,17 @@ public class MainView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void miGameCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miGameCreateActionPerformed
         App.openGameListView();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_miGameCreateActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void miJogatinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miJogatinaActionPerformed
         App.openGameplayListView();
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_miJogatinaActionPerformed
 
-    private void miCustomerCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCustomerCreateActionPerformed
+    private void miCreateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCreateCustomerActionPerformed
         App.openCustomerListView();
-    }//GEN-LAST:event_miCustomerCreateActionPerformed
+    }//GEN-LAST:event_miCreateCustomerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -125,8 +123,8 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JRadioButtonMenuItem miCustomerCreate;
+    private javax.swing.JMenuItem miCreateCustomer;
+    private javax.swing.JMenuItem miGameCreate;
+    private javax.swing.JMenuItem miJogatina;
     // End of variables declaration//GEN-END:variables
 }

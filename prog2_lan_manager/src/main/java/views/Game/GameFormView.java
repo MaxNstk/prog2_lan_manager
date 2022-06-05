@@ -7,10 +7,8 @@ package views.Game;
 import Exceptions.EmptyFieldException;
 import daos.CategoryDAO;
 import daos.GameDAO;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import models.Category;
-import models.Device;
 import models.Game;
 
 /**
