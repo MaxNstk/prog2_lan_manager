@@ -22,15 +22,8 @@ public class DeviceController {
     }
     
     public List<Device> getFilteredDevices(){
-        if (this.filteredDevices == null)
-            this.getAll();
+        this.getAll();
         return this.filteredDevices;            
     }
     
-    public List<Device> getFilteredCustomers() {
-        if (this.filteredDevices == null) {
-            this.getAll();
-        }
-        return this.filteredDevices;
-    }
 }

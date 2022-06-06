@@ -2,7 +2,6 @@
 package views.Device;
 
 import Exceptions.EmptyAttribute;
-import Exceptions.EmptyFieldException;
 import daos.DeviceDAO;
 import javax.swing.JOptionPane;
 import models.Computer;
@@ -22,6 +21,7 @@ public class DeviceFormView extends views.View {
      */
     public DeviceFormView() {
         initComponents();
+        rbComputer.setSelected(true);
     }
 
     /**
@@ -228,25 +228,20 @@ public class DeviceFormView extends views.View {
         return dev;
     }
     
-    private Console getNewConsole() {
-        String name = tfName.getText();
-        /**
-         * Alterar p pegar do checkbox
-         */
-        boolean active = true;
-        String model = tfModel.getText();
-        return new Console(name, model, active);
-    }
     
     private Computer getNewComputer() {
-        String name = tfName.getText();
-        /**
-         * Alterar p pegar do checkbox
-         */
-        boolean active = true;
-        String specs = tfSpecs.getText();
+        String name    = tfName.getText();
+        boolean active = cbActive.isSelected();;
+        String specs   = tfSpecs.getText();
 
         return new Computer(name, specs, active);
+    }
+    
+    private Console getNewConsole() {
+        String name    = tfName.getText();
+        boolean active = cbActive.isSelected();;
+        String model   = tfModel.getText();
+        return new Console(name, model, active);
     }
     
     public void clearFields() {
