@@ -1,6 +1,6 @@
 package models;
 
-import java.util.List;
+import Exceptions.EmptyAttribute;
 
 /**
  *
@@ -10,7 +10,7 @@ public class Console extends Device {
 
     String model;
 
-    public Console(String name, boolean active) {
+    public Console(String name, String model, boolean active) {
         super(name, active);
         this.model = model;
     }
@@ -23,4 +23,11 @@ public class Console extends Device {
         this.name = name;
     }
 
+    @Override
+    public void validateAttributes() throws EmptyAttribute {
+        super.validateAttributes(); 
+        if (this.model.isEmpty()) new EmptyAttribute("Console", "Modelo");
+
+    }
+    
 } 

@@ -27,10 +27,6 @@ public class DeviceController {
         return this.filteredDevices;            
     }
     
-    public void updateDevice(int id) {
-        App.openDeviceUpdateView(deviceDAO.retrieveDevice(id));
-    }
-    
     public List<Device> getFilteredCustomers() {
         if (this.filteredDevices == null) {
             this.getAll();

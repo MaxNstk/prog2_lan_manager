@@ -36,11 +36,7 @@ public class DeviceListView extends views.View {
     }
     
     public void ListDevices() {
-        /**
-         * Implementar
-         */
-//        this.getFilteredCustomers();
-//        this.getSortedCustomers();
+        this.dtmDevices.setNumRows(0);
         for (Device dev : deviceController.getFilteredDevices()) {
             Object[] listData = {dev.getId(), dev.getName()};
             dtmDevices.addRow(listData);
@@ -58,15 +54,9 @@ public class DeviceListView extends views.View {
 
         lbDevice = new javax.swing.JLabel();
         btCreateDevice = new javax.swing.JButton();
-        btUpdateDevice = new javax.swing.JButton();
+        btFilterDevice = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbDeviceList = new javax.swing.JTable();
-        lbSort = new javax.swing.JLabel();
-        cbSortOptions = new javax.swing.JComboBox<>();
-        lbFilter = new javax.swing.JLabel();
-        cbFilterOptions = new javax.swing.JComboBox<>();
-        tfDeviceName = new javax.swing.JTextField();
-        btFilterDevice = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -80,10 +70,10 @@ public class DeviceListView extends views.View {
             }
         });
 
-        btUpdateDevice.setText("Editar");
-        btUpdateDevice.addActionListener(new java.awt.event.ActionListener() {
+        btFilterDevice.setText("Pesquisar");
+        btFilterDevice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btUpdateDeviceActionPerformed(evt);
+                btFilterDeviceActionPerformed(evt);
             }
         });
 
@@ -104,21 +94,6 @@ public class DeviceListView extends views.View {
             tbDeviceList.getColumnModel().getColumn(0).setMaxWidth(200);
         }
 
-        lbSort.setText("Ordenar por:");
-
-        cbSortOptions.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ordem alfabética" }));
-
-        lbFilter.setText("Filtrar por:");
-
-        cbFilterOptions.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos" }));
-
-        btFilterDevice.setText("Pesquisar");
-        btFilterDevice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btFilterDeviceActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -128,27 +103,13 @@ public class DeviceListView extends views.View {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lbSort, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cbSortOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(btCreateDevice, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btUpdateDevice, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(349, 349, 349)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(lbFilter)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(cbFilterOptions, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(tfDeviceName, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(btFilterDevice))))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(btCreateDevice, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btFilterDevice, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(76, 76, 76))))
                     .addComponent(lbDevice, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
@@ -158,26 +119,12 @@ public class DeviceListView extends views.View {
                 .addGap(24, 24, 24)
                 .addComponent(lbDevice, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btCreateDevice, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(btUpdateDevice, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbFilter)
-                            .addComponent(cbFilterOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(35, 35, 35)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btFilterDevice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tfDeviceName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbSort)
-                    .addComponent(cbSortOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(btCreateDevice, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btFilterDevice, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -187,17 +134,8 @@ public class DeviceListView extends views.View {
         App.openDeviceCreateView();
     }//GEN-LAST:event_btCreateDeviceActionPerformed
 
-    private void btUpdateDeviceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUpdateDeviceActionPerformed
-        try {
-            int deviceId = validateSelection(this.tbDeviceList.getSelectedRow());
-            deviceController.updateDevice(deviceId);
-        } catch (NullSelectionException nullSelectionException) {
-            JOptionPane.showMessageDialog(null, nullSelectionException.getMessage());
-        }
-    }//GEN-LAST:event_btUpdateDeviceActionPerformed
-
     private void btFilterDeviceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFilterDeviceActionPerformed
-//        this.ListCustomers();
+        this.ListDevices();
     }//GEN-LAST:event_btFilterDeviceActionPerformed
 
     /**
@@ -251,14 +189,8 @@ public class DeviceListView extends views.View {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCreateDevice;
     private javax.swing.JButton btFilterDevice;
-    private javax.swing.JButton btUpdateDevice;
-    private javax.swing.JComboBox<String> cbFilterOptions;
-    private javax.swing.JComboBox<String> cbSortOptions;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbDevice;
-    private javax.swing.JLabel lbFilter;
-    private javax.swing.JLabel lbSort;
     private javax.swing.JTable tbDeviceList;
-    private javax.swing.JTextField tfDeviceName;
     // End of variables declaration//GEN-END:variables
 }

@@ -53,9 +53,9 @@ public class App {
         deviceDAO.createDevice(computador2);
         Computer computador3 = new Computer("Computador 3", "Pentium | RAM DDR3 4GB | GTX1050 2GB", true);
         deviceDAO.createDevice(computador3);
-        Console xboxSeriesX = new Console("Xbox Series X", true);
+        Console xboxSeriesX = new Console("Xbox Series X", "Slim", true);
         deviceDAO.createDevice(xboxSeriesX);
-        Console playstation5 = new Console("Playstation 5", true);
+        Console playstation5 = new Console("Playstation 5", "Slim", true);
         deviceDAO.createDevice(playstation5);
         
         CategoryDAO categoryDAO = new CategoryDAO();
@@ -136,11 +136,6 @@ public class App {
     }
     
     public static void openDeviceCreateView() {
-        DeviceFormView deviceFormView = new DeviceFormView();
-        deviceFormView.setVisible(true);
-    }
-    
-    public static void openDeviceUpdateView(Device dev) {
         DeviceFormView deviceFormView = new DeviceFormView();
         deviceFormView.setVisible(true);
     }

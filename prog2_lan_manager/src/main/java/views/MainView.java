@@ -12,6 +12,7 @@ public class MainView extends View {
     public MainView() {
         initComponents();
         this.ajustScreenCenter();
+        setTitleScreen();
     }
 
     /**

@@ -1,6 +1,6 @@
 package models;
 
-import java.util.List;
+import Exceptions.EmptyAttribute;
 
 /**
  *
@@ -46,7 +46,7 @@ public abstract class Device {
     }
 
     public static int getCurrentId() {
-        currentId = +1;
+        currentId += 1;
         return currentId;
     }
 
@@ -56,6 +56,10 @@ public abstract class Device {
 
     public String toString() {
         return this.name;
+    }
+    
+    public void validateAttributes() throws EmptyAttribute {
+        if (this.name.isEmpty()) throw new EmptyAttribute("Dispositivo", "Nome");
     }
 
 }

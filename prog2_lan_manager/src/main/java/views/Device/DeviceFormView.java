@@ -1,11 +1,21 @@
 
 package views.Device;
 
+import Exceptions.EmptyAttribute;
+import Exceptions.EmptyFieldException;
+import daos.DeviceDAO;
+import javax.swing.JOptionPane;
+import models.Computer;
+import models.Console;
+import models.Device;
+
 /**
  *
  * @author petrix
  */
 public class DeviceFormView extends views.View {
+    
+    private Device device;
 
     /**
      * Creates new form DeviceFormView
@@ -23,7 +33,7 @@ public class DeviceFormView extends views.View {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        bgTypeDevice = new javax.swing.ButtonGroup();
         btCreateCustomer1 = new javax.swing.JButton();
         lbName = new javax.swing.JLabel();
         tfName = new javax.swing.JTextField();
@@ -32,9 +42,11 @@ public class DeviceFormView extends views.View {
         rbComputer = new javax.swing.JRadioButton();
         rbConsole = new javax.swing.JRadioButton();
         lbName1 = new javax.swing.JLabel();
-        lbActive1 = new javax.swing.JLabel();
+        lbSpecs = new javax.swing.JLabel();
         tfSpecs = new javax.swing.JTextField();
         btCreateDevice = new javax.swing.JButton();
+        tfModel = new javax.swing.JTextField();
+        lbModel = new javax.swing.JLabel();
 
         btCreateCustomer1.setText("Cadastrar");
         btCreateCustomer1.setName("btCreateCustomer"); // NOI18N
@@ -57,7 +69,7 @@ public class DeviceFormView extends views.View {
             }
         });
 
-        buttonGroup1.add(rbComputer);
+        bgTypeDevice.add(rbComputer);
         rbComputer.setText("Computador");
         rbComputer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,7 +77,7 @@ public class DeviceFormView extends views.View {
             }
         });
 
-        buttonGroup1.add(rbConsole);
+        bgTypeDevice.add(rbConsole);
         rbConsole.setText("Console");
         rbConsole.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,7 +87,7 @@ public class DeviceFormView extends views.View {
 
         lbName1.setText("Nome:");
 
-        lbActive1.setText("Específicações");
+        lbSpecs.setText("Específicações");
 
         tfSpecs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,6 +103,14 @@ public class DeviceFormView extends views.View {
             }
         });
 
+        tfModel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfModelActionPerformed(evt);
+            }
+        });
+
+        lbModel.setText("Modelo");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -98,7 +118,6 @@ public class DeviceFormView extends views.View {
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfSpecs, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbName1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(rbComputer)
@@ -109,13 +128,20 @@ public class DeviceFormView extends views.View {
                         .addComponent(lbActive, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbActive))
-                    .addComponent(lbName, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbActive1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(236, Short.MAX_VALUE))
+                    .addComponent(lbName, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tfSpecs, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbSpecs, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tfModel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbModel, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(161, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btCreateDevice)
-                .addGap(75, 75, 75))
+                .addGap(41, 41, 41))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,12 +161,18 @@ public class DeviceFormView extends views.View {
                     .addComponent(rbComputer)
                     .addComponent(rbConsole))
                 .addGap(31, 31, 31)
-                .addComponent(lbActive1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfSpecs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbSpecs)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfSpecs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbModel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfModel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(7, 7, 7)
                 .addComponent(btCreateDevice)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
@@ -167,22 +199,54 @@ public class DeviceFormView extends views.View {
     }//GEN-LAST:event_tfSpecsActionPerformed
 
     private void btCreateDeviceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateDeviceActionPerformed
-//        setVisible(false);
-//        if (this.device != null) {
-//            this.updateDevice();
-//        } else {
-//            this.createCustomer();
-//        }
-
+        setVisible(false);
+        this.createDevice();
         this.clearFields();
     }//GEN-LAST:event_btCreateDeviceActionPerformed
+
+    private void tfModelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfModelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfModelActionPerformed
 
     public void updateDevice() {
         
     }
     
     public void createDevice() {
-        
+        try {
+            DeviceDAO deviceDAO = new DeviceDAO();
+            deviceDAO.createDevice(this.getDeviceInfo());
+            JOptionPane.showMessageDialog(null, "Dispositivo cadastrado com sucesso.");
+        } catch (EmptyAttribute EmptyAttribute) {
+            JOptionPane.showMessageDialog(null, EmptyAttribute.getMessage());
+        }
+    }
+    
+    public Device getDeviceInfo() throws EmptyAttribute  {
+        Device dev = rbComputer.isSelected() ? getNewComputer() : getNewConsole();
+        dev.validateAttributes();
+        return dev;
+    }
+    
+    private Console getNewConsole() {
+        String name = tfName.getText();
+        /**
+         * Alterar p pegar do checkbox
+         */
+        boolean active = true;
+        String model = tfModel.getText();
+        return new Console(name, model, active);
+    }
+    
+    private Computer getNewComputer() {
+        String name = tfName.getText();
+        /**
+         * Alterar p pegar do checkbox
+         */
+        boolean active = true;
+        String specs = tfSpecs.getText();
+
+        return new Computer(name, specs, active);
     }
     
     public void clearFields() {
@@ -231,16 +295,18 @@ public class DeviceFormView extends views.View {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup bgTypeDevice;
     private javax.swing.JButton btCreateCustomer1;
     private javax.swing.JButton btCreateDevice;
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JCheckBox cbActive;
     private javax.swing.JLabel lbActive;
-    private javax.swing.JLabel lbActive1;
+    private javax.swing.JLabel lbModel;
     private javax.swing.JLabel lbName;
     private javax.swing.JLabel lbName1;
+    private javax.swing.JLabel lbSpecs;
     private javax.swing.JRadioButton rbComputer;
     private javax.swing.JRadioButton rbConsole;
+    private javax.swing.JTextField tfModel;
     private javax.swing.JTextField tfName;
     private javax.swing.JTextField tfSpecs;
     // End of variables declaration//GEN-END:variables

@@ -1,6 +1,6 @@
 package models;
 
-import java.util.List;
+import Exceptions.EmptyAttribute;
 
 /**
  *
@@ -22,4 +22,12 @@ public class Computer extends Device {
     public void setSpecs(String specs) {
         this.specs = specs;
     }
+
+    @Override
+    public void validateAttributes() throws EmptyAttribute {
+        super.validateAttributes(); 
+        if (this.specs.isEmpty()) throw new EmptyAttribute("Computador", "específicações");
+    }
+    
+    
 }
