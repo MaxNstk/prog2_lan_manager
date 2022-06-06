@@ -3,6 +3,7 @@ package views.Device;
 
 import Exceptions.EmptyAttribute;
 import daos.DeviceDAO;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import models.Computer;
 import models.Console;
@@ -21,7 +22,14 @@ public class DeviceFormView extends views.View {
      */
     public DeviceFormView() {
         initComponents();
+        ajustScreenCenter();
+        disabledInputs();
+    }
+    
+    private void disabledInputs() {
         rbComputer.setSelected(true);
+        tfModel.setEnabled(false);
+        tfModel.setBackground(new Color(217, 217, 217));
     }
 
     /**
@@ -187,11 +195,21 @@ public class DeviceFormView extends views.View {
     }//GEN-LAST:event_cbActiveActionPerformed
 
     private void rbComputerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbComputerActionPerformed
-        // TODO add your handling code here:
+        tfModel.setEnabled(false);
+        tfModel.setText("");
+        tfModel.setBackground(new Color(217, 217, 217));
+        
+        tfSpecs.setEnabled(true);
+        tfSpecs.setBackground(Color.white);
     }//GEN-LAST:event_rbComputerActionPerformed
 
     private void rbConsoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbConsoleActionPerformed
-        // TODO add your handling code here:
+        tfModel.setEnabled(true);
+        tfModel.setBackground(Color.white);
+        
+        tfSpecs.setText("");
+        tfSpecs.setEnabled(false);
+        tfSpecs.setBackground(new Color(217, 217, 217));
     }//GEN-LAST:event_rbConsoleActionPerformed
 
     private void tfSpecsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSpecsActionPerformed
