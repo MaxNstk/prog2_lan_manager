@@ -61,6 +61,9 @@ public class App {
         CategoryDAO categoryDAO = new CategoryDAO();
         Category fps = new Category("FPS", 2);
         categoryDAO.createCategory(fps);
+        // testando o SET
+        Category fps2 = new Category("FPS", 3);
+        categoryDAO.createCategory(fps2);
         Category estrategia = new Category("Estratégia", 1);
         categoryDAO.createCategory(estrategia);
         Category battleRoyale = new Category("Battle Royale", 2);

@@ -1,5 +1,7 @@
 package models;
 
+import java.util.Objects;
+
 /**
  *
  * @author max
@@ -10,6 +12,28 @@ public class Category {
     private final int id;
     private int creditsValue;
     private String name;
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 67 * hash + Objects.hashCode(this.name);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Category other = (Category) obj;
+        return Objects.equals(this.name, other.name);
+    }
 
     public Category(String name, int creditsValue) {
         this.id = getCurrentId();
