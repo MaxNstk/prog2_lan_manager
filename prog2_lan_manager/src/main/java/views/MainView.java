@@ -2,6 +2,7 @@
 package views;
 
 import controllers.App;
+import java.awt.event.ActionListener;
 
 /**
  *
@@ -20,6 +21,10 @@ public class MainView extends View {
      */
     protected void ajustScreenCenter() {
         this.setExtendedState(MAXIMIZED_BOTH);
+    }
+    
+    public void addOpenCreateGameView(ActionListener action){
+        miGameCreate.addActionListener(action);
     }
     
     @SuppressWarnings("unchecked")
@@ -64,11 +69,6 @@ public class MainView extends View {
         jMenu1.add(miCreateDevice);
 
         miGameCreate.setText("Jogo");
-        miGameCreate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miGameCreateActionPerformed(evt);
-            }
-        });
         jMenu1.add(miGameCreate);
 
         jMenuBar1.add(jMenu1);
@@ -100,10 +100,6 @@ public class MainView extends View {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void miGameCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miGameCreateActionPerformed
-        App.openGameListView();
-    }//GEN-LAST:event_miGameCreateActionPerformed
 
     private void miJogatinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miJogatinaActionPerformed
         App.openGameplayListView();

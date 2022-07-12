@@ -93,16 +93,6 @@ public class App {
         mainView.setVisible(true);
     }
     
-    public static void openGameCreateView() {
-        GameFormView gameFormView = new GameFormView(null);
-        gameFormView.setVisible(true);
-    }
-    
-    public static void openGameUpdateView(Game game) {
-        GameFormView gameCreateView = new GameFormView(game);
-        gameCreateView.setVisible(true);
-    }
-    
     public static void openGameListView() {
         GameListView gameListView = new GameListView();
         gameListView.setVisible(true);

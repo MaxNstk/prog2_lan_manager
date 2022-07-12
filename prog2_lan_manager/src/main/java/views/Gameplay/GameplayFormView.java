@@ -34,7 +34,7 @@ public class GameplayFormView extends views.View {
         this.setUpConstrollers();
         this.fillCustomersCb();
         this.fillDeviceCb();
-        this.fillGamesCb();
+//        this.fillGamesCb();
     }
 
     private void setUpConstrollers() {
@@ -59,13 +59,13 @@ public class GameplayFormView extends views.View {
         cbCustomer.setSelectedItem(null);
     }
 
-    private void fillGamesCb() {
-        this.cbGame.removeAllItems();
-        for (Game game : gameController.getFilteredGames()) {
-            cbGame.addItem(game);
-        }
-        cbGame.setSelectedItem(null);
-    }
+//    private void fillGamesCb() {
+//        this.cbGame.removeAllItems();
+//        for (Game game : gameController.getFilteredGames()) {
+//            cbGame.addItem(game);
+//        }
+//        cbGame.setSelectedItem(null);
+//    }
 
     public void validateCbs() throws EmptyCbException {
         if (this.cbCustomer.getSelectedIndex() == -1) {
