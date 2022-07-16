@@ -2,6 +2,7 @@ package controllers;
 
 import javax.swing.JOptionPane;
 import views.LoginView;
+import views.MainView;
 
 /**
  *
@@ -9,14 +10,6 @@ import views.LoginView;
  */
 public class LoginController {
 
-    /**
-     * Verifica se os logins informados estão presentes na base de dados
-     *
-     * @todo - Atualmente, não há uma integração com o banco de dados, e por
-     * este motivo o login segue "chumbado"
-     * @param login
-     * @param password
-     */
     public void verifyUserHasAccess(String login, String password, LoginView loginView) {
         if (login.equals("admin") && password.equals("admin")) {
             this.openMainScreen();
@@ -27,8 +20,8 @@ public class LoginController {
     }
 
     private void openMainScreen() {
-        App App = new App();
-        App.openMainScreen();
+        MainViewController mainViewController = new MainViewController(new MainView());
+        mainViewController.showScreen();
     }
 
     private void showMessageInvalidLogin() {

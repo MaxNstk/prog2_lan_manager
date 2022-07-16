@@ -11,7 +11,6 @@ import models.Category;
  */
 public class GameFormView extends views.View {
     
-    
     public GameFormView(){
         initComponents();
         ajustScreenCenter();

@@ -72,9 +72,9 @@ public class CustomerController {
         return this.filteredCustomers;
     }
 
-    public void updateCustomer(int id) {
-            App.openCustomerUpdateView(customerDAO.retrieveCustomer(id));
-    }
+//    public void updateCustomer(int id) {
+//            App.openCustomerUpdateView(customerDAO.retrieveCustomer(id));
+//    }
 
     public List<Customer> sortAlphabetically() {
         Collections.sort(filteredCustomers);

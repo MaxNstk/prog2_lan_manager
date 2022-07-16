@@ -1,3 +1,4 @@
+
 package controllers;
 
 import daos.CategoryDAO;
@@ -29,8 +30,8 @@ import views.MainView;
 public class App {
     
     public static void main(String[] args) {
-        LoginView loginView = new LoginView();
-        loginView.setVisible(true);
+        MainViewController mainView =  new MainViewController(new MainView());
+        mainView.showScreen();
         
         CustomerDAO customerDAO = new CustomerDAO();
         Customer alan = new Customer("Alan Santos", "111.222.333-44", "Rua Alvarez, 123", "09/11/2001");
@@ -86,56 +87,5 @@ public class App {
         gameDAO.createGame(CounterStrike);
         Game Warzone = new Game("Warzone", "Armas e sobrevivência", battleRoyale);
         gameDAO.createGame(Warzone);
-    }
-    
-    public static void openMainScreen() {
-        MainView mainView = new MainView();
-        mainView.setVisible(true);
-    }
-    
-    public static void openGameListView() {
-        GameListView gameListView = new GameListView();
-        gameListView.setVisible(true);
-    }
-    
-    public static void openCustomerCreateView() {
-        CustomerFormView customerCreateView = new CustomerFormView(null);
-        customerCreateView.setVisible(true);
-    }
-    
-    public static void openCustomerUpdateView(Customer customer) {
-        CustomerFormView customerCreateView = new CustomerFormView(customer);
-        customerCreateView.setVisible(true);
-    }
-    
-    public static void openCustomerListView() {
-        CustomerListView customerListView = new CustomerListView();
-        customerListView.setVisible(true);
-    }
-    
-    public static void openGamePlayFormView() {
-        GameplayFormView gameplayFormView = new GameplayFormView();
-        gameplayFormView.setVisible(true);
-    }
-    
-    public static void openAddCreditsView(int id) {
-        AddCreditsView addCreditsView = new AddCreditsView(id);
-        addCreditsView.setVisible(true);
-    }
-    
-    public static void openGameplayListView() {
-        GameplayListView gameplayListView = new GameplayListView();
-        gameplayListView.setVisible(true);
-    }
-    
-    public static void openDeviceCreateView() {
-        DeviceFormView deviceFormView = new DeviceFormView();
-        deviceFormView.setVisible(true);
-    }
-    
-    public static void openDeviceListView() {
-        DeviceListView deviceListView = new DeviceListView();
-        deviceListView.setVisible(true);
-    }
-    
+    }   
 }

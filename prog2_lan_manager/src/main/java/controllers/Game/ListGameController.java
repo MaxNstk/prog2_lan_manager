@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package controllers;
+package controllers.Game;
 
+import controllers.CreateGameController;
+import controllers.MainViewController;
 import daos.GameDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,6 +13,7 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import models.Game;
 import models.tables.GameTableModel;
+import views.Game.GameFormView;
 import views.Game.GameListView;
 
 /**
@@ -49,9 +52,14 @@ public class ListGameController {
         gameListView.addOpenCreateGameViewButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MainViewController.openGameFormView();
+                openGameFormView();               
             }
         });
+    }
+    
+    public void openGameFormView(){
+      CreateGameController createGameController = new CreateGameController(new GameFormView());
+      createGameController.showGameFormView();
     }
    
     

@@ -120,11 +120,6 @@ public class CustomerListView extends views.View {
         jLabel3.setText("Clientes");
 
         btCreateCustomer.setText("Cadastrar");
-        btCreateCustomer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCreateCustomerActionPerformed(evt);
-            }
-        });
 
         btFilterCustomer.setText("Pesquisar");
         btFilterCustomer.addActionListener(new java.awt.event.ActionListener() {
@@ -232,10 +227,6 @@ public class CustomerListView extends views.View {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btCreateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateCustomerActionPerformed
-        App.openCustomerCreateView();
-    }//GEN-LAST:event_btCreateCustomerActionPerformed
-
     private void btFilterCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFilterCustomerActionPerformed
         this.ListCustomers();
     }//GEN-LAST:event_btFilterCustomerActionPerformed
@@ -243,7 +234,7 @@ public class CustomerListView extends views.View {
     private void btUpdateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUpdateCustomerActionPerformed
         try {
             int customerId = validateSelection(this.tbCustomerList.getSelectedRow());
-            customerController.updateCustomer(customerId);
+//            customerController.updateCustomer(customerId);
         } catch (NullSelectionException nullSelectionException) {
             JOptionPane.showMessageDialog(null, nullSelectionException.getMessage());
         }
@@ -252,7 +243,7 @@ public class CustomerListView extends views.View {
     private void btAddCreditsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddCreditsActionPerformed
         try {
             int customerId = validateSelection(this.tbCustomerList.getSelectedRow());
-            App.openAddCreditsView(customerId);
+//            App.openAddCreditsView(customerId);
         } catch (NullSelectionException nullSelectionException) {
             JOptionPane.showMessageDialog(null, nullSelectionException.getMessage());
         }

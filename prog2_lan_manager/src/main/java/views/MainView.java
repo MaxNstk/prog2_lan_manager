@@ -16,16 +16,27 @@ public class MainView extends View {
         setTitleScreen();
     }
 
-    /**
-     * Define para que o componente seja apresentado em tela cheia
-     */
+    
     protected void ajustScreenCenter() {
         this.setExtendedState(MAXIMIZED_BOTH);
     }
     
-    public void addOpenCreateGameView(ActionListener action){
-        miGameCreate.addActionListener(action);
+    public void addOpenGameListViewAction(ActionListener action){
+        miListGame.addActionListener(action);
     }
+    
+    public void addOpenDeviceListViewAction(ActionListener action){
+        miListDevice.addActionListener(action);
+    }
+    
+    public void addOpenCustomerListViewAction(ActionListener action){
+        miListCustomer.addActionListener(action);
+    }
+    
+    public void addOpenGameplayViewAction(ActionListener action){
+        miListGameplay.addActionListener(action);
+    }
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -36,11 +47,11 @@ public class MainView extends View {
         jMenu5 = new javax.swing.JMenu();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        miCreateCustomer = new javax.swing.JMenuItem();
-        miCreateDevice = new javax.swing.JMenuItem();
-        miGameCreate = new javax.swing.JMenuItem();
+        miListCustomer = new javax.swing.JMenuItem();
+        miListDevice = new javax.swing.JMenuItem();
+        miListGame = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        miJogatina = new javax.swing.JMenuItem();
+        miListGameplay = new javax.swing.JMenuItem();
 
         jMenu3.setText("jMenu3");
 
@@ -52,36 +63,21 @@ public class MainView extends View {
 
         jMenu1.setText("Cadastros");
 
-        miCreateCustomer.setText("Cliente");
-        miCreateCustomer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miCreateCustomerActionPerformed(evt);
-            }
-        });
-        jMenu1.add(miCreateCustomer);
+        miListCustomer.setText("Cliente");
+        jMenu1.add(miListCustomer);
 
-        miCreateDevice.setText("Dispositivo");
-        miCreateDevice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miCreateDeviceActionPerformed(evt);
-            }
-        });
-        jMenu1.add(miCreateDevice);
+        miListDevice.setText("Dispositivo");
+        jMenu1.add(miListDevice);
 
-        miGameCreate.setText("Jogo");
-        jMenu1.add(miGameCreate);
+        miListGame.setText("Jogo");
+        jMenu1.add(miListGame);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Agenda");
 
-        miJogatina.setText("Jogatina");
-        miJogatina.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miJogatinaActionPerformed(evt);
-            }
-        });
-        jMenu2.add(miJogatina);
+        miListGameplay.setText("Jogatina");
+        jMenu2.add(miListGameplay);
 
         jMenuBar1.add(jMenu2);
 
@@ -101,18 +97,6 @@ public class MainView extends View {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void miJogatinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miJogatinaActionPerformed
-        App.openGameplayListView();
-    }//GEN-LAST:event_miJogatinaActionPerformed
-
-    private void miCreateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCreateCustomerActionPerformed
-        App.openCustomerListView();
-    }//GEN-LAST:event_miCreateCustomerActionPerformed
-
-    private void miCreateDeviceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCreateDeviceActionPerformed
-        App.openDeviceListView();
-    }//GEN-LAST:event_miCreateDeviceActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -123,10 +107,10 @@ public class MainView extends View {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem miCreateCustomer;
-    private javax.swing.JMenuItem miCreateDevice;
-    private javax.swing.JMenuItem miGameCreate;
-    private javax.swing.JMenuItem miJogatina;
+    private javax.swing.JMenuItem miListCustomer;
+    private javax.swing.JMenuItem miListDevice;
+    private javax.swing.JMenuItem miListGame;
+    private javax.swing.JMenuItem miListGameplay;
     // End of variables declaration//GEN-END:variables
 
     @Override

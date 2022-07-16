@@ -36,23 +36,17 @@
             <Property name="text" type="java.lang.String" value="Cadastros"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="miCreateCustomer">
+            <MenuItem class="javax.swing.JMenuItem" name="miListCustomer">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cliente"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miCreateCustomerActionPerformed"/>
-              </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="miCreateDevice">
+            <MenuItem class="javax.swing.JMenuItem" name="miListDevice">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Dispositivo"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miCreateDeviceActionPerformed"/>
-              </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="miGameCreate">
+            <MenuItem class="javax.swing.JMenuItem" name="miListGame">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Jogo"/>
               </Properties>
@@ -64,13 +58,10 @@
             <Property name="text" type="java.lang.String" value="Agenda"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="miJogatina">
+            <MenuItem class="javax.swing.JMenuItem" name="miListGameplay">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Jogatina"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miJogatinaActionPerformed"/>
-              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

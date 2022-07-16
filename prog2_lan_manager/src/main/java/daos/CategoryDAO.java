@@ -1,9 +1,7 @@
 package daos;
 
 import interfaces.ICategoryDAO;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import models.Category;
 
