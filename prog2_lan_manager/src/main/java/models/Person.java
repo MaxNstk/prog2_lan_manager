@@ -8,7 +8,6 @@ import Exceptions.EmptyFieldException;
  */
 public abstract class Person {
 
-    private static int currentId = 0;
     protected int id;
     protected String name;
     protected String CPF;
@@ -17,13 +16,20 @@ public abstract class Person {
     protected boolean active;
 
     public Person(String name, String CPF, String adress, String birthDate) {
-        this.id = getCurrentId();
         this.name = validateNotNull(name);
         this.CPF = validateNotNull(CPF);
         this.adress = validateNotNull(adress);
         this.birthDate = validateNotNull(birthDate);
         this.active = true;
-
+    }
+    
+    public Person(int id, String name, String CPF, String adress, String birthDate) {
+        this.id = id;
+        this.name = validateNotNull(name);
+        this.CPF = validateNotNull(CPF);
+        this.adress = validateNotNull(adress);
+        this.birthDate = validateNotNull(birthDate);
+        this.active = true;
     }
 
     public String validateNotNull(String value) throws EmptyFieldException {
@@ -51,11 +57,6 @@ public abstract class Person {
 
     public int getId() {
         return this.id;
-    }
-
-    private static int getCurrentId() {
-        currentId += 1;
-        return currentId;
     }
 
     public String getName() {

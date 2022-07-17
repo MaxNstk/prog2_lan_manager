@@ -4,6 +4,7 @@ package views.Customer;
 import Exceptions.NullSelectionException;
 import controllers.App;
 import controllers.CustomerController;
+import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import models.Customer;
@@ -13,6 +14,10 @@ import models.Customer;
  * @author max
  */
 public class CustomerListView extends views.View {
+    
+    public void addOpenCreateCustomer(ActionListener action){
+        btCreateCustomer.addActionListener(action);
+    }
 
     private CustomerController customerController;
     private DefaultTableModel dtmCustomers;

@@ -32,7 +32,7 @@ public class GameListController {
         this.gameTableModel = new GameTableModel(this.gameDAO.getGames());
         setTableModel();
         addOpenCreateGameViewButton();
-        adicionarEventos();    
+        addEvents();    
     }
     private void setTableModel(){
         gameListView.setTableModel(this.gameTableModel);
@@ -61,7 +61,7 @@ public class GameListController {
       createGameController.showGameFormView();
     }
        
-    public void adicionarEventos(){
+    public void addEvents(){
         gameListView.adicionarEventoAlteracaoTabela(new TableModelListener() {
             @Override
             public void tableChanged(TableModelEvent e){
@@ -70,10 +70,6 @@ public class GameListController {
                    int column = e.getColumn();
                    if(row >=0 && column >=0){
                         GameTableModel model = (GameTableModel)e.getSource();
-//                        int id = (int) model.getValueAt(row, 0);
-//                        String name = (String)model.getValueAt(row, 1);
-//                        Category category = (Category)model.getValueAt(row, 2);
-//                        String description = (String)model.getValueAt(row, 3);
                         Game game = gameTableModel.getGames().get(row);
                         gameDAO.updateGame(game);
                         atualizarDados();

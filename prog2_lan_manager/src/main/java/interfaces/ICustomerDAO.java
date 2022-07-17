@@ -13,8 +13,9 @@ import models.Customer;
  */
 public interface ICustomerDAO {
     
-    public void createCustomer(Customer p);
+    public void createCustomer(Customer c);
     public Customer retrieveCustomer(int id);
     public List<Customer> getCustomers();
+    public void updateCustomer(Customer c);
     
 }

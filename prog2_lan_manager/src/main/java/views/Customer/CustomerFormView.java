@@ -2,6 +2,7 @@ package views.Customer;
 
 import Exceptions.EmptyFieldException;
 import daos.CustomerDAO;
+import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import models.Customer;
 
@@ -10,59 +11,87 @@ import models.Customer;
  * @author max
  */
 public class CustomerFormView extends views.View {
-
-    private Customer customer;
-
-    public CustomerFormView(Customer customer) {
+    
+    public CustomerFormView(){
         initComponents();
-        ajustScreenCenter();
-        if (customer != null) {
-            this.customer = customer;
-            this.setCustomerInfo(customer);
-        }
     }
-
-    public void setCustomerInfo(Customer customer) {
-        tfName.setText(customer.getName());
-        tfCPF.setText(customer.getCPF());
-        tfAdress.setText(customer.getAdress());
-        tfBirthDate.setText(customer.getBirthDate());
+    
+    public void addCreateCustomerAction(ActionListener action){
+        btCreateCustomer.addActionListener(action);
     }
-
-    public Customer getCustomerInfo() throws EmptyFieldException {
-        String name = tfName.getText();
-        String CPF = tfCPF.getText();
-        String adress = tfAdress.getText();
-        String birthDate = tfBirthDate.getText();
-        return new Customer(name, CPF, adress, birthDate);
-
+    
+    public String getName(){
+        return tfName.getText();
     }
-
-    public void createCustomer() throws EmptyFieldException {
-        try {
-            CustomerDAO customerDAO = new CustomerDAO();
-            customerDAO.createCustomer(this.getCustomerInfo());
-            JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso.");
-        } catch (EmptyFieldException emptyFieldException) {
-            JOptionPane.showMessageDialog(null, emptyFieldException.getMessage());
-        }
-
+    
+    public String getCPF(){
+        return tfCPF.getText();
     }
-
-    public void updateCustomer() {
-        this.customer.setName(tfName.getText());
-        this.customer.setCPF(tfCPF.getText());
-        this.customer.setAdress(tfAdress.getText());
-        this.customer.setBirthDate(tfBirthDate.getText());
-        JOptionPane.showMessageDialog(null, "Cliente alterado com sucesso.");
+    
+    public String getAdress(){
+        return tfBirthDate.getText();
     }
-
+    
+    public String getBirthDAte(){
+        return tfBirthDate.getText();
+    }
+    
+    public void showMessage(String msg){
+        JOptionPane.showMessageDialog(null, msg);
+    }
+    
     public void clearFields() {
         tfName.setText("");
         tfCPF.setText("");
         tfAdress.setText("");
         tfBirthDate.setText("");
     }
+
+//    private Customer customer;
+//
+//    public CustomerFormView(Customer customer) {
+//        initComponents();
+//        ajustScreenCenter();
+//        if (customer != null) {
+//            this.customer = customer;
+//            this.setCustomerInfo(customer);
+//        }
+//    }
+//
+//    public void setCustomerInfo(Customer customer) {
+//        tfName.setText(customer.getName());
+//        tfCPF.setText(customer.getCPF());
+//        tfAdress.setText(customer.getAdress());
+//        tfBirthDate.setText(customer.getBirthDate());
+//    }
+//
+//    public Customer getCustomerInfo() throws EmptyFieldException {
+//        String name = tfName.getText();
+//        String CPF = tfCPF.getText();
+//        String adress = tfAdress.getText();
+//        String birthDate = tfBirthDate.getText();
+//        return new Customer(name, CPF, adress, birthDate);
+//
+//    }
+//
+//    public void createCustomer() throws EmptyFieldException {
+//        try {
+//            CustomerDAO customerDAO = new CustomerDAO();
+//            customerDAO.createCustomer(this.getCustomerInfo());
+//            JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso.");
+//        } catch (EmptyFieldException emptyFieldException) {
+//            JOptionPane.showMessageDialog(null, emptyFieldException.getMessage());
+//        }
+//
+//    }
+//
+//    public void updateCustomer() {
+//        this.customer.setName(tfName.getText());
+//        this.customer.setCPF(tfCPF.getText());
+//        this.customer.setAdress(tfAdress.getText());
+//        this.customer.setBirthDate(tfBirthDate.getText());
+//        JOptionPane.showMessageDialog(null, "Cliente alterado com sucesso.");
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -100,11 +129,6 @@ public class CustomerFormView extends views.View {
 
         btCreateCustomer.setText("Cadastrar");
         btCreateCustomer.setName("btCreateCustomer"); // NOI18N
-        btCreateCustomer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCreateCustomerActionPerformed(evt);
-            }
-        });
 
         try {
             tfCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
@@ -166,17 +190,6 @@ public class CustomerFormView extends views.View {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btCreateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateCustomerActionPerformed
-        setVisible(false);
-        if (this.customer != null) {
-            this.updateCustomer();
-        } else {
-            this.createCustomer();
-        }
-
-        this.clearFields();
-    }//GEN-LAST:event_btCreateCustomerActionPerformed
 
     /**
      * @param args the command line arguments
