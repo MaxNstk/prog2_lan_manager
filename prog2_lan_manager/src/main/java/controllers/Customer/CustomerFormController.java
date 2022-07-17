@@ -26,8 +26,7 @@ public class CustomerFormController {
         this.customerDAO = new CustomerDAO();
         addActions();
     }
-    
-       
+          
     public void showScreen(){
         this.customerFormView.setVisible(true);
     }

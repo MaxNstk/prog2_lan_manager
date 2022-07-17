@@ -88,7 +88,7 @@ public class CustomerDAO implements ICustomerDAO {
         List<Customer> customers = new ArrayList<>();
         Connection connection = SQLConnection.connect();
 
-        String sql = "SELECT * FROM GAME";
+        String sql = "SELECT p.*, c.creditsAmount FROM PERSON p INNER JOIN CUSTOMER c ON c.personId = p.id;";
         Statement stmt;
 
         try {
@@ -97,8 +97,8 @@ public class CustomerDAO implements ICustomerDAO {
 
             while (result.next()) {
                 int id = result.getInt("id");
-                String name = result.getString("name");
-                String description = result.getString("description");
+                String name = result.getString("CPF");
+                String description = result.getString("address");
                 int categoryId = result.getInt("category_id");
                 Category category = categoryDAO.retrieveCategory(categoryId);
 //                customers.add(new Customer(id, name, description, category));

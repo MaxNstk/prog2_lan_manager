@@ -4,17 +4,26 @@
  */
 package controllers.Customer;
 
+import daos.CustomerDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
+import models.Customer;
+import models.tables.CustomerTableModel;
 import views.Customer.CustomerFormView;
 import views.Customer.CustomerListView;
 
 public class CustomerListController {
 
     private CustomerListView customerListView;
+    private CustomerDAO customerDAO;
+    private CustomerTableModel customerTableModel;
 
     public CustomerListController(CustomerListView customerListView) {
         this.customerListView = customerListView;
+        customerDAO = new CustomerDAO();
+        customerTableModel = new CustomerTableModel(customerDAO.getCustomers());
         addOpenCreateCustomerListener();
     }
 
@@ -35,6 +44,37 @@ public class CustomerListController {
     public void openCustomerFormView() {
         CustomerFormController customerFormController = new CustomerFormController(new CustomerFormView());
         customerFormController.showScreen();
+    }
+    
+    private void setTableModel(){
+        gameListView.setTableModel(this.gameTableModel);
+    }
+    
+    public void showScreen(){
+        gameListView.showScreen();
+    }
+    
+    public void updateData(){
+        gameTableModel.fireTableDataChanged();
+        gameTableModel.setGames(this.gameDAO.getGames());
+    }
+    
+    public void addEvents(){
+        customerListView.adicionarEventoAlteracaoTabela(new TableModelListener() {
+            @Override
+            public void tableChanged(TableModelEvent e){
+                if (TableModelEvent.UPDATE == e.getType()) {
+                   int row = e.getFirstRow();
+                   int column = e.getColumn();
+                   if(row >=0 && column >=0){
+                        CustomerTableModel model = (CustomerTableModel)e.getSource();
+                        Customer customer = customerTableModel.getCustomers().get(row);
+                        customerDAO.updateCustomer(customer);
+                        updateData();
+                   }
+                 }
+            }
+        });
     }
 
 }
