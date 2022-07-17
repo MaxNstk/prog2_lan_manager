@@ -8,9 +8,7 @@ import Exceptions.EmptyFieldException;
  */
 public class Game {
 
-    public static int currentId = 0;
     String name;
-    Device device;
     String description;
     Category category;
     protected int id;
@@ -19,7 +17,12 @@ public class Game {
         this.name = validateNotNull(name);
         this.description = validateNotNull(description);
         this.category = category;
-        this.id = getCurrentId();
+    }
+    public Game(int id, String name, String description, Category category) {
+        this.id = id;
+        this.name = validateNotNull(name);
+        this.description = validateNotNull(description);
+        this.category = category;
     }
 
     public String validateNotNull(String value) throws EmptyFieldException {
@@ -44,10 +47,9 @@ public class Game {
     public int getId() {
         return this.id;
     }
-
-    public static int getCurrentId() {
-        currentId++;
-        return currentId;
+    
+    public void setId(int id){
+        this.id = id;
     }
 
     public void setDescription(String description) {
@@ -61,15 +63,7 @@ public class Game {
     public void setCategory(Category category) {
         this.category = category;
     }
-
-    public Device getDevice() {
-        return device;
-    }
-
-    public void setDevice(Device device) {
-        this.device = device;
-    }
-
+    
     @Override
     public String toString() {
         return this.name+". Valor: "+this.category.getCreditsValue();

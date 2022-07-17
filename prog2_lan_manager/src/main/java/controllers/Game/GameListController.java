@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
+import models.Category;
 import models.Game;
 import models.tables.GameTableModel;
 import views.Game.GameFormView;
@@ -27,7 +28,6 @@ public class GameListController {
 
     public GameListController(GameListView gameListView) {
         this.gameListView = gameListView;
-        this.gameTableModel = gameTableModel;
         this.gameDAO = new GameDAO();
         this.gameTableModel = new GameTableModel(this.gameDAO.getGames());
         setTableModel();
@@ -70,10 +70,12 @@ public class GameListController {
                    int column = e.getColumn();
                    if(row >=0 && column >=0){
                         GameTableModel model = (GameTableModel)e.getSource();
-                        String CPF = (String)model.getValueAt(row, 0);
+//                        int id = (int) model.getValueAt(row, 0);
+//                        String name = (String)model.getValueAt(row, 1);
+//                        Category category = (Category)model.getValueAt(row, 2);
+//                        String description = (String)model.getValueAt(row, 3);
                         Game game = gameTableModel.getGames().get(row);
-                        // todo DAO
-                        //PacienteDAO.atualizarPaciente(paciente);
+                        gameDAO.updateGame(game);
                         atualizarDados();
                    }
                  }

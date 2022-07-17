@@ -6,20 +6,19 @@ package models;
  */
 public class Category {
 
-    private static int currentId = 0;
-    private final int id;
+    private int id;
     private int creditsValue;
     private String name;
 
     public Category(String name, int creditsValue) {
-        this.id = getCurrentId();
         this.name = name;
         this.creditsValue = creditsValue;
     }
     
-    public static int getCurrentId() {
-        currentId = +1;
-        return currentId;
+    public Category(int id, String name, int creditsValue) {
+        this.id = id;
+        this.name = name;
+        this.creditsValue = creditsValue;
     }
 
     public int getId() {
@@ -44,6 +43,10 @@ public class Category {
 
     public String toString() {
         return this.name;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     

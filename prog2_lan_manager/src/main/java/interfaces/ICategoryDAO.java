@@ -7,7 +7,8 @@ import models.Category;
 
 public interface ICategoryDAO {
 
-    public void createCategory(Category c);
+    public void createCategory(Category category);
+    public Category retrieveCategory(int id);
     public List<Category> getCategories();
     
 }

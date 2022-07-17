@@ -8,31 +8,32 @@ import Connection.SQLConnection;
 import interfaces.IGameDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import models.Category;
+import models.Game;
 import models.Game;
 
 public class GameDAO implements IGameDAO {
+    
+    CategoryDAO categoryDAO;
+    
+    public GameDAO(){
+        this.createTable();
+        categoryDAO = new CategoryDAO();
+    }
 
-    private static List<Game> games = new ArrayList<>();
-
-    private void createTable() {
+    private void createTable(){
         Connection connection = SQLConnection.connect();
-        String sqlCreate = "CREATE TABLE IF NOT EXISTS CATEGORY \n"
-                + "(\n"
-                + "	id INTEGER PRIMARY KEY AUTOINCREMENT,\n"
-                + "	creditsValue INTEGER NOT NULL,\n"
-                + "	name VARCHAR(50)\n"
-                + ");\n"
-                + "\n"
-                + "CREATE TABLE IF NOT EXISTS GAME (\n"
+        String sqlCreate = "CREATE TABLE IF NOT EXISTS GAME (\n"
                 + "	id INTEGER PRIMARY KEY AUTOINCREMENT,\n"
                 + "	name VARCHAR(30),\n"
                 + "	description VARCHAR(255),\n"
-                + "	category_id INTEGER NOT NULL,\n"
-                + "	FOREIGN KEY (category_id) REFERENCES CATEGORY (id)\n"
+                + "	game_id INTEGER NOT NULL,\n"
+                + "	FOREIGN KEY (game_id) REFERENCES CATEGORY (id)\n"
                 + ");";
 
         Statement stmt = null;
@@ -58,7 +59,6 @@ public class GameDAO implements IGameDAO {
            pstmt.setString(1, game.getName());
            pstmt.setString(2, game.getDescription());
            pstmt.setInt(3, game.getCategory().getId());
-
            pstmt.execute();
         }
         catch (SQLException e){
@@ -70,39 +70,86 @@ public class GameDAO implements IGameDAO {
     }
 
     @Override
-    public Game retrieveGame(int id) {
-        for (Game game : games) {
-            if (game.getId() == id) {
-                return game;
-            }
-        }
-        return null;
-    }
+    public List<Game> getGames(){
+    List<Game> games = new ArrayList<>();
+        Connection connection = SQLConnection.connect();
 
-    @Override
-    public List<Game> getGames() {
+        String sql = "SELECT * FROM GAME";
+        Statement stmt;
+
+        try {
+            stmt = connection.createStatement();
+            ResultSet result = stmt.executeQuery(sql);
+
+            while (result.next()) {
+                int id = result.getInt("id");
+                String name = result.getString("name");
+                String description = result.getString("description");
+                int categoryId = result.getInt("category_id");
+                Category category = categoryDAO.retrieveCategory(categoryId);
+                games.add(new Game(id, name, description, category));            
+            }
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return null;
+        } finally {
+            SQLConnection.disconnect();
+        }
         return games;
     }
 
     @Override
-    public boolean deleteGame(Game game) {
-        for (Game g : games) {
-            if (g.getId() == game.getId()) {
-                games.remove(g);
-                return true;
+     public Game retrieveGame(int id) {
+        Game game = null;
+        Connection connection = SQLConnection.connect();
+
+        String sql = "SELECT * FROM GAME WHERE ID = ?";
+        PreparedStatement pstmt;
+
+        try {
+            pstmt = connection.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            ResultSet result = pstmt.executeQuery();
+
+            while (result.next()) {
+                int gameId = result.getInt("id");
+                String name = result.getString("name");
+                String description = result.getString("description");
+                int categoryId = result.getInt("category_id");
+                Category category = categoryDAO.retrieveCategory(categoryId);
+                game = new Game(gameId, name, description, category);
             }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return null;
+        } finally {
+            SQLConnection.disconnect();
         }
-        return false;
+
+        return game;
     }
 
     @Override
-    public Game retrieveGame(Game game) {
-        for (Game g : games) {
-            if (g.getId() == game.getId()) {
-                return game;
-            }
+    public void updateGame(Game game) {
+        Connection connection = SQLConnection.connect();
+        String sql = "UPDATE GAME SET (name, description) = (?, ?) WHERE ID = ?";
+        PreparedStatement pstmt;
+        
+        try
+        {
+           pstmt = connection.prepareStatement(sql);
+           pstmt.setString(1, game.getName());
+           pstmt.setString(2, game.getDescription());
+           pstmt.setInt(3, game.getId());
+           pstmt.execute();
         }
-        return null;
+        catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+        finally{
+            SQLConnection.disconnect();
+        }
     }
 
 }

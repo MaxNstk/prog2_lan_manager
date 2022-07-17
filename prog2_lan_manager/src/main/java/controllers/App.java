@@ -61,29 +61,29 @@ public class App {
 //        deviceDAO.createDevice(playstation5);
 //        
         CategoryDAO categoryDAO = new CategoryDAO();
-        Category fps2 = new Category("FPS", 3);
-        categoryDAO.createCategory(fps2);
-        Category estrategia = new Category("Estratégia", 1);
-        categoryDAO.createCategory(estrategia);
-        Category battleRoyale = new Category("Battle Royale", 2);
-        categoryDAO.createCategory(battleRoyale);
-        Category acao = new Category("Ação",3);
-        categoryDAO.createCategory(acao);
-        Category luta = new Category("Luta", 2);
-        categoryDAO.createCategory(luta);
-        Category sobrevivencia = new Category("Sobrevivência", 2);
-        categoryDAO.createCategory(sobrevivencia);
-        Category rpg = new Category("RPG", 1);
-        categoryDAO.createCategory(rpg);
+//        Category fps2 = new Category("FPS", 3);
+//        categoryDAO.createCategory(fps2);
+//        Category estrategia = new Category("Estratégia", 1);
+//        categoryDAO.createCategory(estrategia);
+//        Category battleRoyale = new Category("Battle Royale", 2);
+//        categoryDAO.createCategory(battleRoyale);
+//        Category acao = new Category("Ação",3);
+//        categoryDAO.createCategory(acao);
+//        Category luta = new Category("Luta", 2);
+//        categoryDAO.createCategory(luta);
+//        Category sobrevivencia = new Category("Sobrevivência", 2);
+//        categoryDAO.createCategory(sobrevivencia);
+//        Category rpg = new Category("RPG", 1);
+//        categoryDAO.createCategory(rpg);
 //        
 //        GameDAO gameDAO = new GameDAO();
-//        Game ageOfEmpires = new Game("Age of Empires", "Civilizações ancestrais", estrategia);
+//        Game ageOfEmpires = new Game("Age of Empires", "Civilizações ancestrais", categoryDAO.retrieveCategory(1));
 //        gameDAO.createGame(ageOfEmpires);
-//        Game Chess = new Game("Chess", "Xadrez clássico", estrategia);
+//        Game Chess = new Game("Chess", "Xadrez clássico", categoryDAO.retrieveCategory(2));
 //        gameDAO.createGame(Chess);
-//        Game CounterStrike = new Game("Counter-Strike", "FPS multiplayer", fps);
+//        Game CounterStrike = new Game("Counter-Strike", "FPS multiplayer", categoryDAO.retrieveCategory(3));
 //        gameDAO.createGame(CounterStrike);
-//        Game Warzone = new Game("Warzone", "Armas e sobrevivência", battleRoyale);
+//        Game Warzone = new Game("Warzone", "Armas e sobrevivência", categoryDAO.retrieveCategory(4));
 //        gameDAO.createGame(Warzone);
     }   
 }
