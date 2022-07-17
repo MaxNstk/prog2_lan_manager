@@ -35,8 +35,7 @@ public class MainView extends View {
     
     public void addOpenGameplayViewAction(ActionListener action){
         miListGameplay.addActionListener(action);
-    }
-    
+    }   
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

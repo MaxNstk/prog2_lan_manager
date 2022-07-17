@@ -4,7 +4,6 @@
  */
 package controllers.Game;
 
-import controllers.CreateGameController;
 import controllers.MainViewController;
 import daos.GameDAO;
 import java.awt.event.ActionEvent;
@@ -20,17 +19,17 @@ import views.Game.GameListView;
  *
  * @author max
  */
-public class ListGameController {
+public class GameListController {
     
     private GameListView gameListView;
     private GameTableModel gameTableModel;
     private GameDAO gameDAO;
 
-    public ListGameController(GameListView gameListView, GameTableModel gameTableModel) {
+    public GameListController(GameListView gameListView) {
         this.gameListView = gameListView;
         this.gameTableModel = gameTableModel;
         this.gameDAO = new GameDAO();
-        
+        this.gameTableModel = new GameTableModel(this.gameDAO.getGames());
         setTableModel();
         addOpenCreateGameViewButton();
         adicionarEventos();    
@@ -49,7 +48,7 @@ public class ListGameController {
     }
     
     public void addOpenCreateGameViewButton(){
-        gameListView.addOpenCreateGameViewButton(new ActionListener() {
+        gameListView.addOpenGameCreateViewButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 openGameFormView();               
@@ -58,11 +57,10 @@ public class ListGameController {
     }
     
     public void openGameFormView(){
-      CreateGameController createGameController = new CreateGameController(new GameFormView());
+      GameFormController createGameController = new GameFormController(new GameFormView());
       createGameController.showGameFormView();
     }
-   
-    
+       
     public void adicionarEventos(){
         gameListView.adicionarEventoAlteracaoTabela(new TableModelListener() {
             @Override

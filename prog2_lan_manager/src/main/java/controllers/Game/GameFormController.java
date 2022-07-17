@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package controllers;
+package controllers.Game;
 
+import Exceptions.EmptyFieldException;
 import daos.GameDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,58 +15,56 @@ import views.Game.GameFormView;
  *
  * @author max
  */
-public class CreateGameController {
-    
+public class GameFormController {
+
     private GameFormView gameFormView;
     private Game gameModel;
     private GameDAO gameDAO;
 
-    public CreateGameController(GameFormView gameFormView) {
+    public GameFormController(GameFormView gameFormView) {
         this.gameFormView = gameFormView;
         this.gameDAO = new GameDAO();
         this.addActions();
     }
-    
-    public void addActions(){
+
+    public void addActions() {
         gameFormView.addCreateGameButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                createGame();      
+                createGame();
             }
         });
     }
-    
-    public void exibir(){
+
+    public void exibir() {
         gameFormView.showScreen();
     }
-    
-    public void createGame(){
-        gameModel = new Game(gameFormView.getName(), gameFormView.getDescription(), gameFormView.getCategory());
-        if(validateGame()){
+
+    public void createGame() {
+        try {
+            gameModel = new Game(gameFormView.getName(), gameFormView.getDescription(), gameFormView.getCategory());
+            validateGame();
             gameDAO.createGame(gameModel);
             gameFormView.showMessage("Jogo salvo com sucesso!. " + gameModel);
-            gameFormView.clearScreen();      
+            gameFormView.clearScreen();
+        } catch (EmptyFieldException e) {
+            gameFormView.showMessage(e.getMessage());
         }
-        else {
-            gameFormView.showMessage("Preencha todos os campos!");
+    }
+
+    public void validateGame() throws EmptyFieldException {
+        if ((this.gameModel.getName().equals(""))
+            || (this.gameModel.getDescription().equals(""))
+            || (this.gameModel.getCategory() == null)) {
+                throw new EmptyFieldException();
         }
     }
     
-    public boolean validateGame(){
-        if (this.gameModel.getName().equals(""))
-            return false;
-        if (this.gameModel.getDescription().equals(""))
-            return false;
-        if (this.gameModel.getCategory() == null)
-            return false;
-        return true;
-    }
-    
-    public void showGameFormView(){
+    public void showGameFormView() {
         gameFormView.showScreen();
     }
 
     public GameFormView getGameFormView() {
         return this.gameFormView;
-    }    
+    }
 }

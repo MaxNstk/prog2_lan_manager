@@ -7,6 +7,7 @@ package controllers;
 import controllers.Gameplay.GameplayListController;
 import controllers.Customer.CustomerListController;
 import controllers.Device.DeviceListController;
+import controllers.Game.GameListController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import views.Customer.CustomerFormView;
@@ -31,8 +32,8 @@ public class MainViewController {
     }
      
     public void openGameListView(){
-        GameListView gameListView = new GameListView();
-        gameListView.showScreen();
+        GameListController gameListController = new GameListController(new GameListView());
+        gameListController.showScreen();
     }
     
     public void addGameListViewListener(){

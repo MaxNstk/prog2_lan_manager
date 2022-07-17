@@ -15,6 +15,8 @@ public interface IGameDAO {
     
     public void createGame(Game game);
     public Game retrieveGame(int id);
+    public Game retrieveGame(Game game);
     public List<Game> getGames();
+    public boolean deleteGame(Game game);
     
 }

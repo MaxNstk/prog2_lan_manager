@@ -7,7 +7,7 @@ package Exceptions;
  */
 public class EmptyFieldException extends IllegalArgumentException {
 
-    public EmptyFieldException(String message) {
-        super("Erro: O valor não deve ser nulo ou vazio.");
+    public EmptyFieldException() {
+        super("Todos os campos devem ser preenchidos!");
     }
 }

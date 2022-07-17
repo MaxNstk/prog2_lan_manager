@@ -32,7 +32,7 @@ public class GameListView extends views.View {
         setVisible(true);
     }
     
-    public void addOpenCreateGameViewButton(ActionListener acao){
+    public void addOpenGameCreateViewButton(ActionListener acao){
         btCreateGame.addActionListener(acao);
     }
     

@@ -9,10 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import models.Game;
 
-/**
- *
- * @author JEKrieger
- */
 
 public class GameDAO implements IGameDAO{
     
@@ -30,12 +26,33 @@ public class GameDAO implements IGameDAO{
                 return game;
             }
         }
-        return games.get(id-1);
+        return null;
     }
 
     @Override
     public List<Game> getGames() {
         return games;
+    }
+
+    @Override
+    public boolean deleteGame(Game game) {
+        for(Game g : games){
+            if(g.getId() == game.getId()){
+                games.remove(g);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public Game retrieveGame(Game game) {
+        for(Game g : games){
+            if(g.getId() == game.getId()){
+                return game;
+            }
+        }
+        return null;
     }
     
 }
