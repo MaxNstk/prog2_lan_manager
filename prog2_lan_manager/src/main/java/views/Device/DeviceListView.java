@@ -131,7 +131,7 @@ public class DeviceListView extends views.View {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCreateDeviceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateDeviceActionPerformed
-        App.openDeviceCreateView();
+        //App.openDeviceCreateView();
     }//GEN-LAST:event_btCreateDeviceActionPerformed
 
     private void btFilterDeviceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFilterDeviceActionPerformed

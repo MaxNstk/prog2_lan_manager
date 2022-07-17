@@ -3,6 +3,7 @@ package controllers;
 import daos.CategoryDAO;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 import models.Category;
 
@@ -16,7 +17,7 @@ public class CategoryController {
 
     CategoryDAO categoryDAO = new CategoryDAO();
 
-    public Set<Category> getAll() {
+    public List<Category> getAll() {
         return categoryDAO.getCategories();
     }
     

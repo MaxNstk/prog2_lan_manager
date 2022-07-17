@@ -31,12 +31,4 @@ public class User extends Person {
         this.password = password;
     }
 
-    public boolean isIsSuperUser() {
-        return isSuperUser;
-    }
-
-    public void setIsSuperUser(boolean isSuperUser) {
-        this.isSuperUser = isSuperUser;
-    }
-
 }

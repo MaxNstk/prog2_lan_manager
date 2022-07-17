@@ -2,6 +2,7 @@
 package views.Game;
 
 import java.awt.event.ActionListener;
+import java.util.List;
 import javax.swing.JOptionPane;
 import models.Category;
 
@@ -22,6 +23,13 @@ public class GameFormView extends views.View {
     
     public void addCreateGameButton(ActionListener action){
         btCreateGame.addActionListener(action);
+    }
+    
+    public void addCategories(List<Category> categories){
+        cbCategory.removeAllItems();
+        for (Category c : categories){
+            cbCategory.addItem(c);
+        }
     }
     
     public String getName(){

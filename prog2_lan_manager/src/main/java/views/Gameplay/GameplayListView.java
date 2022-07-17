@@ -151,7 +151,7 @@ public class GameplayListView extends View {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCreateGameplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateGameplayActionPerformed
-        App.openGamePlayFormView();
+    //    App.openGamePlayFormView();
         this.listGameplays();
     }//GEN-LAST:event_btCreateGameplayActionPerformed
 

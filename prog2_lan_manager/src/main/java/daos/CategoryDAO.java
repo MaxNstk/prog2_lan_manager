@@ -1,17 +1,14 @@
 package daos;
 
 import interfaces.ICategoryDAO;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import models.Category;
 
-/**
- *
- * @author petrix
- */
+
 public class CategoryDAO implements ICategoryDAO {
 
-    private static final Set<Category> categories = new HashSet<>();
+    private static final List<Category> categories = new ArrayList<>();
 
     @Override
     public void createCategory(Category category) {
@@ -19,7 +16,7 @@ public class CategoryDAO implements ICategoryDAO {
     }
 
     @Override
-    public Set<Category> getCategories() {
+    public List<Category> getCategories() {
         return this.categories;
     }
 

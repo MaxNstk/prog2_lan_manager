@@ -5,6 +5,7 @@
 package controllers.Game;
 
 import Exceptions.EmptyFieldException;
+import daos.CategoryDAO;
 import daos.GameDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,11 +21,14 @@ public class GameFormController {
     private GameFormView gameFormView;
     private Game gameModel;
     private GameDAO gameDAO;
+    private CategoryDAO categoryDAO;
 
     public GameFormController(GameFormView gameFormView) {
         this.gameFormView = gameFormView;
         this.gameDAO = new GameDAO();
+        this.categoryDAO = new CategoryDAO();
         this.addActions();
+        fillCategoryCb();
     }
 
     public void addActions() {
@@ -34,6 +38,10 @@ public class GameFormController {
                 createGame();
             }
         });
+    }
+    
+    public void fillCategoryCb(){
+        this.gameFormView.addCategories(categoryDAO.getCategories());
     }
 
     public void exibir() {
