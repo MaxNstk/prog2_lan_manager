@@ -6,8 +6,10 @@ import controllers.App;
 import controllers.CustomerController;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import models.Customer;
+import models.tables.CustomerTableModel;
 
 /**
  *
@@ -17,6 +19,14 @@ public class CustomerListView extends views.View {
     
     public void addOpenCreateCustomer(ActionListener action){
         btCreateCustomer.addActionListener(action);
+    }
+    
+    public void setTableModel(CustomerTableModel gameTableModel){
+        tbCustomerList.setModel(gameTableModel);
+    }
+    
+    public void adicionarEventoAlteracaoTabela(TableModelListener l){
+        tbCustomerList.getModel().addTableModelListener(l);
     }
 
     private CustomerController customerController;
@@ -46,7 +56,7 @@ public class CustomerListView extends views.View {
         this.createTableModel();
         for (Customer customer : customerController.getFilteredCustomers()) {
             Object[] listData = {customer.getId(), customer.getName(), customer.getCPF(),
-                customer.getAdress(), customer.getBirthDate(), customer.getCreditsAmount()};
+                customer.getaddress(), customer.getBirthDate(), customer.getCreditsAmount()};
             dtmCustomers.addRow(listData);
         }
     }
@@ -71,7 +81,7 @@ public class CustomerListView extends views.View {
                 this.customerController.filterByCPF(this.tfCustomerName.getText());
                 break;
             case 3:
-                this.customerController.filterByAdress(this.tfCustomerName.getText());
+                this.customerController.filterByaddress(this.tfCustomerName.getText());
                 break;
         }
     }
@@ -96,11 +106,11 @@ public class CustomerListView extends views.View {
         btFilterCustomer = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         cbSortOptions = new javax.swing.JComboBox<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbCustomerList = new javax.swing.JTable();
         btUpdateCustomer = new javax.swing.JButton();
         tfCustomerName = new javax.swing.JTextField();
         btAddCredits = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tbCustomerList = new javax.swing.JTable();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -137,19 +147,6 @@ public class CustomerListView extends views.View {
 
         cbSortOptions.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ordem alfabética", "Quantidade de créditos" }));
 
-        tbCustomerList.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(tbCustomerList);
-
         btUpdateCustomer.setText("Editar");
         btUpdateCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,6 +161,19 @@ public class CustomerListView extends views.View {
             }
         });
 
+        tbCustomerList.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(tbCustomerList);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -173,8 +183,14 @@ public class CustomerListView extends views.View {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1)
-                            .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btCreateCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btUpdateCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 707, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(layout.createSequentialGroup()
@@ -185,20 +201,14 @@ public class CustomerListView extends views.View {
                                         .addComponent(tfCustomerName, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
                                         .addGap(18, 18, 18)
                                         .addComponent(btFilterCustomer))))
-                            .addGroup(layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(cbSortOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btAddCredits)
                                 .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(20, 20, 20))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btCreateCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btUpdateCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(20, 20, 20))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,9 +234,9 @@ public class CustomerListView extends views.View {
                             .addComponent(jLabel2)
                             .addComponent(cbSortOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btAddCredits, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addGap(31, 31, 31)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
@@ -268,8 +278,8 @@ public class CustomerListView extends views.View {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable tbCustomerList;
     private javax.swing.JTextField tfCustomerName;

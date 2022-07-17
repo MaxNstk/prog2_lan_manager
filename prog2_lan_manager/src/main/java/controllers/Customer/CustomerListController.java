@@ -25,6 +25,8 @@ public class CustomerListController {
         customerDAO = new CustomerDAO();
         customerTableModel = new CustomerTableModel(customerDAO.getCustomers());
         addOpenCreateCustomerListener();
+        setTableModel();
+        addEvents();
     }
 
     public void showScreen() {
@@ -47,16 +49,12 @@ public class CustomerListController {
     }
     
     private void setTableModel(){
-        gameListView.setTableModel(this.gameTableModel);
-    }
-    
-    public void showScreen(){
-        gameListView.showScreen();
+        customerListView.setTableModel(this.customerTableModel);
     }
     
     public void updateData(){
-        gameTableModel.fireTableDataChanged();
-        gameTableModel.setGames(this.gameDAO.getGames());
+        customerTableModel.fireTableDataChanged();
+        customerTableModel.setCustomers(this.customerDAO.getCustomers());
     }
     
     public void addEvents(){

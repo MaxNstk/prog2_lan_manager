@@ -64,7 +64,7 @@ public class CustomerDAO implements ICustomerDAO {
             pstmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, customer.getName());
             pstmt.setString(2, customer.getCPF());
-            pstmt.setString(3, customer.getAdress());
+            pstmt.setString(3, customer.getaddress());
             pstmt.setString(4, customer.getBirthDate());
             pstmt.execute();
             ResultSet result = pstmt.getGeneratedKeys();
@@ -97,11 +97,12 @@ public class CustomerDAO implements ICustomerDAO {
 
             while (result.next()) {
                 int id = result.getInt("id");
-                String name = result.getString("CPF");
-                String description = result.getString("address");
-                int categoryId = result.getInt("category_id");
-                Category category = categoryDAO.retrieveCategory(categoryId);
-//                customers.add(new Customer(id, name, description, category));
+                String name = result.getString("name");
+                String CPF = result.getString("CPF");
+                String address = result.getString("address");
+                String birthDate = result.getString("birthDate");
+                int creditsAmount = result.getInt("creditsAmount");
+                customers.add(new Customer(id, name, CPF, address, birthDate, creditsAmount));
             }
 
         } catch (SQLException e) {
@@ -147,14 +148,15 @@ public class CustomerDAO implements ICustomerDAO {
     @Override
     public void updateCustomer(Customer customer) {
         Connection connection = SQLConnection.connect();
-        String sql = "UPDATE GAME SET (name, description) = (?, ?) WHERE ID = ?";
+        String sql = "UPDATE PERSON SET (name, CPF, address, birthDate) = (?, ?, ?, ?) WHERE ID = ?";
         PreparedStatement pstmt;
-
         try {
             pstmt = connection.prepareStatement(sql);
             pstmt.setString(1, customer.getName());
-//            pstmt.setString(2, customer.getDescription());
-            pstmt.setInt(3, customer.getId());
+            pstmt.setString(2, customer.getCPF());
+            pstmt.setString(3, customer.getaddress());
+            pstmt.setString(4, customer.getBirthDate());
+            pstmt.setInt(5, customer.getId());
             pstmt.execute();
         } catch (SQLException e) {
             System.out.println(e.getMessage());

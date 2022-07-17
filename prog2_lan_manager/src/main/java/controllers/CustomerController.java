@@ -49,10 +49,10 @@ public class CustomerController {
         }
     }
 
-    public void filterByAdress(String searchParam) {
+    public void filterByaddress(String searchParam) {
         this.filteredCustomers = new ArrayList<>();
         for (Customer customer : customerDAO.getCustomers()) {
-            if (customer.getAdress().contains(searchParam)) {
+            if (customer.getaddress().contains(searchParam)) {
                 this.filteredCustomers.add(customer);
             }
         }

@@ -28,7 +28,7 @@ public class CustomerFormView extends views.View {
         return tfCPF.getText();
     }
     
-    public String getAdress(){
+    public String getaddress(){
         return tfBirthDate.getText();
     }
     
@@ -43,7 +43,7 @@ public class CustomerFormView extends views.View {
     public void clearFields() {
         tfName.setText("");
         tfCPF.setText("");
-        tfAdress.setText("");
+        tfaddress.setText("");
         tfBirthDate.setText("");
     }
 
@@ -61,16 +61,16 @@ public class CustomerFormView extends views.View {
 //    public void setCustomerInfo(Customer customer) {
 //        tfName.setText(customer.getName());
 //        tfCPF.setText(customer.getCPF());
-//        tfAdress.setText(customer.getAdress());
+//        tfaddress.setText(customer.getaddress());
 //        tfBirthDate.setText(customer.getBirthDate());
 //    }
 //
 //    public Customer getCustomerInfo() throws EmptyFieldException {
 //        String name = tfName.getText();
 //        String CPF = tfCPF.getText();
-//        String adress = tfAdress.getText();
+//        String address = tfaddress.getText();
 //        String birthDate = tfBirthDate.getText();
-//        return new Customer(name, CPF, adress, birthDate);
+//        return new Customer(name, CPF, address, birthDate);
 //
 //    }
 //
@@ -88,7 +88,7 @@ public class CustomerFormView extends views.View {
 //    public void updateCustomer() {
 //        this.customer.setName(tfName.getText());
 //        this.customer.setCPF(tfCPF.getText());
-//        this.customer.setAdress(tfAdress.getText());
+//        this.customer.setaddress(tfaddress.getText());
 //        this.customer.setBirthDate(tfBirthDate.getText());
 //        JOptionPane.showMessageDialog(null, "Cliente alterado com sucesso.");
 //    }
@@ -103,7 +103,7 @@ public class CustomerFormView extends views.View {
     private void initComponents() {
 
         tfName = new javax.swing.JTextField();
-        tfAdress = new javax.swing.JTextField();
+        tfaddress = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -116,7 +116,7 @@ public class CustomerFormView extends views.View {
 
         tfName.setName("tfName"); // NOI18N
 
-        tfAdress.setName("tfAdress"); // NOI18N
+        tfaddress.setName("tfaddress"); // NOI18N
 
         jLabel1.setText("Nome");
 
@@ -153,7 +153,7 @@ public class CustomerFormView extends views.View {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfName)
-                    .addComponent(tfAdress, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                    .addComponent(tfaddress, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfCPF)
                     .addComponent(tfBirthDate)
@@ -178,14 +178,14 @@ public class CustomerFormView extends views.View {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
                 .addGap(2, 2, 2)
-                .addComponent(tfAdress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfaddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btCreateCustomer)
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
-        tfAdress.getAccessibleContext().setAccessibleName("tfEndereco");
-        tfAdress.getAccessibleContext().setAccessibleDescription("tfEndereco");
+        tfaddress.getAccessibleContext().setAccessibleName("tfEndereco");
+        tfaddress.getAccessibleContext().setAccessibleDescription("tfEndereco");
         jLabel3.getAccessibleContext().setAccessibleName("");
 
         pack();
@@ -200,7 +200,7 @@ public class CustomerFormView extends views.View {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField tfAdress;
+    private javax.swing.JTextField tfaddress;
     private javax.swing.JFormattedTextField tfBirthDate;
     private javax.swing.JFormattedTextField tfCPF;
     private javax.swing.JTextField tfName;

@@ -43,7 +43,7 @@ public class CustomerFormController {
     public void createCustomer() {
         try {
             customerModel = new Customer(customerFormView.getName(), 
-                    customerFormView.getCPF(), customerFormView.getAdress(),
+                    customerFormView.getCPF(), customerFormView.getaddress(),
                     customerFormView.getBirthDAte());
             validateCustomer();
             customerDAO.createCustomer(customerModel);
@@ -57,7 +57,7 @@ public class CustomerFormController {
     public void validateCustomer() throws EmptyFieldException {
         if ((this.customerModel.getName().equals(""))
             || (this.customerModel.getCPF().equals(""))
-            || (this.customerModel.getAdress().equals(""))
+            || (this.customerModel.getaddress().equals(""))
             || (this.customerModel.getBirthDate().equals(""))) {
                 throw new EmptyFieldException();
         }

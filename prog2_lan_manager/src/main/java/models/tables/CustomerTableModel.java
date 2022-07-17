@@ -53,7 +53,7 @@ public class CustomerTableModel extends AbstractTableModel{
                 value = customer.getCPF();
                 break;
             case COLUNA_ENDERECO:
-                value = customer.getAdress();
+                value = customer.getaddress();
                 break;
             case COLUNA_DATA_NASCIMENTO:
                 value = customer.getBirthDate();
@@ -78,7 +78,7 @@ public class CustomerTableModel extends AbstractTableModel{
                 customer.setCPF((String) aValue);
                 break;
             case COLUNA_ENDERECO:
-                customer.setAdress((String) aValue);
+                customer.setaddress((String) aValue);
                 break;
             case COLUNA_DATA_NASCIMENTO:
                 customer.setBirthDate((String) aValue);

@@ -11,23 +11,23 @@ public abstract class Person {
     protected int id;
     protected String name;
     protected String CPF;
-    protected String adress;
+    protected String address;
     protected String birthDate;
     protected boolean active;
 
-    public Person(String name, String CPF, String adress, String birthDate) {
+    public Person(String name, String CPF, String address, String birthDate) {
         this.name = validateNotNull(name);
         this.CPF = validateNotNull(CPF);
-        this.adress = validateNotNull(adress);
+        this.address = validateNotNull(address);
         this.birthDate = validateNotNull(birthDate);
         this.active = true;
     }
     
-    public Person(int id, String name, String CPF, String adress, String birthDate) {
+    public Person(int id, String name, String CPF, String address, String birthDate) {
         this.id = id;
         this.name = validateNotNull(name);
         this.CPF = validateNotNull(CPF);
-        this.adress = validateNotNull(adress);
+        this.address = validateNotNull(address);
         this.birthDate = validateNotNull(birthDate);
         this.active = true;
     }
@@ -47,8 +47,8 @@ public abstract class Person {
         this.CPF = CPF;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setaddress(String address) {
+        this.address = address;
     }
 
     public void setBirthDate(String birthDate) {
@@ -67,8 +67,8 @@ public abstract class Person {
         return this.CPF;
     }
 
-    public String getAdress() {
-        return this.adress;
+    public String getaddress() {
+        return this.address;
     }
 
     public String getBirthDate() {
