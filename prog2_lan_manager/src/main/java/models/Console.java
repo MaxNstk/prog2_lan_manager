@@ -39,4 +39,8 @@ public class Console extends Device {
         return model;
     }
     
+    public void setModel(String m) {
+        this.model = m;
+    }
+    
 } 

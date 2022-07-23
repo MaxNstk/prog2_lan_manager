@@ -87,8 +87,10 @@ public class DeviceTableModel extends AbstractTableModel{
                 device.setName((String) aValue);
                 break;
             case COLUNA_SPECS_MODEL:
-//                todo verificar qual é
-//                device.setDescription((String) aValue);
+                if (device instanceof Computer)
+                    ((Computer) device).setSpecs((String) aValue);
+                else
+                    ((Console) device).setModel((String) aValue);
                 break;
         }
         fireTableDataChanged();

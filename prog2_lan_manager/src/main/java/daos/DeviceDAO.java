@@ -165,16 +165,27 @@ public class DeviceDAO implements IDeviceDAO {
     // todo
     public void updateDevice(Device device) {
         Connection connection = SQLConnection.connect();
-        String sql = "UPDATE PERSON SET (name, CPF, address, birthDate) = (?, ?, ?, ?) WHERE ID = ?";
+        String sql = "UPDATE DEVICE SET name = (?) WHERE ID = (?);";
         PreparedStatement pstmt;
         try {
             pstmt = connection.prepareStatement(sql);
+            pstmt.setInt(2, device.getId());
             pstmt.setString(1, device.getName());
-//            pstmt.setString(2, device.getCPF());
-//            pstmt.setString(3, device.getaddress());
-//            pstmt.setString(4, device.getBirthDate());
-            pstmt.setInt(5, device.getId());
             pstmt.execute();
+            
+            PreparedStatement secondary_psmst;
+            
+            if (device instanceof Console){
+                secondary_psmst = connection.prepareStatement("UPDATE CONSOLE SET model = (?) WHERE deviceId = (?)");
+                secondary_psmst.setString(1, ((Console) device).getModel());
+            }
+            else{
+                secondary_psmst = connection.prepareStatement("UPDATE COMPUTER SET specs = (?) WHERE deviceId = (?)");
+                secondary_psmst.setString(1, ((Computer) device).getSpecs());               
+            }
+            secondary_psmst.setInt(2, device.getId());
+            secondary_psmst.execute();
+            
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
