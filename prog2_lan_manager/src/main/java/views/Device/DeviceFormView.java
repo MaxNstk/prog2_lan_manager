@@ -45,8 +45,6 @@ public class DeviceFormView extends views.View {
         btCreateCustomer1 = new javax.swing.JButton();
         lbName = new javax.swing.JLabel();
         tfName = new javax.swing.JTextField();
-        lbActive = new javax.swing.JLabel();
-        cbActive = new javax.swing.JCheckBox();
         rbComputer = new javax.swing.JRadioButton();
         rbConsole = new javax.swing.JRadioButton();
         lbName1 = new javax.swing.JLabel();
@@ -66,14 +64,6 @@ public class DeviceFormView extends views.View {
         tfName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfNameActionPerformed(evt);
-            }
-        });
-
-        lbActive.setText("Ativo:");
-
-        cbActive.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbActiveActionPerformed(evt);
             }
         });
 
@@ -126,16 +116,10 @@ public class DeviceFormView extends views.View {
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbName1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(rbComputer)
                         .addGap(18, 18, 18)
                         .addComponent(rbConsole, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(tfName, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbActive, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbActive))
                     .addComponent(lbName, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,13 +127,13 @@ public class DeviceFormView extends views.View {
                             .addComponent(lbSpecs, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfModel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbModel, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(161, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btCreateDevice)
-                .addGap(41, 41, 41))
+                            .addComponent(lbModel, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(btCreateDevice)
+                                .addComponent(tfModel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(lbName1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfName, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,10 +142,6 @@ public class DeviceFormView extends views.View {
                 .addComponent(lbName1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbActive)
-                    .addComponent(cbActive))
                 .addGap(18, 18, 18)
                 .addComponent(lbName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -178,9 +158,9 @@ public class DeviceFormView extends views.View {
                         .addComponent(lbModel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfModel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(7, 7, 7)
+                .addGap(18, 18, 18)
                 .addComponent(btCreateDevice)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
@@ -189,10 +169,6 @@ public class DeviceFormView extends views.View {
     private void tfNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfNameActionPerformed
-
-    private void cbActiveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbActiveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbActiveActionPerformed
 
     private void rbComputerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbComputerActionPerformed
         tfModel.setEnabled(false);
@@ -249,17 +225,15 @@ public class DeviceFormView extends views.View {
     
     private Computer getNewComputer() {
         String name    = tfName.getText();
-        boolean active = cbActive.isSelected();;
         String specs   = tfSpecs.getText();
 
-        return new Computer(name, specs, active);
+        return new Computer(name, specs);
     }
     
     private Console getNewConsole() {
         String name    = tfName.getText();
-        boolean active = cbActive.isSelected();;
         String model   = tfModel.getText();
-        return new Console(name, model, active);
+        return new Console(name, model);
     }
     
     public void clearFields() {
@@ -311,8 +285,6 @@ public class DeviceFormView extends views.View {
     private javax.swing.ButtonGroup bgTypeDevice;
     private javax.swing.JButton btCreateCustomer1;
     private javax.swing.JButton btCreateDevice;
-    private javax.swing.JCheckBox cbActive;
-    private javax.swing.JLabel lbActive;
     private javax.swing.JLabel lbModel;
     private javax.swing.JLabel lbName;
     private javax.swing.JLabel lbName1;

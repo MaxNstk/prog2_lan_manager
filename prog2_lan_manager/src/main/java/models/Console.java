@@ -10,8 +10,13 @@ public class Console extends Device {
 
     String model;
 
-    public Console(String name, String model, boolean active) {
-        super(name, active);
+    public Console(String name, String model) {
+        super(name);
+        this.model = model;
+    }
+
+    public Console(int id, String name, String model, boolean available) {
+        super(id, name, available);
         this.model = model;
     }
 
@@ -28,6 +33,10 @@ public class Console extends Device {
         super.validateAttributes(); 
         if (this.model.isEmpty()) new EmptyAttribute("Console", "Modelo");
 
+    }
+
+    public String getModel() {
+        return model;
     }
     
 } 

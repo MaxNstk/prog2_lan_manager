@@ -47,7 +47,7 @@ public class App {
 //        Customer pedro = new Customer("Mattheus do Minuto", "444.555.666-77", "Leblon, 901", "25/07/2000");
 //        customerDAO.createCustomer(pedro);
 //        pedro.addCredits(1000);
-//        
+////        
 //        DeviceDAO deviceDAO = new DeviceDAO();
 //        Computer computador1 = new Computer("Computador 1", "Intel i5 | RAM DDR4 8GB | GTX1650 2GB", true);
 //        deviceDAO.createDevice(computador1);

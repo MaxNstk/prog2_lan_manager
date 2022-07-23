@@ -24,6 +24,10 @@ public class GameListView extends views.View {
         tbGameList.setModel(gameTableModel);
     }
     
+    public void adicionarEventoAlteracaoTabela(TableModelListener l){
+        tbGameList.getModel().addTableModelListener(l);
+    }
+    
     public void showMessage(String msg){
         JOptionPane.showMessageDialog(null, msg);
     }
@@ -35,20 +39,9 @@ public class GameListView extends views.View {
     public void addOpenGameCreateViewButton(ActionListener acao){
         btCreateGame.addActionListener(acao);
     }
-    
-    public String getCPFLinhaSelecionada(){
-        if(tbGameList.getSelectedRow() == -1){
-            System.out.println("Nenhuma Linha selecionada");
-            return null;
-        }
             
-        //Retorna o CPF - Primeira coluna da linha selecionada
-        return tbGameList.getModel().getValueAt(tbGameList.getSelectedRow(), 0).toString();
-    }
     
-    public void adicionarEventoAlteracaoTabela(TableModelListener l){
-        tbGameList.getModel().addTableModelListener(l);
-    }
+    
     
  
 //

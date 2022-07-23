@@ -79,7 +79,7 @@ public class MainViewController {
     }
     
     public void addGameplayListViewListener(){
-                mainView.addOpenDeviceListViewAction(new ActionListener() {
+                mainView.addOpenGameplayViewAction(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 openGameplayListView();      

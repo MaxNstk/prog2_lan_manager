@@ -29,69 +29,53 @@ public class CustomerListView extends views.View {
         tbCustomerList.getModel().addTableModelListener(l);
     }
 
-    private CustomerController customerController;
-    private DefaultTableModel dtmCustomers;
-
-    private final String[] columnNames = {
-        "Id", "Nome", "CPF", "Endereço", "Data de nascimento", "Créditos disponíveis"
-    };
-
     public CustomerListView() {
         initComponents();
         ajustScreenCenter();
-        customerController = new CustomerController();
-        this.createTableModel();
-        this.ListCustomers();
     }
 
-    private void createTableModel() {
-        this.dtmCustomers = (DefaultTableModel) this.tbCustomerList.getModel();
-        this.dtmCustomers.setColumnIdentifiers(columnNames);
-        this.dtmCustomers.setRowCount(0);
-    }
-
-    public void ListCustomers() {
-        this.getFilteredCustomers();
-        this.getSortedCustomers();
-        this.createTableModel();
-        for (Customer customer : customerController.getFilteredCustomers()) {
-            Object[] listData = {customer.getId(), customer.getName(), customer.getCPF(),
-                customer.getaddress(), customer.getBirthDate(), customer.getCreditsAmount()};
-            dtmCustomers.addRow(listData);
-        }
-    }
-
-    public void getSortedCustomers() {
-        if (this.cbSortOptions.getSelectedIndex() == 0) {
-            this.customerController.sortAlphabetically();
-        } else {
-            this.customerController.sortByCreditsAmount();
-        }
-    }
-
-    public void getFilteredCustomers() {
-        switch (this.cbFilterOptions.getSelectedIndex()) {
-            case 0:
-                this.customerController.getAll();
-                break;
-            case 1:
-                this.customerController.filterByName(this.tfCustomerName.getText());
-                break;
-            case 2:
-                this.customerController.filterByCPF(this.tfCustomerName.getText());
-                break;
-            case 3:
-                this.customerController.filterByaddress(this.tfCustomerName.getText());
-                break;
-        }
-    }
-
-    public int validateSelection(int selectedRow) throws NullSelectionException {
-        if (selectedRow == -1) {
-            throw new NullSelectionException("cliente");
-        }
-        return (Integer) this.dtmCustomers.getValueAt(this.tbCustomerList.getSelectedRow(), 0);
-    }
+//    public void ListCustomers() {
+//        this.getFilteredCustomers();
+//        this.getSortedCustomers();
+//        this.createTableModel();
+//        for (Customer customer : customerController.getFilteredCustomers()) {
+//            Object[] listData = {customer.getId(), customer.getName(), customer.getCPF(),
+//                customer.getaddress(), customer.getBirthDate(), customer.getCreditsAmount()};
+//            dtmCustomers.addRow(listData);
+//        }
+//    }
+//
+//    public void getSortedCustomers() {
+//        if (this.cbSortOptions.getSelectedIndex() == 0) {
+//            this.customerController.sortAlphabetically();
+//        } else {
+//            this.customerController.sortByCreditsAmount();
+//        }
+//    }
+//
+//    public void getFilteredCustomers() {
+//        switch (this.cbFilterOptions.getSelectedIndex()) {
+//            case 0:
+//                this.customerController.getAll();
+//                break;
+//            case 1:
+//                this.customerController.filterByName(this.tfCustomerName.getText());
+//                break;
+//            case 2:
+//                this.customerController.filterByCPF(this.tfCustomerName.getText());
+//                break;
+//            case 3:
+//                this.customerController.filterByaddress(this.tfCustomerName.getText());
+//                break;
+//        }
+//    }
+//
+//    public int validateSelection(int selectedRow) throws NullSelectionException {
+//        if (selectedRow == -1) {
+//            throw new NullSelectionException("cliente");
+//        }
+//        return (Integer) this.dtmCustomers.getValueAt(this.tbCustomerList.getSelectedRow(), 0);
+//    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -243,25 +227,25 @@ public class CustomerListView extends views.View {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btFilterCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFilterCustomerActionPerformed
-        this.ListCustomers();
+//        this.ListCustomers();
     }//GEN-LAST:event_btFilterCustomerActionPerformed
 
     private void btUpdateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUpdateCustomerActionPerformed
-        try {
-            int customerId = validateSelection(this.tbCustomerList.getSelectedRow());
-//            customerController.updateCustomer(customerId);
-        } catch (NullSelectionException nullSelectionException) {
-            JOptionPane.showMessageDialog(null, nullSelectionException.getMessage());
-        }
+//        try {
+//            int customerId = validateSelection(this.tbCustomerList.getSelectedRow());
+////            customerController.updateCustomer(customerId);
+//        } catch (NullSelectionException nullSelectionException) {
+//            JOptionPane.showMessageDialog(null, nullSelectionException.getMessage());
+//        }
     }//GEN-LAST:event_btUpdateCustomerActionPerformed
 
     private void btAddCreditsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddCreditsActionPerformed
-        try {
-            int customerId = validateSelection(this.tbCustomerList.getSelectedRow());
-//            App.openAddCreditsView(customerId);
-        } catch (NullSelectionException nullSelectionException) {
-            JOptionPane.showMessageDialog(null, nullSelectionException.getMessage());
-        }
+//        try {
+//            int customerId = validateSelection(this.tbCustomerList.getSelectedRow());
+////            App.openAddCreditsView(customerId);
+//        } catch (NullSelectionException nullSelectionException) {
+//            JOptionPane.showMessageDialog(null, nullSelectionException.getMessage());
+//        }
     }//GEN-LAST:event_btAddCreditsActionPerformed
 
     /**

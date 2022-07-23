@@ -17,4 +17,5 @@ public interface IDeviceDAO {
     public void createDevice(Device p);
     public Device retrieveDevice(int id);
     public List<Device> getAvailableDevices();
+    public void updateDevice(Device device);
 }
