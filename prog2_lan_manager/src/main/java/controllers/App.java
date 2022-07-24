@@ -6,12 +6,14 @@ import daos.CategoryDAO;
 import daos.CustomerDAO;
 import daos.DeviceDAO;
 import daos.GameDAO;
+import daos.UserDAO;
 import models.Category;
 import models.Computer;
 import models.Console;
 import models.Customer;
 import models.Device;
 import models.Game;
+import models.User;
 import views.Customer.AddCreditsView;
 import views.Customer.CustomerFormView;
 import views.Customer.CustomerListView;
@@ -31,9 +33,17 @@ import views.MainView;
 public class App {
     
     public static void main(String[] args) {
-        MainViewController mainView =  new MainViewController(new MainView());
-        mainView.showScreen();
         
+        LoginController loginController = new LoginController(new LoginView());
+        loginController.showScreen();
+        
+//        MainViewController mainView =  new MainViewController(new MainView());
+//        mainView.showScreen();       
+               
+//        UserDAO userDAO = new UserDAO();
+//        userDAO.createUser(new User("admin","admin","Alan Santos", "111.222.333-44", "Rua Alvarez, 123", "09/11/2001"));
+//        userDAO.createUser(new User("max","admin","Alan Santos", "111.222.333-44", "Rua Alvarez, 123", "09/11/2001"));
+
 //        CustomerDAO customerDAO = new CustomerDAO();
 //        Customer alan = new Customer("Alan Santos", "111.222.333-44", "Rua Alvarez, 123", "09/11/2001");
 //        alan.addCredits(15);

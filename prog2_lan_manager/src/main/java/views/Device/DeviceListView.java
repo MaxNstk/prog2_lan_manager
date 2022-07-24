@@ -11,10 +11,6 @@ import javax.swing.table.DefaultTableModel;
 import models.Device;
 import models.tables.DeviceTableModel;
 
-/**
- *
- * @author petrix
- */
 public class DeviceListView extends views.View {  
     
         public DeviceListView() {
@@ -34,17 +30,6 @@ public class DeviceListView extends views.View {
     public void adicionarEventoAlteracaoTabela(TableModelListener l){
         tbDevice.getModel().addTableModelListener(l);
     }
-
-    private final String[] columnNames = {
-        "Id", "Nome"
-    };
-    
-//    private void createTableModel() {
-//        this.dtmDevices = (DefaultTableModel) this.tbDeviceList.getModel();
-//        this.dtmDevices.setColumnIdentifiers(columnNames);
-//        this.dtmDevices.setRowCount(0);
-//    }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -69,11 +54,6 @@ public class DeviceListView extends views.View {
         });
 
         btFilterDevice.setText("Pesquisar");
-        btFilterDevice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btFilterDeviceActionPerformed(evt);
-            }
-        });
 
         tbDevice.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -127,25 +107,10 @@ public class DeviceListView extends views.View {
         //App.openDeviceCreateView();
     }//GEN-LAST:event_btCreateDeviceActionPerformed
 
-    private void btFilterDeviceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFilterDeviceActionPerformed
-//        this.ListDevices();
-    }//GEN-LAST:event_btFilterDeviceActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-
     @Override
     public void setTitleScreen() {
         setTitle("Consulta de Dispositivos");
     }
-
-//    public int validateSelection(int selectedRow) throws NullSelectionException {
-//        if (selectedRow == -1) {
-//            throw new NullSelectionException("Dispositivo");
-//        }
-//        return (Integer) this.dtmDevices.getValueAt(this.tbDeviceList.getSelectedRow(), 0);
-//    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCreateDevice;
