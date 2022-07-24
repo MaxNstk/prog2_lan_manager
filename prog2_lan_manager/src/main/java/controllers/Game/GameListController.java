@@ -32,6 +32,7 @@ public class GameListController {
         this.gameTableModel = new GameTableModel(this.gameDAO.getGames());
         setTableModel();
         addOpenCreateGameViewButton();
+        addDeleteGameListener();
         addEvents();    
     }
     private void setTableModel(){
@@ -42,7 +43,24 @@ public class GameListController {
         gameListView.showScreen();
     }
     
-    public void atualizarDados(){
+    public void addDeleteGameListener() {
+        gameListView.addDeleteGame(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                deleteGame();
+            }
+        });
+    }
+        
+    public void deleteGame(){
+        if (this.gameListView.getGameId() != -1){
+            gameDAO.deleteGame(this.gameListView.getGameId());
+            updateData();
+        }
+        
+    }
+    
+    public void updateData(){
         gameTableModel.fireTableDataChanged();
         gameTableModel.setGames(this.gameDAO.getGames());
     }
@@ -72,7 +90,7 @@ public class GameListController {
                         GameTableModel model = (GameTableModel)e.getSource();
                         Game game = gameTableModel.getGames().get(row);
                         gameDAO.updateGame(game);
-                        atualizarDados();
+                        updateData();
                    }
                  }
             }

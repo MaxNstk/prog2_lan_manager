@@ -18,11 +18,12 @@ public class DeviceTableModel extends AbstractTableModel{
    
     private List<Device> devices;
     
-    private final String[] columnNames = {"Nome", "Tipo", "Specs/Modelo", "Disponível"};
-    private final int COLUNA_NOME = 0;
-    private final int COLUNA_TIPO = 1;
-    private final int COLUNA_SPECS_MODEL = 2;
-    private final int COLUNA_DISPONIVEL = 3;
+    private final String[] columnNames = {"ID","Nome", "Tipo", "Specs/Modelo", "Disponível"};
+    private final int COLUNA_ID = 0;
+    private final int COLUNA_NOME = 1;
+    private final int COLUNA_TIPO = 2;
+    private final int COLUNA_SPECS_MODEL = 3;
+    private final int COLUNA_DISPONIVEL = 4;
     
     public DeviceTableModel(List<Device> devices) {
         this.devices = devices;
@@ -48,6 +49,9 @@ public class DeviceTableModel extends AbstractTableModel{
         Device device = this.devices.get(rowIndex);
         String value = null;
         switch(columnIndex){
+            case COLUNA_ID:
+                value = Integer.toString(device.getId());
+                break;
             case COLUNA_NOME:
                 value = device.getName();
                 break;
@@ -74,7 +78,7 @@ public class DeviceTableModel extends AbstractTableModel{
     
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        if(columnIndex == COLUNA_TIPO || columnIndex == COLUNA_DISPONIVEL)
+        if(columnIndex == COLUNA_TIPO || columnIndex == COLUNA_DISPONIVEL || columnIndex == COLUNA_ID)
             return false;
         return true;
     }

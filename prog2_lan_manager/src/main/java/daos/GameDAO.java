@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 import models.Category;
 import models.Game;
-import models.Game;
 
 public class GameDAO implements IGameDAO {
     
@@ -150,6 +149,22 @@ public class GameDAO implements IGameDAO {
         finally{
             SQLConnection.disconnect();
         }
+    }
+    
+    @Override
+    public void deleteGame(int id) {
+        Connection connection = SQLConnection.connect();
+        String sql = "DELETE FROM GAME WHERE id = ?";
+        PreparedStatement pstmt;
+        try {
+            pstmt = connection.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.execute();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            SQLConnection.disconnect();
+        }     
     }
 
 }

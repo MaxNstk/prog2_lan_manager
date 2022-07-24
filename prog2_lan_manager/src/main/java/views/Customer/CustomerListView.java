@@ -11,6 +11,11 @@ import models.tables.CustomerTableModel;
  */
 public class CustomerListView extends views.View {
     
+        public CustomerListView() {
+        initComponents();
+        ajustScreenCenter();
+    }
+    
     public void addOpenCreateCustomer(ActionListener action){
         btCreateCustomer.addActionListener(action);
     }
@@ -25,11 +30,6 @@ public class CustomerListView extends views.View {
     
     public void adicionarEventoAlteracaoTabela(TableModelListener l){
         tbCustomerList.getModel().addTableModelListener(l);
-    }
-
-    public CustomerListView() {
-        initComponents();
-        ajustScreenCenter();
     }
     
     @Override

@@ -168,14 +168,14 @@ public class CustomerDAO implements ICustomerDAO {
     @Override
     public void deleteCustomer(int id) {
         Connection connection = SQLConnection.connect();
-        String sql = "DELETE FROM PERSON WHERE id = ?";
+        String sql = "DELETE FROM CUSTOMER WHERE personId = ?";
         PreparedStatement pstmt;
         try {
             pstmt = connection.prepareStatement(sql);
             pstmt.setInt(1, id);
             pstmt.execute();
             
-            sql = "DELETE FROM CUSTOMER WHERE personId = ?";
+            sql = "DELETE FROM PERSON WHERE id = ?";
             PreparedStatement pstmt2;
             pstmt2 = connection.prepareStatement(sql);
             pstmt2.setInt(1, id);
@@ -184,8 +184,7 @@ public class CustomerDAO implements ICustomerDAO {
             System.out.println(e.getMessage());
         } finally {
             SQLConnection.disconnect();
-        }
-        
+        }     
     }
 
 }

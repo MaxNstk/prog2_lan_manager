@@ -1,13 +1,8 @@
 package views.Game;
 
-import Exceptions.NullSelectionException;
-import controllers.App;
-import controllers.GameController;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.event.TableModelListener;
-import javax.swing.table.DefaultTableModel;
-import models.Game;
 import models.tables.GameTableModel;
 
 /**
@@ -38,12 +33,22 @@ public class GameListView extends views.View {
     
     public void addOpenGameCreateViewButton(ActionListener acao){
         btCreateGame.addActionListener(acao);
+    }            
+    
+    public void addDeleteGame(ActionListener action){
+        btDeleteGame.addActionListener(action);
+    } 
+    
+    public int getGameId(){
+        try{
+            return Integer.parseInt((String) tbGameList.getValueAt(
+                    tbGameList.getSelectedRow(),0));
+        }catch (Exception e){
+            this.showMessage("Selecione uma coluna válida!");
+            return -1;
+        }       
     }
-            
     
-    
-    
- 
 //
 //    private GameController gameController;
 //    private DefaultTableModel dtmGames;
@@ -99,7 +104,7 @@ public class GameListView extends views.View {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btUpdateGame = new javax.swing.JButton();
+        btDeleteGame = new javax.swing.JButton();
         tfGameName = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         cbFilterOptions = new javax.swing.JComboBox<>();
@@ -111,7 +116,7 @@ public class GameListView extends views.View {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        btUpdateGame.setText("Editar");
+        btDeleteGame.setText("Excluir");
 
         jLabel1.setText("Filtrar por:");
 
@@ -153,7 +158,7 @@ public class GameListView extends views.View {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btCreateGame, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btUpdateGame, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btDeleteGame, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(layout.createSequentialGroup()
@@ -185,7 +190,7 @@ public class GameListView extends views.View {
                         .addGap(20, 20, 20))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(btUpdateGame, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btDeleteGame, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
@@ -197,8 +202,8 @@ public class GameListView extends views.View {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCreateGame;
+    private javax.swing.JButton btDeleteGame;
     private javax.swing.JButton btFilterGame;
-    private javax.swing.JButton btUpdateGame;
     private javax.swing.JComboBox<String> cbFilterOptions;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;

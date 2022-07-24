@@ -46,6 +46,8 @@ public class DeviceListController {
             }
         });
     }
+    
+    
 
     public void openDeviceFormView() {
         DeviceFormController deviceFormController = new DeviceFormController(new DeviceFormView());

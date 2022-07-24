@@ -8,18 +8,16 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import models.Game;
 
-/**
- *
- * @author max
- */
+
 public class GameTableModel extends AbstractTableModel{
    
     private List<Game> games;
     
-    private final String[] columnNames = {"Nome", "Categoria","Descrição"};
-    private final int COLUNA_NOME = 0;
-    private final int COLUNA_CATEGORIA = 1;
-    private final int COLUNA_DESCRICAO = 2;
+    private final String[] columnNames = {"ID","Nome", "Categoria","Descrição"};
+    private final int COLUNA_ID = 0;
+    private final int COLUNA_NOME = 1;
+    private final int COLUNA_CATEGORIA = 2;
+    private final int COLUNA_DESCRICAO = 3;
     
     public GameTableModel(List<Game> games) {
         this.games = games;
@@ -45,6 +43,9 @@ public class GameTableModel extends AbstractTableModel{
         Game game = this.games.get(rowIndex);
         String value = null;
         switch(columnIndex){
+            case COLUNA_ID:
+                value = Integer.toString(game.getId());
+                break;
             case COLUNA_NOME:
                 value = game.getName();
                 break;
@@ -60,18 +61,14 @@ public class GameTableModel extends AbstractTableModel{
     
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        if(columnIndex == COLUNA_CATEGORIA)
+        if(columnIndex == COLUNA_CATEGORIA || columnIndex == COLUNA_ID)
             return false;
         return true;
     }
     
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-        //o argumento recebido pelo método é do tipo Object
-        //mas como nossa tabela é de funcionários, é seguro(e até recomendável) fazer o cast de suas propriedades
     	Game game = this.games.get(rowIndex);
-        //de acordo com a coluna, ele preenche a célula com o valor
-        //respectivo do objeto de mesmo indice na lista
         switch (columnIndex) {
             case COLUNA_NOME:
                 game.setName((String) aValue);
@@ -80,8 +77,7 @@ public class GameTableModel extends AbstractTableModel{
                 game.setDescription((String) aValue);
                 break;
         }
-        //este método é que notifica a tabela que houve alteração de dados
-//        fireTableDataChanged();
+        fireTableDataChanged();
         fireTableCellUpdated(rowIndex, columnIndex);
     }
 

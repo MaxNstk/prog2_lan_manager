@@ -1,14 +1,10 @@
 
 package views.Device;
 
-import Exceptions.NullSelectionException;
-import controllers.App;
-import controllers.DeviceController;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.event.TableModelListener;
-import javax.swing.table.DefaultTableModel;
-import models.Device;
+
 import models.tables.DeviceTableModel;
 
 public class DeviceListView extends views.View {  
@@ -16,7 +12,6 @@ public class DeviceListView extends views.View {
         public DeviceListView() {
         initComponents();
         ajustScreenCenter();
-//        this.createTableModel();
     }
     
     public void addOpenCreateDeviceForm(ActionListener action){
@@ -29,6 +24,10 @@ public class DeviceListView extends views.View {
     
     public void adicionarEventoAlteracaoTabela(TableModelListener l){
         tbDevice.getModel().addTableModelListener(l);
+    }
+    
+    public void showMessage(String msg){
+        JOptionPane.showMessageDialog(null, msg);
     }
 
     @SuppressWarnings("unchecked")
@@ -47,11 +46,6 @@ public class DeviceListView extends views.View {
         lbDevice.setText("Dispositivos");
 
         btCreateDevice.setText("Cadastrar");
-        btCreateDevice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCreateDeviceActionPerformed(evt);
-            }
-        });
 
         btFilterDevice.setText("Pesquisar");
 
@@ -102,10 +96,6 @@ public class DeviceListView extends views.View {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btCreateDeviceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateDeviceActionPerformed
-        //App.openDeviceCreateView();
-    }//GEN-LAST:event_btCreateDeviceActionPerformed
 
     @Override
     public void setTitleScreen() {
