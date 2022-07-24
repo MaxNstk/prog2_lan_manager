@@ -32,6 +32,14 @@ public class CustomerListView extends views.View {
         tbCustomerList.getModel().addTableModelListener(l);
     }
     
+    public void addFilterCustomerListener(ActionListener action){
+        btFilterCustomer.addActionListener(action);
+    }
+    
+    public String getSearchParam(){
+        return tfCustomerName.getText();
+    }
+    
     @Override
     public void setTitleScreen() {
         setTitle("Consulta de Clientes");
@@ -50,6 +58,15 @@ public class CustomerListView extends views.View {
             return -1;
         }       
     }
+    
+    public int getSelectdFilter(){
+        return cbFilterOptions.getSelectedIndex();
+    }
+    
+    public int getSelectdSortOption(){
+        return cbSortOptions.getSelectedIndex();
+    }
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -95,29 +112,14 @@ public class CustomerListView extends views.View {
         btCreateCustomer.setText("Cadastrar");
 
         btFilterCustomer.setText("Pesquisar");
-        btFilterCustomer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btFilterCustomerActionPerformed(evt);
-            }
-        });
 
         jLabel2.setText("Ordenar por:");
 
         cbSortOptions.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ordem alfabética", "Quantidade de créditos" }));
 
         btDeleteCustomer.setText("Excluir");
-        btDeleteCustomer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btDeleteCustomerActionPerformed(evt);
-            }
-        });
 
         btAddCredits.setText("Adicionar Créditos");
-        btAddCredits.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btAddCreditsActionPerformed(evt);
-            }
-        });
 
         tbCustomerList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -199,28 +201,6 @@ public class CustomerListView extends views.View {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btFilterCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFilterCustomerActionPerformed
-//        this.ListCustomers();
-    }//GEN-LAST:event_btFilterCustomerActionPerformed
-
-    private void btDeleteCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteCustomerActionPerformed
-//        try {
-//            int customerId = validateSelection(this.tbCustomerList.getSelectedRow());
-////            customerController.updateCustomer(customerId);
-//        } catch (NullSelectionException nullSelectionException) {
-//            JOptionPane.showMessageDialog(null, nullSelectionException.getMessage());
-//        }
-    }//GEN-LAST:event_btDeleteCustomerActionPerformed
-
-    private void btAddCreditsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddCreditsActionPerformed
-//        try {
-//            int customerId = validateSelection(this.tbCustomerList.getSelectedRow());
-////            App.openAddCreditsView(customerId);
-//        } catch (NullSelectionException nullSelectionException) {
-//            JOptionPane.showMessageDialog(null, nullSelectionException.getMessage());
-//        }
-    }//GEN-LAST:event_btAddCreditsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

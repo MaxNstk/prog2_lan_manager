@@ -23,13 +23,16 @@ public class CustomerListController {
     private CustomerListView customerListView;
     private CustomerDAO customerDAO;
     private CustomerTableModel customerTableModel;
+    private List<Customer> filteredCustomers;
 
     public CustomerListController(CustomerListView customerListView) {
         this.customerListView = customerListView;
         customerDAO = new CustomerDAO();
+        this.filteredCustomers = this.customerDAO.getCustomers();
         customerTableModel = new CustomerTableModel(customerDAO.getCustomers());
         addOpenCreateCustomerListener();
         addDeleteCustomerListener();
+        addFilterCustomerListener();
         setTableModel();
         addEvents();
     }
@@ -46,7 +49,18 @@ public class CustomerListController {
             }
         });
     }
-    
+
+    public void addFilterCustomerListener() {
+        customerListView.addFilterCustomerListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                filterCustomers();
+                sortCustomers();
+                updateData();
+            }
+        });
+    }
+
     public void addDeleteCustomerListener() {
         customerListView.addDeleteCustomer(new ActionListener() {
             @Override
@@ -55,111 +69,124 @@ public class CustomerListController {
             }
         });
     }
-        
-    public void deleteCustomer(){
-        if (this.customerListView.getCustomerId() != -1){
+
+    public void deleteCustomer() {
+        if (this.customerListView.getCustomerId() != -1) {
             customerDAO.deleteCustomer(this.customerListView.getCustomerId());
             updateData();
         }
-        
     }
 
     public void openCustomerFormView() {
         CustomerFormController customerFormController = new CustomerFormController(new CustomerFormView());
         customerFormController.showScreen();
     }
-    
-    private void setTableModel(){
+
+    private void setTableModel() {
         customerListView.setTableModel(this.customerTableModel);
     }
-    
-    public void updateData(){
+
+    public void updateData() {
         customerTableModel.fireTableDataChanged();
-        customerTableModel.setCustomers(this.customerDAO.getCustomers());
+        customerTableModel.setCustomers(this.filteredCustomers);
     }
-    
-    public void addEvents(){
+
+    public void addEvents() {
         customerListView.adicionarEventoAlteracaoTabela(new TableModelListener() {
             @Override
-            public void tableChanged(TableModelEvent e){
+            public void tableChanged(TableModelEvent e) {
                 if (TableModelEvent.UPDATE == e.getType()) {
-                   int row = e.getFirstRow();
-                   int column = e.getColumn();
-                   if(row >=0 && column >=0){
-                        CustomerTableModel model = (CustomerTableModel)e.getSource();
+                    int row = e.getFirstRow();
+                    int column = e.getColumn();
+                    if (row >= 0 && column >= 0) {
+                        CustomerTableModel model = (CustomerTableModel) e.getSource();
                         Customer customer = customerTableModel.getCustomers().get(row);
                         customerDAO.updateCustomer(customer);
                         updateData();
-                   }
-                 }
+                    }
+                }
             }
         });
     }
-//    
-//    public void filterByName(String searchParam) {
-//        filteredCustomers = new ArrayList<>();
-//        for (Customer customer : customerDAO.getCustomers()) {
-//            if (customer.getName().contains(searchParam)) {
-//                this.filteredCustomers.add(customer);
-//            }
-//        }
-//    }
-//
-//    public Customer retrieveCostumer(int id) {
-//        return customerDAO.retrieveCustomer(id);
-//    }
-//
-//    public void addCredits(int creditsAmount, int customerId) {
-//        Customer customer = customerDAO.retrieveCustomer(customerId);
-//        customer.addCredits(creditsAmount);
-//    }
-//
-//    public void filterByCPF(String searchParam) {
-//        filteredCustomers = new ArrayList<>();
-//        for (Customer customer : customerDAO.getCustomers()) {
-//            if (customer.getCPF().contains(searchParam)) {
-//                this.filteredCustomers.add(customer);
-//            }
-//        }
-//    }
-//
-//    public void filterByaddress(String searchParam) {
-//        this.filteredCustomers = new ArrayList<>();
-//        for (Customer customer : customerDAO.getCustomers()) {
-//            if (customer.getaddress().contains(searchParam)) {
-//                this.filteredCustomers.add(customer);
-//            }
-//        }
-//    }
-//
-//    public List<Customer> sortByCreditsAmount() {
-//        Collections.sort(filteredCustomers, new Comparator<Customer>() {
-//            @Override
-//            public int compare(Customer c1, Customer c2) {
-//                if (c1.getCreditsAmount() < c2.getCreditsAmount()) {
-//                    return 1;
-//                } else {
-//                    return -1;
-//                }
-//            }
-//        });
-//        return this.filteredCustomers;
-//    }
-//
-////    public void updateCustomer(int id) {
-////            App.openCustomerUpdateView(customerDAO.retrieveCustomer(id));
-////    }
-//
-//    public List<Customer> sortAlphabetically() {
-//        Collections.sort(filteredCustomers);
-//        return this.filteredCustomers;
-//    }
-//
-//    public List<Customer> getFilteredCustomers() {
-//        if (this.filteredCustomers == null) {
-//            this.getAll();
-//        }
-//        return this.filteredCustomers;
-//    }
 
+    public void filterCustomers() {
+        int selectedOption = this.customerListView.getSelectdFilter();
+        switch (selectedOption) {
+            case 0:
+                this.filteredCustomers = this.customerDAO.getCustomers();
+                break;
+            case 1:
+                this.filterByName(this.customerListView.getSearchParam());
+                break;
+            case 2:
+                this.filterByCPF(this.customerListView.getSearchParam());
+                break;
+            case 3:
+                this.filterByaddress(this.customerListView.getSearchParam());
+                break;
+        }
+    }
+
+    public void sortCustomers() {
+        int selectedSortOption = this.customerListView.getSelectdSortOption();
+        switch (selectedSortOption) {
+            case 0:
+                sortAlphabetically();
+                break;
+            case 1:
+                sortByCreditsAmount();
+                break;
+        }
+    }
+
+    public void filterByName(String searchParam) {
+        filteredCustomers = new ArrayList<>();
+        for (Customer customer : customerDAO.getCustomers()) {
+            if (customer.getName().contains(searchParam)) {
+                this.filteredCustomers.add(customer);
+            }
+        }
+    }
+
+    public void filterByCPF(String searchParam) {
+        filteredCustomers = new ArrayList<>();
+        for (Customer customer : customerDAO.getCustomers()) {
+            if (customer.getCPF().contains(searchParam)) {
+                this.filteredCustomers.add(customer);
+            }
+        }
+    }
+
+    public void filterByaddress(String searchParam) {
+        this.filteredCustomers = new ArrayList<>();
+        for (Customer customer : customerDAO.getCustomers()) {
+            if (customer.getaddress().contains(searchParam)) {
+                this.filteredCustomers.add(customer);
+            }
+        }
+    }
+
+    public List<Customer> sortByCreditsAmount() {
+        Collections.sort(filteredCustomers, new Comparator<Customer>() {
+            @Override
+            public int compare(Customer c1, Customer c2) {
+                if (c1.getCreditsAmount() < c2.getCreditsAmount()) {
+                    return 1;
+                } else {
+                    return -1;
+                }
+            }
+        });
+        return this.filteredCustomers;
+    }
+
+    public List<Customer> sortAlphabetically() {
+        Collections.sort(filteredCustomers);
+        return this.filteredCustomers;
+    }
+
+    public void addCredits(int creditsAmount, int customerId) {
+        Customer customer = customerDAO.retrieveCustomer(customerId);
+        customer.addCredits(creditsAmount);
+    }
 }

@@ -4,13 +4,11 @@
  */
 package controllers.Game;
 
-import controllers.MainViewController;
 import daos.GameDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
-import models.Category;
 import models.Game;
 import models.tables.GameTableModel;
 import views.Game.GameFormView;
