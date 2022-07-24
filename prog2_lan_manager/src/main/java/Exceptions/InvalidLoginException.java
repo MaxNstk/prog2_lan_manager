@@ -11,7 +11,7 @@ package Exceptions;
 public class InvalidLoginException extends Exception {
     
     public InvalidLoginException(){
-        super("Credencais inválidas");
+        super("Credenciais inválidas");
     }
     
 }

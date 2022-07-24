@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import models.Category;
 import models.Customer;
-import models.Customer;
 
 /**
  *
@@ -54,6 +53,7 @@ public class CustomerDAO implements ICustomerDAO {
             SQLConnection.disconnect();
         }
     }
+    
 
     @Override
     public void createCustomer(Customer customer) {
@@ -163,6 +163,29 @@ public class CustomerDAO implements ICustomerDAO {
         } finally {
             SQLConnection.disconnect();
         }
+    }
+
+    @Override
+    public void deleteCustomer(int id) {
+        Connection connection = SQLConnection.connect();
+        String sql = "DELETE FROM PERSON WHERE id = ?";
+        PreparedStatement pstmt;
+        try {
+            pstmt = connection.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.execute();
+            
+            sql = "DELETE FROM CUSTOMER WHERE personId = ?";
+            PreparedStatement pstmt2;
+            pstmt2 = connection.prepareStatement(sql);
+            pstmt2.setInt(1, id);
+            pstmt2.execute();         
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            SQLConnection.disconnect();
+        }
+        
     }
 
 }

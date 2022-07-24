@@ -195,7 +195,12 @@ public class DeviceDAO implements IDeviceDAO {
 
     @Override
     public List<Device> getAvailableDevices() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<Device> availableDevices =  new ArrayList<>();
+        for(Device d : this.getDevices()){
+            if (d.isAvailable())
+               availableDevices.add(d);
+        }
+        return availableDevices;
     }
 
 }

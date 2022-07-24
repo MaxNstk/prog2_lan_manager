@@ -1,14 +1,8 @@
 
 package views.Customer;
-
-import Exceptions.NullSelectionException;
-import controllers.App;
-import controllers.CustomerController;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.event.TableModelListener;
-import javax.swing.table.DefaultTableModel;
-import models.Customer;
 import models.tables.CustomerTableModel;
 
 /**
@@ -21,6 +15,10 @@ public class CustomerListView extends views.View {
         btCreateCustomer.addActionListener(action);
     }
     
+    public void addDeleteCustomer(ActionListener action){
+        btDeleteCustomer.addActionListener(action);
+    }
+  
     public void setTableModel(CustomerTableModel gameTableModel){
         tbCustomerList.setModel(gameTableModel);
     }
@@ -33,49 +31,25 @@ public class CustomerListView extends views.View {
         initComponents();
         ajustScreenCenter();
     }
-
-//    public void ListCustomers() {
-//        this.getFilteredCustomers();
-//        this.getSortedCustomers();
-//        this.createTableModel();
-//        for (Customer customer : customerController.getFilteredCustomers()) {
-//            Object[] listData = {customer.getId(), customer.getName(), customer.getCPF(),
-//                customer.getaddress(), customer.getBirthDate(), customer.getCreditsAmount()};
-//            dtmCustomers.addRow(listData);
-//        }
-//    }
-//
-//    public void getSortedCustomers() {
-//        if (this.cbSortOptions.getSelectedIndex() == 0) {
-//            this.customerController.sortAlphabetically();
-//        } else {
-//            this.customerController.sortByCreditsAmount();
-//        }
-//    }
-//
-//    public void getFilteredCustomers() {
-//        switch (this.cbFilterOptions.getSelectedIndex()) {
-//            case 0:
-//                this.customerController.getAll();
-//                break;
-//            case 1:
-//                this.customerController.filterByName(this.tfCustomerName.getText());
-//                break;
-//            case 2:
-//                this.customerController.filterByCPF(this.tfCustomerName.getText());
-//                break;
-//            case 3:
-//                this.customerController.filterByaddress(this.tfCustomerName.getText());
-//                break;
-//        }
-//    }
-//
-//    public int validateSelection(int selectedRow) throws NullSelectionException {
-//        if (selectedRow == -1) {
-//            throw new NullSelectionException("cliente");
-//        }
-//        return (Integer) this.dtmCustomers.getValueAt(this.tbCustomerList.getSelectedRow(), 0);
-//    }
+    
+    @Override
+    public void setTitleScreen() {
+        setTitle("Consulta de Clientes");
+    }
+    
+    public void showMessage(String msg){
+        JOptionPane.showMessageDialog(null, msg);
+    }
+    
+    public int getCustomerId(){
+        try{
+            return Integer.parseInt((String) tbCustomerList.getValueAt(
+                    tbCustomerList.getSelectedRow(),0));
+        }catch (Exception e){
+            this.showMessage("Selecione uma coluna válida!");
+            return -1;
+        }       
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -90,7 +64,7 @@ public class CustomerListView extends views.View {
         btFilterCustomer = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         cbSortOptions = new javax.swing.JComboBox<>();
-        btUpdateCustomer = new javax.swing.JButton();
+        btDeleteCustomer = new javax.swing.JButton();
         tfCustomerName = new javax.swing.JTextField();
         btAddCredits = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -131,10 +105,10 @@ public class CustomerListView extends views.View {
 
         cbSortOptions.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ordem alfabética", "Quantidade de créditos" }));
 
-        btUpdateCustomer.setText("Editar");
-        btUpdateCustomer.addActionListener(new java.awt.event.ActionListener() {
+        btDeleteCustomer.setText("Excluir");
+        btDeleteCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btUpdateCustomerActionPerformed(evt);
+                btDeleteCustomerActionPerformed(evt);
             }
         });
 
@@ -169,7 +143,7 @@ public class CustomerListView extends views.View {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btCreateCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btUpdateCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btDeleteCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -212,7 +186,7 @@ public class CustomerListView extends views.View {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btCreateCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20)
-                        .addComponent(btUpdateCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btDeleteCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
@@ -230,14 +204,14 @@ public class CustomerListView extends views.View {
 //        this.ListCustomers();
     }//GEN-LAST:event_btFilterCustomerActionPerformed
 
-    private void btUpdateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUpdateCustomerActionPerformed
+    private void btDeleteCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteCustomerActionPerformed
 //        try {
 //            int customerId = validateSelection(this.tbCustomerList.getSelectedRow());
 ////            customerController.updateCustomer(customerId);
 //        } catch (NullSelectionException nullSelectionException) {
 //            JOptionPane.showMessageDialog(null, nullSelectionException.getMessage());
 //        }
-    }//GEN-LAST:event_btUpdateCustomerActionPerformed
+    }//GEN-LAST:event_btDeleteCustomerActionPerformed
 
     private void btAddCreditsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddCreditsActionPerformed
 //        try {
@@ -248,15 +222,12 @@ public class CustomerListView extends views.View {
 //        }
     }//GEN-LAST:event_btAddCreditsActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAddCredits;
     private javax.swing.JButton btCreateCustomer;
+    private javax.swing.JButton btDeleteCustomer;
     private javax.swing.JButton btFilterCustomer;
-    private javax.swing.JButton btUpdateCustomer;
     private javax.swing.JComboBox<String> cbFilterOptions;
     private javax.swing.JComboBox<String> cbSortOptions;
     private javax.swing.JLabel jLabel1;
@@ -269,8 +240,5 @@ public class CustomerListView extends views.View {
     private javax.swing.JTextField tfCustomerName;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void setTitleScreen() {
-        setTitle("Consulta de Clientes");
-    }
+
 }

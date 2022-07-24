@@ -16,11 +16,12 @@ public class CustomerTableModel extends AbstractTableModel{
    
     private List<Customer> customers;
     
-    private final String[] columnNames = {"Nome","CPF","Endereço","Data de Nascimento"};
-    private final int COLUNA_NOME = 0;
-    private final int COLUNA_CPF = 1;
-    private final int COLUNA_ENDERECO = 2;
-    private final int COLUNA_DATA_NASCIMENTO = 3;
+    private final String[] columnNames = {"ID","Nome","CPF","Endereço","Data de Nascimento"};
+    private final int COLUNA_ID = 0;
+    private final int COLUNA_NOME = 1;
+    private final int COLUNA_CPF = 2;
+    private final int COLUNA_ENDERECO = 3;
+    private final int COLUNA_DATA_NASCIMENTO = 4;
     
     public CustomerTableModel(List<Customer> customers) {
         this.customers = customers;
@@ -46,6 +47,9 @@ public class CustomerTableModel extends AbstractTableModel{
         Customer customer = this.customers.get(rowIndex);
         String value = null;
         switch(columnIndex){
+            case COLUNA_ID:
+                value = Integer.toString(customer.getId());
+                break;
             case COLUNA_NOME:
                 value = customer.getName();
                 break;
@@ -64,6 +68,8 @@ public class CustomerTableModel extends AbstractTableModel{
     
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
+        if (columnIndex == COLUNA_ID)
+            return false;
         return true;
     }
     
@@ -71,6 +77,7 @@ public class CustomerTableModel extends AbstractTableModel{
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
     	Customer customer = this.customers.get(rowIndex);
         switch (columnIndex) {
+  
             case COLUNA_NOME:
                 customer.setName((String) aValue);
                 break;
