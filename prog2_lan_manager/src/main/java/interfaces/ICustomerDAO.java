@@ -18,5 +18,6 @@ public interface ICustomerDAO {
     public List<Customer> getCustomers();
     public void updateCustomer(Customer c);
     public void deleteCustomer(int id);
-    
+    public void addCredits(int id, int creditsAmount);
+
 }

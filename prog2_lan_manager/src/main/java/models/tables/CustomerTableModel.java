@@ -8,20 +8,17 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import models.Customer;
 
-/**
- *
- * @author max
- */
 public class CustomerTableModel extends AbstractTableModel{
    
     private List<Customer> customers;
     
-    private final String[] columnNames = {"ID","Nome","CPF","Endereço","Data de Nascimento"};
+    private final String[] columnNames = {"ID","Nome","CPF","Endereço","Data de Nascimento","Créditos Disponíveis"};
     private final int COLUNA_ID = 0;
     private final int COLUNA_NOME = 1;
     private final int COLUNA_CPF = 2;
     private final int COLUNA_ENDERECO = 3;
     private final int COLUNA_DATA_NASCIMENTO = 4;
+    private final int COLUNA_QTD_CREDITOS = 5;
     
     public CustomerTableModel(List<Customer> customers) {
         this.customers = customers;
@@ -62,13 +59,17 @@ public class CustomerTableModel extends AbstractTableModel{
             case COLUNA_DATA_NASCIMENTO:
                 value = customer.getBirthDate();
                 break;
+            case COLUNA_QTD_CREDITOS:
+                value = Integer.toString(customer.getCreditsAmount());
+                break;
+            
         }
         return value;
     }
     
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        if (columnIndex == COLUNA_ID)
+        if (columnIndex == COLUNA_ID || columnIndex == COLUNA_QTD_CREDITOS)
             return false;
         return true;
     }

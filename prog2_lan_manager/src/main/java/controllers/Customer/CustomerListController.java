@@ -4,6 +4,7 @@
  */
 package controllers.Customer;
 
+import controllers.AddCreditsController;
 import daos.CustomerDAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,6 +16,7 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import models.Customer;
 import models.tables.CustomerTableModel;
+import views.Customer.AddCreditsView;
 import views.Customer.CustomerFormView;
 import views.Customer.CustomerListView;
 
@@ -33,6 +35,7 @@ public class CustomerListController {
         addOpenCreateCustomerListener();
         addDeleteCustomerListener();
         addFilterCustomerListener();
+        addUpdateCreditsListener();
         setTableModel();
         addEvents();
     }
@@ -46,6 +49,15 @@ public class CustomerListController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 openCustomerFormView();
+            }
+        });
+    }
+
+    public void addUpdateCreditsListener() {
+        customerListView.addUpdateCreditsListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                openAddCreditsView();
             }
         });
     }
@@ -74,6 +86,14 @@ public class CustomerListController {
         if (this.customerListView.getCustomerId() != -1) {
             customerDAO.deleteCustomer(this.customerListView.getCustomerId());
             updateData();
+        }
+    }
+
+    public void openAddCreditsView() {
+        if (this.customerListView.getCustomerId() != -1) {
+            AddCreditsController addCredisController = new AddCreditsController(
+                    new AddCreditsView(), this.customerListView.getCustomerId());
+            addCredisController.showScreen();
         }
     }
 

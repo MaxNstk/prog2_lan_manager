@@ -36,6 +36,10 @@ public class CustomerListView extends views.View {
         btFilterCustomer.addActionListener(action);
     }
     
+    public void addUpdateCreditsListener(ActionListener action){
+        btAddCredits.addActionListener(action);
+    }
+    
     public String getSearchParam(){
         return tfCustomerName.getText();
     }

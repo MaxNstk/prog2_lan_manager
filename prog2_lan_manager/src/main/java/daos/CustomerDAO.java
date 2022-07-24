@@ -186,5 +186,22 @@ public class CustomerDAO implements ICustomerDAO {
             SQLConnection.disconnect();
         }     
     }
+    
+    @Override
+    public void addCredits(int id, int creditsAmount) {
+        Connection connection = SQLConnection.connect();
+        String sql = "UPDATE CUSTOMER SET creditsAmount = (creditsAmount + ?) WHERE personId = ?";
+        PreparedStatement pstmt;
+        try {
+            pstmt = connection.prepareStatement(sql);
+            pstmt.setInt(2, id);
+            pstmt.setInt(1, creditsAmount);
+            pstmt.execute();
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+        } finally {
+            SQLConnection.disconnect();
+        }     
+    }
 
 }
