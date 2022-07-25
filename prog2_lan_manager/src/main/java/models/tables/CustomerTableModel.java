@@ -40,7 +40,7 @@ public class CustomerTableModel extends AbstractTableModel{
     }
 
     @Override
-    public Object getValueAt(int rowIndex, int columnIndex) {
+    public Object getValueAt(int rowIndex, int columnIndex){
         Customer customer = this.customers.get(rowIndex);
         String value = null;
         switch(columnIndex){

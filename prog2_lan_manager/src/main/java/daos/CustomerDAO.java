@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import models.Category;
 import models.Customer;
 
 /**
@@ -18,11 +17,9 @@ import models.Customer;
  */
 public class CustomerDAO implements ICustomerDAO {
 
-    CategoryDAO categoryDAO;
 
     public CustomerDAO() {
         this.createTable();
-        categoryDAO = new CategoryDAO();
     }
 
     private void createTable() {
@@ -112,37 +109,6 @@ public class CustomerDAO implements ICustomerDAO {
             SQLConnection.disconnect();
         }
         return customers;
-    }
-
-    @Override
-    public Customer retrieveCustomer(int id) {
-        Customer customer = null;
-        Connection connection = SQLConnection.connect();
-
-        String sql = "SELECT * FROM GAME WHERE ID = ?";
-        PreparedStatement pstmt;
-
-        try {
-            pstmt = connection.prepareStatement(sql);
-            pstmt.setInt(1, id);
-            ResultSet result = pstmt.executeQuery();
-
-            while (result.next()) {
-                int customerId = result.getInt("id");
-                String name = result.getString("name");
-                String description = result.getString("description");
-                int categoryId = result.getInt("category_id");
-                Category category = categoryDAO.retrieveCategory(categoryId);
-//                customer = new Customer(customerId, name, description, category);
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            return null;
-        } finally {
-            SQLConnection.disconnect();
-        }
-
-        return customer;
     }
 
     @Override

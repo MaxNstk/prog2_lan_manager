@@ -1,30 +1,8 @@
 
 package controllers;
 
-import Connection.SQLConnection;
 import daos.CategoryDAO;
-import daos.CustomerDAO;
-import daos.DeviceDAO;
-import daos.GameDAO;
-import daos.UserDAO;
-import models.Category;
-import models.Computer;
-import models.Console;
-import models.Customer;
-import models.Device;
-import models.Game;
-import models.User;
-import views.Customer.AddCreditsView;
-import views.Customer.CustomerFormView;
-import views.Customer.CustomerListView;
-import views.Device.DeviceFormView;
-import views.Device.DeviceListView;
-import views.Game.GameFormView;
-import views.Game.GameListView;
-import views.Gameplay.GameplayFormView;
-import views.Gameplay.GameplayListView;
 import views.LoginView;
-import views.MainView;
 
 /**
  *

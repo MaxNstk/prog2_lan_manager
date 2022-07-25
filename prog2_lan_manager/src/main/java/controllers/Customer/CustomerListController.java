@@ -32,16 +32,20 @@ public class CustomerListController {
         customerDAO = new CustomerDAO();
         this.filteredCustomers = this.customerDAO.getCustomers();
         customerTableModel = new CustomerTableModel(customerDAO.getCustomers());
-        addOpenCreateCustomerListener();
-        addDeleteCustomerListener();
-        addFilterCustomerListener();
-        addUpdateCreditsListener();
+        addListeners();
         setTableModel();
         addEvents();
     }
 
     public void showScreen() {
         this.customerListView.setVisible(true);
+    }
+    
+    public void addListeners(){
+        addOpenCreateCustomerListener();
+        addDeleteCustomerListener();
+        addFilterCustomerListener();
+        addUpdateCreditsListener();
     }
 
     public void addOpenCreateCustomerListener() {
@@ -203,10 +207,5 @@ public class CustomerListController {
     public List<Customer> sortAlphabetically() {
         Collections.sort(filteredCustomers);
         return this.filteredCustomers;
-    }
-
-    public void addCredits(int creditsAmount, int customerId) {
-        Customer customer = customerDAO.retrieveCustomer(customerId);
-        customer.addCredits(creditsAmount);
     }
 }
