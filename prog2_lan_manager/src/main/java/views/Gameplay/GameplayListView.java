@@ -3,6 +3,7 @@ package views.Gameplay;
 import Exceptions.NullSelectionException;
 import controllers.App;
 import controllers.GameplayController;
+import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import models.Gameplay;
@@ -23,6 +24,10 @@ public class GameplayListView extends View {
         gameplayController = new GameplayController();
         this.createTableModel();
         this.listGameplays();
+    }
+    
+    public void addCreateGameplayListener(ActionListener acao){
+        btCreateGameplay.addActionListener(acao);
     }
 
     private void createTableModel() {
@@ -155,11 +160,6 @@ public class GameplayListView extends View {
         this.listGameplays();
     }//GEN-LAST:event_btCreateGameplayActionPerformed
 
-    private void btUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUpdateActionPerformed
-        gameplayController.updateCurrentGameplays();
-        this.listGameplays();
-    }//GEN-LAST:event_btUpdateActionPerformed
-
     private void btRemoveGameplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoveGameplayActionPerformed
         try {
             int gameplayId = validateSelection(this.tbGameplayList.getSelectedRow());
@@ -170,6 +170,11 @@ public class GameplayListView extends View {
             JOptionPane.showMessageDialog(null, nullSelectionException.getMessage());
         }
     }//GEN-LAST:event_btRemoveGameplayActionPerformed
+
+    private void btUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUpdateActionPerformed
+        gameplayController.updateCurrentGameplays();
+        this.listGameplays();
+    }//GEN-LAST:event_btUpdateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

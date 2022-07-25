@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import models.Category;
@@ -52,16 +53,19 @@ public class GameplayDAO implements IGameplayDAO {
     }
 
     @Override
-    public void createGameplay(Gameplay game) {
+    public void createGameplay(Gameplay gameplay) {
         Connection connection = SQLConnection.connect();
-        String sql = "INSERT INTO GAMEPLAY (id, customerId, deviceId, gameId, startDateTime, endDateTime, playingNow) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO GAMEPLAY (customerId, deviceId, gameId, startDateTime, endDateTime, playingNow) VALUES (?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement pstmt;
 
         try {
             pstmt = connection.prepareStatement(sql);
-            pstmt.setString(1, game.getName());
-            pstmt.setString(2, game.getDescription());
-            pstmt.setInt(3, game.getCategory().getId());
+            pstmt.setInt(1, gameplay.getCustomer().getId());
+            pstmt.setInt(1, gameplay.getDevice().getId());
+            pstmt.setInt(1, gameplay.getGame().getId());
+//            pstmt.setTimestamp(1, LocalDateTime.now());
+            
+            
             pstmt.execute();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -88,7 +92,7 @@ public class GameplayDAO implements IGameplayDAO {
                 String description = result.getString("description");
                 int categoryId = result.getInt("category_id");
                 Category category = categoryDAO.retrieveCategory(categoryId);
-                games.add(new Gameplay(id, name, description, category));
+//                games.add(new Gameplay(id, name, description, category));
             }
 
         } catch (SQLException e) {
@@ -119,7 +123,7 @@ public class GameplayDAO implements IGameplayDAO {
                 String description = result.getString("description");
                 int categoryId = result.getInt("category_id");
                 Category category = categoryDAO.retrieveCategory(categoryId);
-                game = new Gameplay(gameId, name, description, category);
+//                game = new Gameplay(gameId, name, description, category);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -131,39 +135,43 @@ public class GameplayDAO implements IGameplayDAO {
         return game;
     }
 
-    @Override
     public void updateGameplay(Gameplay game) {
-        Connection connection = SQLConnection.connect();
-        String sql = "UPDATE GAME SET (name, description) = (?, ?) WHERE ID = ?";
-        PreparedStatement pstmt;
+//        Connection connection = SQLConnection.connect();
+//        String sql = "UPDATE GAME SET (name, description) = (?, ?) WHERE ID = ?";
+//        PreparedStatement pstmt;
+//
+//        try {
+//            pstmt = connection.prepareStatement(sql);
+//            pstmt.setString(1, game.getName());
+//            pstmt.setString(2, game.getDescription());
+//            pstmt.setInt(3, game.getId());
+//            pstmt.execute();
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage());
+//        } finally {
+//            SQLConnection.disconnect();
+//        }
+//    }
 
-        try {
-            pstmt = connection.prepareStatement(sql);
-            pstmt.setString(1, game.getName());
-            pstmt.setString(2, game.getDescription());
-            pstmt.setInt(3, game.getId());
-            pstmt.execute();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        } finally {
-            SQLConnection.disconnect();
-        }
+//    @Override
+//    public void deleteGameplay(int id) {
+//        Connection connection = SQLConnection.connect();
+//        String sql = "DELETE FROM GAME WHERE id = ?";
+//        PreparedStatement pstmt;
+//        try {
+//            pstmt = connection.prepareStatement(sql);
+//            pstmt.setInt(1, id);
+//            pstmt.execute();
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage());
+//        } finally {
+//            SQLConnection.disconnect();
+//        }
     }
 
     @Override
-    public void deleteGameplay(int id) {
-        Connection connection = SQLConnection.connect();
-        String sql = "DELETE FROM GAME WHERE id = ?";
-        PreparedStatement pstmt;
-        try {
-            pstmt = connection.prepareStatement(sql);
-            pstmt.setInt(1, id);
-            pstmt.execute();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        } finally {
-            SQLConnection.disconnect();
-        }
+    public List<Gameplay> getActiveGamplays() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

@@ -9,7 +9,6 @@ import java.time.format.DateTimeFormatter;
  */
 public class Gameplay {
 
-    public static int currentId = 0;
     protected Customer customer;
     protected Game game;
     protected Device device;
@@ -25,9 +24,17 @@ public class Gameplay {
         this.startDateTime = LocalDateTime.now();
         this.endDateTime = this.startDateTime.plusHours(timePlaying);
         this.playingNow = true;
-        this.device.setAvailableStatus(false);
-        this.customer.decreaseCredits(timePlaying * game.getCategory().getCreditsValue());
-        this.id = getCurrentId();
+    }
+    
+    public Gameplay(int id, Customer customer, Game game, Device device, LocalDateTime startDateTime,
+            LocalDateTime endDateTime, int timePlaying, boolean playingNow) {
+        this.id = id;
+        this.customer = customer;
+        this.game = game;
+        this.device = device;
+        this.startDateTime = startDateTime;
+        this.endDateTime = endDateTime;
+        this.playingNow = playingNow;
     }
 
     public LocalDateTime getStartDateTime() {
@@ -79,11 +86,6 @@ public class Gameplay {
 
     public void setDevice(Device device) {
         this.device = device;
-    }
-
-    public static int getCurrentId() {
-        currentId++;
-        return currentId;
     }
 
     public int getId() {

@@ -2,10 +2,10 @@ package views.Gameplay;
 
 import Exceptions.EmptyCbException;
 import Exceptions.InsufficientCreditsException;
-import controllers.CustomerController;
-import controllers.DeviceController;
-import controllers.GameController;
-import controllers.GameplayController;
+import daos.CustomerDAO;
+import daos.DeviceDAO;
+import daos.GameDAO;
+import daos.GameplayDAO;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
@@ -13,16 +13,13 @@ import models.Customer;
 import models.Device;
 import models.Game;
 
-/**
- *
- * @author max
- */
+
 public class GameplayFormView extends views.View {
 
-    private CustomerController customerController;
-    private DeviceController deviceController;
-    private GameController gameController;
-    private GameplayController gameplayController = new GameplayController();
+    private CustomerDAO customerDAO = new CustomerDAO();
+    private DeviceDAO deviceDAO = new DeviceDAO()  ;
+    private GameDAO gameDAO = new GameDAO();
+    private GameplayDAO gameplayDAO = new GameplayDAO();
 
     public GameplayFormView() {
         initComponents();
@@ -31,21 +28,14 @@ public class GameplayFormView extends views.View {
     }
 
     private void setUpInitialData() {
-        this.setUpConstrollers();
         this.fillCustomersCb();
         this.fillDeviceCb();
-//        this.fillGamesCb();
-    }
-
-    private void setUpConstrollers() {
-        this.customerController = new CustomerController();
-        this.gameController = new GameController();
-        this.deviceController = new DeviceController();
+        fillGamesCb();
     }
 
     private void fillDeviceCb() {
         this.cbDevice.removeAllItems();
-        for (Device device : deviceController.getFilteredDevices()) {
+        for (Device device : deviceDAO.getDevices()) {
             cbDevice.addItem(device);
         }
         cbDevice.setSelectedItem(null);
@@ -53,19 +43,19 @@ public class GameplayFormView extends views.View {
 
     private void fillCustomersCb() {
         this.cbCustomer.removeAllItems();
-        for (Customer customer : customerController.getFilteredCustomers()) {
+        for (Customer customer : customerDAO.getCustomers()) {
             cbCustomer.addItem(customer);
         }
         cbCustomer.setSelectedItem(null);
     }
 
-//    private void fillGamesCb() {
-//        this.cbGame.removeAllItems();
-//        for (Game game : gameController.getFilteredGames()) {
-//            cbGame.addItem(game);
-//        }
-//        cbGame.setSelectedItem(null);
-//    }
+    private void fillGamesCb() {
+        this.cbGame.removeAllItems();
+        for (Game game : gameDAO.getGames()) {
+            cbGame.addItem(game);
+        }
+        cbGame.setSelectedItem(null);
+    }
 
     public void validateCbs() throws EmptyCbException {
         if (this.cbCustomer.getSelectedIndex() == -1) {
@@ -192,7 +182,7 @@ public class GameplayFormView extends views.View {
     private void btGameplayCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGameplayCreateActionPerformed
         try {
             this.validateCbs();
-            gameplayController.createGameplay(this.getGameplayInfo());
+//            gameplayDAO.createGameplay(this.getGameplayInfo());
             JOptionPane.showMessageDialog(null, "Jogatina cadastrada com sucesso.");
             setVisible(false);
             this.setUpInitialData();
