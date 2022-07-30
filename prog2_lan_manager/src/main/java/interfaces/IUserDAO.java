@@ -14,7 +14,6 @@ import models.User;
 public interface IUserDAO {
     
     public void createUser(User c);
-    public User retrieveUser(String username);
     public void updateUser(User c);
     public void validateUser(String username, String password) throws InvalidLoginException;
     

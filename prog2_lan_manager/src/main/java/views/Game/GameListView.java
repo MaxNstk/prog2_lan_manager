@@ -49,57 +49,6 @@ public class GameListView extends views.View {
         }       
     }
     
-//
-//    private GameController gameController;
-//    private DefaultTableModel dtmGames;
-//
-//    private final String[] columnNames = {
-//        "Id", "Nome", "Categoria", "Descrição"
-//    };
-//
-//
-//    private void createTableModel() {
-//        this.dtmGames = (DefaultTableModel) this.tbGameList.getModel();
-//        this.dtmGames.setColumnIdentifiers(columnNames);
-//        this.dtmGames.setRowCount(0);
-//    }
-//
-//    public void ListGames() {
-//        this.getFilteredGames();
-//        this.createTableModel();
-//        for (Game game : gameController.getFilteredGames()) {
-//            Object[] listData = {game.getId(), game.getName(), game.getCategory().getName(), game.getDescription()};
-//            dtmGames.addRow(listData);
-//        }
-//    }
-//
-//    public void getFilteredGames() {
-//        switch (this.cbFilterOptions.getSelectedIndex()) {
-//            case 0:
-//                this.gameController.getAll();
-//                break;
-//            case 1:
-//                this.gameController.filterByName(this.tfGameName.getText());
-//                break;
-//            case 2:
-//                this.gameController.filterByCategory(this.tfGameName.getText());
-//                break;
-//        }
-//    }
-//
-//    public int validateSelection(Object object) throws NullSelectionException {
-//        if ((Integer) object == -1) {
-//            throw new NullSelectionException("Erro: Objeto não selecionado.");
-//        }
-//        return (Integer) this.dtmGames.getValueAt(this.tbGameList.getSelectedRow(), 0);
-//    }
-
-//    /**
-//     * Centraliza a tela de visualização
-//     */
-//    private void ajustScreenCenter() {
-//        setLocationRelativeTo(null);
-//    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

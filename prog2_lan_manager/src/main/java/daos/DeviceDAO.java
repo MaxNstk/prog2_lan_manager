@@ -9,10 +9,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import models.Category;
 import models.Computer;
 import models.Console;
-import models.Device;
 import models.Device;
 
 /**

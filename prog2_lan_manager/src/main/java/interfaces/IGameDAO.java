@@ -14,7 +14,6 @@ import models.Game;
 public interface IGameDAO {
     
     public void createGame(Game game);
-    public Game retrieveGame(int id);
     public List<Game> getGames();
     public void updateGame(Game game);
     public void deleteGame(int id);

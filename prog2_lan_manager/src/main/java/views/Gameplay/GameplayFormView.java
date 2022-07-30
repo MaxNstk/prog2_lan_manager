@@ -1,7 +1,6 @@
 package views.Gameplay;
 
 import Exceptions.EmptyCbException;
-import Exceptions.InsufficientCreditsException;
 import daos.CustomerDAO;
 import daos.DeviceDAO;
 import daos.GameDAO;

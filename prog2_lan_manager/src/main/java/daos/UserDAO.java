@@ -8,10 +8,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-import models.Category;
-import models.User;
 import models.User;
 
 /**
@@ -85,36 +81,6 @@ public class UserDAO implements IUserDAO {
         } finally {
             SQLConnection.disconnect();
         }
-    }
-
-    @Override
-    public User retrieveUser(String username) {
-        User user = null;
-        Connection connection = SQLConnection.connect();
-
-        String sql = "SELECT u.* p.* FROM USER u INNER JOIN PERSON p ON p.id = u.personId WHERE u.login = ?";
-        PreparedStatement pstmt;
-        try {
-            pstmt = connection.prepareStatement(sql);
-            pstmt.setString(1, username);
-            ResultSet result = pstmt.executeQuery();
-
-            while (result.next()) {
-                int userId = result.getInt("id");
-                String name = result.getString("name");
-                String description = result.getString("description");
-                int categoryId = result.getInt("category_id");
-                Category category = categoryDAO.retrieveCategory(categoryId);
-//                user = new User(userId, name, description, category);
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            return null;
-        } finally {
-            SQLConnection.disconnect();
-        }
-
-        return user;
     }
 
     @Override
