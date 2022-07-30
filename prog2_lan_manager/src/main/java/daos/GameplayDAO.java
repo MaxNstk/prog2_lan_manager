@@ -62,8 +62,7 @@ public class GameplayDAO implements IGameplayDAO {
             pstmt.setInt(1, gameplay.getCustomer().getId());
             pstmt.setInt(1, gameplay.getDevice().getId());
             pstmt.setInt(1, gameplay.getGame().getId());
-//            pstmt.setTimestamp(1, LocalDateTime.now());
-            
+            // não rolou fazer a isnerção no banco por causa do parsing das datas :(s
             
             pstmt.execute();
         } catch (SQLException e) {

@@ -167,9 +167,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Iniciar Jogatina!"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btGameplayCreateActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="cbPlayingTime">
       <Properties>

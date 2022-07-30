@@ -5,9 +5,12 @@ import daos.CustomerDAO;
 import daos.DeviceDAO;
 import daos.GameDAO;
 import daos.GameplayDAO;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.swing.JOptionPane;
+import models.Category;
 import models.Customer;
 import models.Device;
 import models.Game;
@@ -23,37 +26,47 @@ public class GameplayFormView extends views.View {
     public GameplayFormView() {
         initComponents();
         ajustScreenCenter();
-        this.setUpInitialData();
     }
-
-    private void setUpInitialData() {
-        this.fillCustomersCb();
-        this.fillDeviceCb();
-        fillGamesCb();
-    }
-
-    private void fillDeviceCb() {
-        this.cbDevice.removeAllItems();
-        for (Device device : deviceDAO.getDevices()) {
-            cbDevice.addItem(device);
+    
+    public void addCreateGameplay(ActionListener action){
+        btGameplayCreate.addActionListener(action);
+    }  
+    
+    public void addCustomers(List<Customer> customers){
+        cbCustomer.removeAllItems();
+        for (Customer c : customers){
+            cbCustomer.addItem(c);
         }
-        cbDevice.setSelectedItem(null);
     }
-
-    private void fillCustomersCb() {
-        this.cbCustomer.removeAllItems();
-        for (Customer customer : customerDAO.getCustomers()) {
-            cbCustomer.addItem(customer);
+    
+    public void addGames(List<Game> games){
+        cbGame.removeAllItems();
+        for (Game c : games){
+            cbGame.addItem(c);
         }
-        cbCustomer.setSelectedItem(null);
     }
-
-    private void fillGamesCb() {
-        this.cbGame.removeAllItems();
-        for (Game game : gameDAO.getGames()) {
-            cbGame.addItem(game);
+    
+    public void addDevices(List<Device> devices){
+        cbDevice.removeAllItems();
+        for (Device c : devices){
+            cbDevice.addItem(c);
         }
-        cbGame.setSelectedItem(null);
+    }
+    
+    public Customer getCustomer(){
+        return this.cbCustomer.getItemAt(this.cbCustomer.getSelectedIndex());
+    }
+    
+    public int getTimePlaiyng(){
+        return this.cbPlayingTime.getSelectedIndex() + 1;
+    }
+    
+    public Game getGame(){
+        return this.cbGame.getItemAt(this.cbGame.getSelectedIndex());
+    }
+    
+    public Device getDevice(){
+        return this.cbDevice.getItemAt(this.cbDevice.getSelectedIndex());
     }
 
     public void validateCbs() throws EmptyCbException {
@@ -66,14 +79,6 @@ public class GameplayFormView extends views.View {
         }
     }
 
-    public Map<String, Object> getGameplayInfo() {
-        Map<String, Object> gameplayData = new HashMap();
-        gameplayData.put("customer", this.cbCustomer.getItemAt(this.cbCustomer.getSelectedIndex()));
-        gameplayData.put("game", this.cbGame.getItemAt(this.cbGame.getSelectedIndex()));
-        gameplayData.put("device", this.cbDevice.getItemAt(this.cbDevice.getSelectedIndex()));
-        gameplayData.put("timePlaying", this.cbPlayingTime.getItemAt(this.cbPlayingTime.getSelectedIndex()));
-        return gameplayData;
-    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -104,11 +109,6 @@ public class GameplayFormView extends views.View {
         jLabel5.setText("Quantidade de horas");
 
         btGameplayCreate.setText("Iniciar Jogatina!");
-        btGameplayCreate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btGameplayCreateActionPerformed(evt);
-            }
-        });
 
         cbPlayingTime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
 
@@ -177,18 +177,6 @@ public class GameplayFormView extends views.View {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btGameplayCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGameplayCreateActionPerformed
-        try {
-            this.validateCbs();
-//            gameplayDAO.createGameplay(this.getGameplayInfo());
-            JOptionPane.showMessageDialog(null, "Jogatina cadastrada com sucesso.");
-            setVisible(false);
-            this.setUpInitialData();
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
-    }//GEN-LAST:event_btGameplayCreateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
